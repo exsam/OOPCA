@@ -14,6 +14,7 @@ public class BadStore implements BeanBagStore
  
     public void addBeanBags(int num, String manufacturer, String name, 
     String id, short year, byte month)
+
     throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException,
     IllegalIDException, InvalidMonthException { }
 
