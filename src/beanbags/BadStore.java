@@ -9,7 +9,7 @@ import java.io.IOException;
  * @version 1.1
  */
 
-public class BadStore implements BeanBagStore
+public class BadStore //implements BeanBagStore
 {
  
     public void addBeanBags(int num, String manufacturer, String name, 
