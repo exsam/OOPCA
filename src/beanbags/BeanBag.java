@@ -33,5 +33,37 @@ public class BeanBag {
         this.month = month;
     }
 
+    public String getName() {
+        return name;
+    }
+
+
+    public String getID() {
+        return ID;
+    }
+
+    public String getManufacture() {
+        return manufacture;
+    }
+
+    public String getInformation() {
+        return information;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public short getYear() {
+        return year;
+    }
+
+    public byte getMonth() {
+        return month;
+    }
 
 }
