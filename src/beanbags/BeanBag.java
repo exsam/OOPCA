@@ -66,4 +66,16 @@ public class BeanBag {
         return month;
     }
 
+    @Override
+    public String toString() {
+        return "BeanBag{" +
+                "name='" + name + '\'' +
+                ", ID='" + ID + '\'' +
+                ", manufacture='" + manufacture + '\'' +
+                ", information='" + information + '\'' +
+                ", price=" + price +
+                ", year=" + year +
+                ", month=" + month +
+                '}';
+    }
 }
