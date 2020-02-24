@@ -8,7 +8,7 @@ import java.io.IOException;
  * @author 690025118
  * @version 0.1
  */
-public class Store {
+public class Store implements BeanBagStore{
     public void addBeanBags(int num, String manufacturer, String name,
                             String id, short year, byte month)
 
