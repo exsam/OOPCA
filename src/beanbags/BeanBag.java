@@ -79,6 +79,6 @@ public class BeanBag {
                 "," + information +
                 "," + price +
                 "," + year +
-                "," + month;
+                "," + month + "\n";
     }
 }

@@ -1,5 +1,6 @@
 package beanbags;
 import java.io.IOException;
+import java.io.*; //added a whole import to start with
 
 /**
  * Implementor for the BeanBagStore Interface
@@ -105,17 +106,19 @@ public class Store implements BeanBagStore{
             throws IOException { }
 
 
-    public void loadStoreContents(String filename)
+    public void loadStoreContents(String filename) throws IOException,
+            ClassNotFoundException
+    {
         //TODO: https://www.reddit.com/r/javaexamples/comments/344kch/reading_and_parsing_data_from_a_file/
         // Load text file with matching filename
         // Read as a CSV
         // For each line, create new object
         // Add that object to ObjectArrayList
 
-        Path pathToFile = Paths.get(fileName);
+        //Path pathToFile = Paths.get(fileName);
         // create a Buffered Reader object instance
         // use Autocloseable Java 7 feature to close resources
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII))
+        try (BufferedReader br = new BufferedReader(new FileReader(filename)))
         {
             // read the first line from the text file
             String fileRead = br.readLine();
@@ -146,9 +149,6 @@ public class Store implements BeanBagStore{
            ioe.printStackTrace();
         }
     }
-
-    //throws IOException,
-    //ClassNotFoundException { }
 
     public int getNumberOfDifferentBeanBagsInStock() { return 0; }
 
