@@ -3,8 +3,7 @@ package beanbags;
 /**
  * BeanBags is a class for implementing BeanBag objects
  *
- * @author 690027367
- * @author 690025118
+ * @author 690027367 & 690025118
  * @version 0.1
  */
 
