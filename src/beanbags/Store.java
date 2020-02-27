@@ -105,12 +105,49 @@ public class Store implements BeanBagStore{
 
 
     public void loadStoreContents(String filename)
-            //TODO: https://www.reddit.com/r/javaexamples/comments/344kch/reading_and_parsing_data_from_a_file/
+        //TODO: https://www.reddit.com/r/javaexamples/comments/344kch/reading_and_parsing_data_from_a_file/
+        // Load text file with matching filename
+        // Read as a CSV
+        // For each line, create new object
+        // Add that object to ObjectArrayList
 
-            // Load text file with matching filename
+        Path pathToFile = Paths.get(fileName);
+        // create a Buffered Reader object instance
+        // use Autocloseable Java 7 feature to close resources
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII))
+        {
+            // read the first line from the text file
+            String fileRead = br.readLine();
+            // loop until all lines are read
+            while (fileRead != null) {
+                // use string.split to load a string array with the values from each line of
+                // the file, using a comma as the delimiter
+                // Use string . split t
 
-            throws IOException,
-            ClassNotFoundException { }
+                //NEED TO ADD RESERVATION NUM LATER
+                //Name, ID, Manfuccatere, infomation, price, year, month
+
+                String[] data = fileRead.split(",");
+
+                //data[0] = name
+                //data[1] = ID
+                //data[2] = Manufactere
+                //data[3] = infomation,
+                //data[4] = price
+                //data[5] = year
+                //data[6] = month
+
+                // if end of file reached
+                fileRead = br.readLine();
+            }
+            // handle exceptions
+        } catch (IOException ioe) {
+           ioe.printStackTrace();
+        }
+    }
+
+    //throws IOException,
+    //ClassNotFoundException { }
 
     public int getNumberOfDifferentBeanBagsInStock() { return 0; }
 
