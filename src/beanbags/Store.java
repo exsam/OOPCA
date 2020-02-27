@@ -8,15 +8,20 @@ import java.io.IOException;
  * @author 690025118
  * @version 0.1
  */
+
 public class Store implements BeanBagStore{
     public void addBeanBags(int num, String manufacturer, String name,
                             String id, short year, byte month)
-
-            // Call Constructor method for BeanBag
-            // Add to object array list
-
             throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException,
-            IllegalIDException, InvalidMonthException { }
+            IllegalIDException, InvalidMonthException {
+                // Call Constructor method for BeanBag
+                for(i=0;i<num;i++)
+                {
+                    BeanBag tempBag = new BeanBag(name,id,manufacturer,year,month);
+                    ObjectArrayList.add((Object)tempBag);
+                }
+                // Add to object array list
+            }
 
     public void addBeanBags(int num, String manufacturer, String name,
                             String id, short year, byte month, String information)
@@ -98,6 +103,7 @@ public class Store implements BeanBagStore{
 
 
     public void loadStoreContents(String filename)
+            //TODO: https://www.reddit.com/r/javaexamples/comments/344kch/reading_and_parsing_data_from_a_file/
 
             // Load text file with matching filename
 
