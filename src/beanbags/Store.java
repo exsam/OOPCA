@@ -40,7 +40,7 @@ public class Store implements BeanBagStore {
           stockList.add(tempBag);
         }
       } else {
-        throw new IllegalNumberOfBeanBagsAddedException();
+        throw new IllegalNumberOfBeanBagsAddedException("Number of bags must be greater then 0.");
       }
     } catch (Exception e) {
       System.out.println(e);
@@ -55,11 +55,22 @@ public class Store implements BeanBagStore {
       short year,
       byte month,
       String information)
-
-      // Same as above but different function signature (More data).
-
       throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException, IllegalIDException,
-          InvalidMonthException {}
+          InvalidMonthException {
+    try {
+      // Ensures Number of BeanBags is valid (if not >1 throw error)
+      if (num >= 1) {
+        for (int i = 1; i <= num; i++) {
+          BeanBag tempBag = new BeanBag(name, id, manufacturer,information, year, month);
+          stockList.add(tempBag);
+        }
+      } else {
+        throw new IllegalNumberOfBeanBagsAddedException("Number of bags must be greater then 0.");
+      }
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+  }
 
   public void setBeanBagPrice(String id, int priceInPence)
 
