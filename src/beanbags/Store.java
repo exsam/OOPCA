@@ -92,6 +92,8 @@ public class Store implements BeanBagStore{
 
     public void saveStoreContents(String filename)
 
+            // Loop through all things in "Stock"
+            // Add each one to a text file or array?
             // Save as a text file with filename
 
             throws IOException { }
@@ -104,10 +106,7 @@ public class Store implements BeanBagStore{
             throws IOException,
             ClassNotFoundException { }
 
-
     public int getNumberOfDifferentBeanBagsInStock() { return 0; }
-
-
 
     public int getNumberOfSoldBeanBags() { return 0; }
 
