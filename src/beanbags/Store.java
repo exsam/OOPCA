@@ -10,6 +10,7 @@ import java.io.IOException;
  */
 
 public class Store implements BeanBagStore{
+    private ObjectArrayList stockList = new ObjectArrayList();
     public void addBeanBags(int num, String manufacturer, String name,
                             String id, short year, byte month)
             throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException,
