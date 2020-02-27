@@ -11,7 +11,7 @@ package beanbags;
 public class BeanBag {
     private String name;
     private String ID;
-    private String manufacture;
+    private String manufacturer;
     private String information;
 
     private int price;
@@ -22,18 +22,18 @@ public class BeanBag {
     //Hexadecimal ID For Reservation
     private String reservationNumber;
 
-    public BeanBag(String name, String ID, String manufacture, short year, byte month) {
+    public BeanBag(String name, String ID, String manufacturer, short year, byte month) {
         this.name = name;
         this.ID = ID;
-        this.manufacture = manufacture;
+        this.manufacturer = manufacturer;
         this.year = year;
         this.month = month;
     }
 
-    public BeanBag(String name, String ID, String manufacture, String information, short year, byte month) {
+    public BeanBag(String name, String ID, String manufacturer, String information, short year, byte month) {
         this.name = name;
         this.ID = ID;
-        this.manufacture = manufacture;
+        this.manufacturer = manufacturer;
         this.information = information;
         this.year = year;
         this.month = month;
@@ -47,8 +47,8 @@ public class BeanBag {
         return ID;
     }
 
-    public String getManufacture() {
-        return manufacture;
+    public String getManufacturer() {
+        return manufacturer;
     }
 
     public String getInformation() {
@@ -73,15 +73,12 @@ public class BeanBag {
 
     @Override
     public String toString() {
-        String returnString = String.format("", name);
-        return returnString;
-        /*return name +
+        return name +
                 "," + ID +
-                "," + manufacture +
+                "," + manufacturer +
                 "," + information +
                 "," + price +
-                ", year=" + year +
-                ", month=" + month +
-                '}';*/
+                "," + year +
+                "," + month;
     }
 }
