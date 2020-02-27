@@ -14,11 +14,15 @@ public class BeanBag {
     private String manufacture;
     private String information;
 
+    private int quantity;
     private int price;
     private short year;
     private byte month;
 
-    public BeanBag(String ID, String manufacture, short year, byte month) {
+    private Boolean reserved;
+
+    public BeanBag(String name, String ID, String manufacture, short year, byte month) {
+        this.name = name;
         this.ID = ID;
         this.manufacture = manufacture;
         this.year = year;
