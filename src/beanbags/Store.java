@@ -10,15 +10,16 @@ import java.io.IOException;
  */
 
 public class Store implements BeanBagStore{
+    public static ObjectArrayList stockList = new ObjectArrayList();
     public void addBeanBags(int num, String manufacturer, String name,
                             String id, short year, byte month)
             throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException,
             IllegalIDException, InvalidMonthException {
                 // Call Constructor method for BeanBag
-                for(i=0;i<num;i++)
+                for(int i = 1;i<=num;i++)
                 {
                     BeanBag tempBag = new BeanBag(name,id,manufacturer,year,month);
-                    ObjectArrayList.add((Object)tempBag);
+                    stockList.add((Object)tempBag);
                 }
                 // Add to object array list
             }
