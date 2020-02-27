@@ -14,12 +14,13 @@ public class BeanBag {
     private String manufacture;
     private String information;
 
-    private int quantity;
     private int price;
     private short year;
     private byte month;
 
     private Boolean reserved;
+    //Hexadecimal ID For Reservation
+    private String reservationNumber;
 
     public BeanBag(String name, String ID, String manufacture, short year, byte month) {
         this.name = name;
@@ -72,14 +73,15 @@ public class BeanBag {
 
     @Override
     public String toString() {
-        return "BeanBag{" +
-                "name='" + name + '\'' +
-                ", ID='" + ID + '\'' +
-                ", manufacture='" + manufacture + '\'' +
-                ", information='" + information + '\'' +
-                ", price=" + price +
+        String returnString = String.format("", name);
+        return returnString;
+        /*return name +
+                "," + ID +
+                "," + manufacture +
+                "," + information +
+                "," + price +
                 ", year=" + year +
                 ", month=" + month +
-                '}';
+                '}';*/
     }
 }
