@@ -1,8 +1,6 @@
 package beanbags;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Implementor for the BeanBagStore Interface
@@ -61,7 +59,7 @@ public class Store implements BeanBagStore {
       // Ensures Number of BeanBags is valid (if not >1 throw error)
       if (num >= 1) {
         for (int i = 1; i <= num; i++) {
-          BeanBag tempBag = new BeanBag(name, id, manufacturer,information, year, month);
+          BeanBag tempBag = new BeanBag(name, id, manufacturer, information, year, month);
           stockList.add(tempBag);
         }
       } else {
@@ -143,25 +141,44 @@ public class Store implements BeanBagStore {
     return 0;
   }
 
-  public void saveStoreContents(String filename)
+  public void saveStoreContents(String filename) throws IOException {
 
-      // Loop through all things in "Stock"
-      // Add each one to a text file or array?
-      // Save as a text file with filename
+    // Loop through all things in "Stock"
+    // Add each one to a text file or array?
+    // Save as a text file with filename
+      try {
+          FileWriter writer = new FileWriter(filename);
+          BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
-      throws IOException {}
+          for (int i = 0; i < stockList.size(); i++) {
+              bufferedWriter.write(stockList.get(i).toString());
+          }
+          bufferedWriter.write("Hello World");
+          //bufferedWriter.newLine();
+          bufferedWriter.write("See You Again!");
+          bufferedWriter.close();
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
 
+  }
+
+  /**
+   * Method for loading stock list from a text file
+   *
+   * @param filename location of the file to be loaded
+   * @throws IOException
+   * @throws ClassNotFoundException
+   */
   public void loadStoreContents(String filename) throws IOException, ClassNotFoundException {
     // TODO:
-    // https://www.reddit.com/r/javaexamples/comments/344kch/reading_and_parsing_data_from_a_file/
-    // Load text file with matching filename
-    // Read as a CSV
-    // For each line, create new object
-    // Add that object to ObjectArrayList
+    //  https://www.reddit.com/r/javaexamples/comments/344kch/reading_and_parsing_data_from_a_file/
+    //  Load text file with matching filename
+    //  Read as a CSV
+    //  For each line, create new object
+    //  Add that object to ObjectArrayList
 
-    // Path pathToFile = Paths.get(fileName);
     // create a Buffered Reader object instance
-    // use Autocloseable Java 7 feature to close resources
     try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
       // read the first line from the text file
       String fileRead = br.readLine();
