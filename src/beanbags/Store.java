@@ -141,26 +141,27 @@ public class Store implements BeanBagStore {
     return 0;
   }
 
+  /**
+   * Method saves content of stockList ObjectArrayList to a txt file.
+   *
+   * @param filename location of the file to be saved
+   * @throws IOException
+   */
   public void saveStoreContents(String filename) throws IOException {
 
     // Loop through all things in "Stock"
     // Add each one to a text file or array?
     // Save as a text file with filename
-      try {
-          FileWriter writer = new FileWriter(filename);
-          BufferedWriter bufferedWriter = new BufferedWriter(writer);
+    FileWriter writer = new FileWriter(filename,true);
+    BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
-          for (int i = 0; i < stockList.size(); i++) {
-              bufferedWriter.write(stockList.get(i).toString());
-          }
-          bufferedWriter.write("Hello World");
-          //bufferedWriter.newLine();
-          bufferedWriter.write("See You Again!");
-          bufferedWriter.close();
-      } catch (IOException e) {
-          e.printStackTrace();
-      }
-
+    for (int i = 0; i < stockList.size(); i++) {
+      bufferedWriter.write(stockList.get(i).toString());
+    }
+    bufferedWriter.write("Hello World");
+    bufferedWriter.newLine();
+    bufferedWriter.write("See You Again!");
+    bufferedWriter.close();
   }
 
   /**
