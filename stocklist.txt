@@ -8,15 +8,6 @@ Sam,RUN,testing,null,0,2020,12
 Sam,RUN,testing,null,0,2020,12
 Sam,RUN,testing,null,0,2020,12
 Sam,RUN,testing,null,0,2020,12
-Hello WorldSee You Again!Sam,RUN,testing,null,0,2020,12
-Sam,RUN,testing,null,0,2020,12
-Sam,RUN,testing,null,0,2020,12
-Sam,RUN,testing,null,0,2020,12
-Sam,RUN,testing,null,0,2020,12
-Sam,RUN,testing,null,0,2020,12
-Sam,RUN,testing,null,0,2020,12
-Sam,RUN,testing,null,0,2020,12
-Sam,RUN,testing,null,0,2020,12
-Sam,RUN,testing,null,0,2020,12
-Hello World
-See You Again!
+SAM,BATER,test2,null,0,2020,12
+SAM,BATER,test2,null,0,2020,12
+SAM,BATER,test2,null,0,2020,12
