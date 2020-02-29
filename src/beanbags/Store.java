@@ -108,14 +108,11 @@ public class Store implements BeanBagStore {
   }
 
   public void setBeanBagPrice(String id, int priceInPence) {
-      //throws InvalidPriceException, BeanBagIDNotRecognisedException, IllegalIDException {
-    // Modify Price of BeanBag
-    for(int i = 0; i <= stockList.size();i++)
-    {
-      BeanBag temp = ((BeanBag)stockList.get(i));
-      if(((BeanBag)stockList.get(i)).getID() == id && !((BeanBag)stockList.get(i)).getReserved())
-      {
-        ((BeanBag)stockList.get(i)).setPrice(priceInPence);
+    // throws InvalidPriceException, BeanBagIDNotRecognisedException, IllegalIDException {
+    for (int i = 0; i < stockList.size(); i++) {
+      if (((BeanBag) stockList.get(i)).getID() == id
+          && !((BeanBag) stockList.get(i)).getReserved()) {
+        ((BeanBag) stockList.get(i)).setPrice(priceInPence);
       }
     }
   }
@@ -196,13 +193,17 @@ public class Store implements BeanBagStore {
     // Loop through all things in "Stock"
     // Add each one to a text file or array?
     // Save as a text file with filename
-    FileWriter writer = new FileWriter(filename);
-    BufferedWriter bufferedWriter = new BufferedWriter(writer);
-
-    for (int i = 0; i < stockList.size(); i++) {
-      bufferedWriter.write(stockList.get(i).toString());
+    try {
+      FileWriter writer = new FileWriter(filename);
+      BufferedWriter bufferedWriter = new BufferedWriter(writer);
+      // Loop through ObjectArrayList
+      for (int i = 0; i < stockList.size(); i++) {
+        bufferedWriter.write(stockList.get(i).toString());
+      }
+      bufferedWriter.close();
+    } catch (Exception e) {
+      System.out.println(e);
     }
-    bufferedWriter.close();
   }
 
   /**
