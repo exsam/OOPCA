@@ -31,6 +31,16 @@ public class Store implements BeanBagStore {
       throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException, IllegalIDException,
           InvalidMonthException {
     try {
+      // TODO: need to check ID & Month Exceptions
+      //  check ID is valid
+      //  check ID matches other existing bags correctly
+
+      // Ensures month entered is a valid month
+      if (month <= 0 || month > 12) {
+        throw new InvalidMonthException(
+            Byte.toString(month) + " is an invalid month. Please enter a valid month 1-12");
+      }
+
       // Ensures Number of BeanBags is valid (if not >1 throw error)
       if (num >= 1) {
         for (int i = 1; i <= num; i++) {
@@ -38,13 +48,29 @@ public class Store implements BeanBagStore {
           stockList.add(tempBag);
         }
       } else {
-        throw new IllegalNumberOfBeanBagsAddedException("Number of bags must be greater then 0.");
+        throw new IllegalNumberOfBeanBagsAddedException(
+            "Number of bags must be must be a whole integer and greater " + "then 0.");
       }
     } catch (Exception e) {
       System.out.println(e);
     }
   }
 
+  /**
+   * Method adds BeanBags to the stocklist.
+   *
+   * @param num number of bean bags added
+   * @param manufacturer bean bag manufacturer
+   * @param name bean bag name
+   * @param id ID of bean bag
+   * @param year year of manufacture
+   * @param month month of manufacture
+   * @param information free text detailing bean bag information
+   * @throws IllegalNumberOfBeanBagsAddedException
+   * @throws BeanBagMismatchException
+   * @throws IllegalIDException
+   * @throws InvalidMonthException
+   */
   public void addBeanBags(
       int num,
       String manufacturer,
@@ -56,25 +82,43 @@ public class Store implements BeanBagStore {
       throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException, IllegalIDException,
           InvalidMonthException {
     try {
-      // Ensures Number of BeanBags is valid (if not >1 throw error)
+      // TODO: need to check ID & Month Exceptions
+      //  check ID is valid
+      //  check ID matches other existing bags correctly
+
+      // Ensures month entered is a valid month
+      if (month <= 0 || month > 12) {
+        throw new InvalidMonthException(
+            Byte.toString(month) + " is an invalid month. Please enter a valid month 1-12");
+      }
+
+      // Ensures number of BeanBags is valid (if not >1 throw error)
       if (num >= 1) {
         for (int i = 1; i <= num; i++) {
           BeanBag tempBag = new BeanBag(name, id, manufacturer, information, year, month);
           stockList.add(tempBag);
         }
       } else {
-        throw new IllegalNumberOfBeanBagsAddedException("Number of bags must be greater then 0.");
+        throw new IllegalNumberOfBeanBagsAddedException(
+            "Number of bags must be a whole integer and greater then 0.");
       }
     } catch (Exception e) {
       System.out.println(e);
     }
   }
 
-  public void setBeanBagPrice(String id, int priceInPence)
-
-      // Modify the price of a bean bag object
-
-      throws InvalidPriceException, BeanBagIDNotRecognisedException, IllegalIDException {}
+  public void setBeanBagPrice(String id, int priceInPence) {
+      //throws InvalidPriceException, BeanBagIDNotRecognisedException, IllegalIDException {
+    // Modify Price of BeanBag
+    for(int i = 0; i <= stockList.size();i++)
+    {
+      BeanBag temp = ((BeanBag)stockList.get(i));
+      if(((BeanBag)stockList.get(i)).getID() == id && !((BeanBag)stockList.get(i)).getReserved())
+      {
+        ((BeanBag)stockList.get(i)).setPrice(priceInPence);
+      }
+    }
+  }
 
   public void sellBeanBags(int num, String id)
 
