@@ -18,7 +18,7 @@ public class BeanBag {
 
   private Boolean reserved;
   // Hexadecimal ID For Reservation
-  private String reservationNumber;
+  private int reservationNumber;
 
   public BeanBag(String name, String ID, String manufacturer, short year, byte month) {
     this.name = name;

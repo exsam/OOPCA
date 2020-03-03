@@ -233,20 +233,20 @@ public class Store implements BeanBagStore {
         // Use string . split t
 
         // NEED TO ADD RESERVATION NUM LATER
-        // Name, ID, Manfuccatere, infomation, price, year, month
+        // Name, ID, Manufacturer, information, price, year, month
 
         String[] data = fileRead.split(",");
 
         String name = data[0];
         String id = data[1];
         String manufacturer = data[2];
-        String infomation = data[3];
-        String price = data[4];
-        String year = data[5];
-        String month = data[6];
-
-        BeanBag tempBag = new BeanBag(name, id, manufacturer, infomation, price, year, month);
-        AddBeanBags(tempBag);
+        String information = data[3];
+        int price = Integer.parseInt(data[4]);
+        short year = Short.parseShort(data[5]);
+        byte month = Byte.parseByte(data[6]);
+        try {
+          addBeanBags(1,name,id,manufacturer,year,month,information);
+        }catch(Exception e){System.out.println(e);}
 
         fileRead = br.readLine();
       }
