@@ -227,6 +227,7 @@ public class Store implements BeanBagStore {
       String fileRead = br.readLine();
       // loop until all lines are read
       while (fileRead != null) {
+
         // use string.split to load a string array with the values from each line of
         // the file, using a comma as the delimiter
         // Use string . split t
@@ -236,15 +237,17 @@ public class Store implements BeanBagStore {
 
         String[] data = fileRead.split(",");
 
-        // data[0] = name
-        // data[1] = ID
-        // data[2] = Manufactere
-        // data[3] = infomation,
-        // data[4] = price
-        // data[5] = year
-        // data[6] = month
+        string name = data[0];
+        string id = data[1];
+        string manufacturer = data[2];
+        string infomation = data[3];
+        string price = data[4];
+        string year = data[5];
+        string month = data[6];
 
-        // if end of file reached
+        BeanBag tempBag = new BeanBag(name, id, manufacturer, infomation, price, year, month);
+        AddBeanBags(tempBag);
+
         fileRead = br.readLine();
       }
       // handle exceptions
