@@ -237,13 +237,13 @@ public class Store implements BeanBagStore {
 
         String[] data = fileRead.split(",");
 
-        string name = data[0];
-        string id = data[1];
-        string manufacturer = data[2];
-        string infomation = data[3];
-        string price = data[4];
-        string year = data[5];
-        string month = data[6];
+        String name = data[0];
+        String id = data[1];
+        String manufacturer = data[2];
+        String infomation = data[3];
+        String price = data[4];
+        String year = data[5];
+        String month = data[6];
 
         BeanBag tempBag = new BeanBag(name, id, manufacturer, infomation, price, year, month);
         AddBeanBags(tempBag);
