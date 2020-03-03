@@ -10,7 +10,7 @@ public class TestingClassSam {
     BeanBag testBag = new BeanBag("NAME", "Test", "TEST BAG", (short) 2020, (byte) 12);
     testStore.addBeanBags(10, "testing", "Sam", "RUN", (short) 2020, (byte) 12);
     testStore.addBeanBags(3, "test2", "SAM", "BATER", (short) 2020, (byte) 12);
-    testStore.setBeanBagPrice("RUN", 111);
+    //testStore.setBeanBagPrice("RUN", 111);
 
     //testStore.loadStoreContents("stocklist.txt");
     try {
