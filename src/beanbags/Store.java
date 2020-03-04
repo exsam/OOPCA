@@ -11,7 +11,7 @@ import java.io.*;
  */
 public class Store implements BeanBagStore {
   public static ObjectArrayList stockList = new ObjectArrayList();
-
+  private static ObjectArrayList soldList = new ObjectArrayList();
   /**
    * Method adds BeanBags to the stocklist.
    *
@@ -50,6 +50,7 @@ public class Store implements BeanBagStore {
       } else {
         throw new IllegalNumberOfBeanBagsAddedException(
             "Number of bags must be must be a whole integer and greater " + "then 0.");
+        // throw other exception if method is not met
       }
     } catch (Exception e) {
       System.out.println(e);
@@ -245,8 +246,10 @@ public class Store implements BeanBagStore {
         short year = Short.parseShort(data[5]);
         byte month = Byte.parseByte(data[6]);
         try {
-          addBeanBags(1,name,id,manufacturer,year,month,information);
-        }catch(Exception e){System.out.println(e);}
+          addBeanBags(1, name, id, manufacturer, year, month, information);
+        } catch (Exception e) {
+          System.out.println(e);
+        }
 
         fileRead = br.readLine();
       }
@@ -293,4 +296,6 @@ public class Store implements BeanBagStore {
 
   public void replace(String oldId, String replacementId)
       throws BeanBagIDNotRecognisedException, IllegalIDException {}
+
+  private void idFormatCheck() {}
 }
