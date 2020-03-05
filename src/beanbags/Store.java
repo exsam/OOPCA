@@ -12,6 +12,8 @@ import java.io.*;
 public class Store implements BeanBagStore {
   public static ObjectArrayList stockList = new ObjectArrayList();
   private static ObjectArrayList soldList = new ObjectArrayList();
+
+  String[] IDs;
   /**
    * Method adds BeanBags to the stocklist.
    *
@@ -119,17 +121,33 @@ public class Store implements BeanBagStore {
   }
 
   public void sellBeanBags(int num, String id)
+      throws BeanBagNotInStockException, InsufficientStockException,
+          IllegalNumberOfBeanBagsSoldException, PriceNotSetException,
+          BeanBagIDNotRecognisedException, IllegalIDException {
 
+    try {
+      int n = 0;
       // Method for searching via "ID"
-
+      while (n < num) {
+        for (int i = 0; i < stockList.size(); i++) {
+          if (((BeanBag) stockList.get(i)).getID() == id
+              && !((BeanBag) stockList.get(i)).getReserved()) {
+            BeanBag tempBag = ((BeanBag) stockList.get(i));
+            soldList.add(tempBag);
+            stockList.remove(i);
+            n = n + 1;
+            break;
+          }
+        }
+      }
       // Check bean bag in stock,
       // Check bean bag not reserved,
       // Check sufficient stock for quantity required,
       // Remove from ObjectArrayList
-
-      throws BeanBagNotInStockException, InsufficientStockException,
-          IllegalNumberOfBeanBagsSoldException, PriceNotSetException,
-          BeanBagIDNotRecognisedException, IllegalIDException {}
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+  }
 
   public int reserveBeanBags(int num, String id)
 
@@ -297,5 +315,7 @@ public class Store implements BeanBagStore {
   public void replace(String oldId, String replacementId)
       throws BeanBagIDNotRecognisedException, IllegalIDException {}
 
-  private void idFormatCheck() {}
+  private void idFormatCheck() {
+      
+  }
 }

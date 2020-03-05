@@ -11,14 +11,27 @@ public class TestingClassSam {
     testStore.addBeanBags(10, "testing", "Sam", "RUN", (short) 2020, (byte) 12);
     testStore.addBeanBags(3, "test5", "SAM", "BATER", (short) 2020, (byte) 12);
     //testStore.setBeanBagPrice("RUN", 111);
-
+    try {
+      testStore.sellBeanBags(3,"BATER");
+    } catch (BeanBagNotInStockException e) {
+      e.printStackTrace();
+    } catch (InsufficientStockException e) {
+      e.printStackTrace();
+    } catch (IllegalNumberOfBeanBagsSoldException e) {
+      e.printStackTrace();
+    } catch (PriceNotSetException e) {
+      e.printStackTrace();
+    } catch (BeanBagIDNotRecognisedException e) {
+      e.printStackTrace();
+    }
+    /*
     try {
       testStore.loadStoreContents("stocklist.txt");
     } catch (IOException e) {
       e.printStackTrace();
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
-    }
+    }*/
     try {
       testStore.saveStoreContents("stocklist.txt");
     } catch (IOException e) {
