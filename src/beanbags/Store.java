@@ -177,7 +177,9 @@ public class Store implements BeanBagStore {
       // Check which bean bag is related to that reservation number
       // Remove the reservation number as no longer reserved.
 
-      throws ReservationNumberNotRecognisedException {}
+      throws ReservationNumberNotRecognisedException {
+
+      }
 
   public void sellBeanBags(int reservationNumber)
 
@@ -337,7 +339,7 @@ public class Store implements BeanBagStore {
       throws BeanBagIDNotRecognisedException, IllegalIDException {
     for (int i = 0; i < stockList.size(); i++) {
       if (((BeanBag) stockList.get(i)).getID() == oldId) {
-        // TODO
+        //TODO
       }
     }
   }
@@ -345,7 +347,7 @@ public class Store implements BeanBagStore {
   private boolean validateIDFormat(String id) {
     if (String.format(id, "0xFFFFFF") == "0xFFFFF") {
       return true;
-      // TODO
+      //TODO
     }
     return true;
   }

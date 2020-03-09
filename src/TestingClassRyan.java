@@ -9,6 +9,7 @@ public class TestingClassRyan {
     try {
       testing.loadStoreContents("stocklist.txt");
     } catch (Exception e) {
+      System.out.println(e);
     }
     for (int i = 0; i < Store.stockList.size(); i++) {
       System.out.println(Store.stockList.get(i).toString());
