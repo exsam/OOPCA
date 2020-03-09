@@ -112,13 +112,22 @@ public class Store implements BeanBagStore {
 
   public void setBeanBagPrice(String id, int priceInPence) {
     // throws InvalidPriceException, BeanBagIDNotRecognisedException, IllegalIDException {
-    for (int i = 0; i < stockList.size(); i++) {
-      if (((BeanBag) stockList.get(i)).getID() == id) {
-        if (!((BeanBag) stockList.get(i)).getReserved())
-        {((BeanBag) stockList.get(i)).setPrice(priceInPence);}
-        else {
+    try {
+      if (priceInPence < 1) {
+        throw new InvalidPriceException("Price Must Be 1 Pence or More");
+      }
+      for (int i = 0; i < stockList.size(); i++) {
+        BeanBag bag = (BeanBag) stockList.get(i);
+        if (bag.getID() == id) {
+          if (!bag.getReserved()) {
+            bag.setPrice(priceInPence);
+          } else if (priceInPence < bag.getPrice()) {
+            bag.setPrice(priceInPence);
+          }
         }
       }
+    } catch (Exception e) {
+      System.out.println(e);
     }
   }
 
