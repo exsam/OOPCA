@@ -10,9 +10,9 @@ public class TestingClassSam {
     BeanBag testBag = new BeanBag("NAME", "Test", "TEST BAG", (short) 2020, (byte) 12);
     testStore.addBeanBags(10, "testing", "Sam", "RUN", (short) 2020, (byte) 12);
     testStore.addBeanBags(3, "test5", "SAM", "BATER", (short) 2020, (byte) 12);
-    //testStore.setBeanBagPrice("RUN", 111);
+    // testStore.setBeanBagPrice("RUN", 111);
     try {
-      testStore.sellBeanBags(3,"BATER");
+      testStore.sellBeanBags(2, "BATER");
     } catch (BeanBagNotInStockException e) {
       e.printStackTrace();
     } catch (InsufficientStockException e) {
@@ -24,14 +24,15 @@ public class TestingClassSam {
     } catch (BeanBagIDNotRecognisedException e) {
       e.printStackTrace();
     }
-    /*
+    System.out.println(testStore.getNumberOfSoldBeanBags());
+
     try {
       testStore.loadStoreContents("stocklist.txt");
     } catch (IOException e) {
       e.printStackTrace();
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
-    }*/
+    }
     try {
       testStore.saveStoreContents("stocklist.txt");
     } catch (IOException e) {
