@@ -80,6 +80,14 @@ public class BeanBag {
     this.reserved = reserved;
   }
 
+  public int getReservationNumber() {
+    return reservationNumber;
+  }
+
+  public void setReservationNumber(int reservationNumber) {
+    this.reservationNumber = reservationNumber;
+  }
+
   @Override
   public String toString() {
     return name
