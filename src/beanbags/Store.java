@@ -161,19 +161,25 @@ public class Store implements BeanBagStore {
             throws BeanBagNotInStockException, InsufficientStockException,
             IllegalNumberOfBeanBagsReservedException, PriceNotSetException,
             BeanBagIDNotRecognisedException, IllegalIDException {
-        try {
 
+        System.out.println("Test");
+
+        try {
           for (int i = 0; i < stockList.size(); i++)
           {
-            if (((BeanBag) stockList.get(i)).getID() != 1)
+            if (((BeanBag) stockList.get(i)).getID().equals(id))
             {
-              System.out.println("Testing");
+                System.out.println(((BeanBag) stockList.get(i)));
+                System.out.println( id );
             }
           }
 
             // Check IF in stock,
             // Generate UNIQUE Reservation Num
-            //
+            // Loop for each "Num" of reservation
+            // Check where "ID" matches
+            // Set reserved to true and assign reservation num
+            // * Until num counter = 0
 
         } catch (Exception e) {
             System.out.println(e);
@@ -183,10 +189,24 @@ public class Store implements BeanBagStore {
 
     public void unreserveBeanBags(int reservationNumber)
 
-        // Check which bean bag is related to that reservation number
-        // Remove the reservation number as no longer reserved.
+        // Ryan White 9/3/2020
 
             throws ReservationNumberNotRecognisedException {
+        try
+        {
+            for (int i = 0; i < stockList.size(); i++)
+            {
+                if ( ((BeanBag) stockList.get(i)).getReservationNumber() == reservationNumber )
+                {
+                    ((BeanBag) stockList.get(i)).setReserved(false);
+                    ((BeanBag) stockList.get(i)).setReservationNumber(0);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
     }
 
     public void sellBeanBags(int reservationNumber)

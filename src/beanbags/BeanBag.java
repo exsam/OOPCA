@@ -76,13 +76,12 @@ public class BeanBag {
     return reserved;
   }
 
-  public void setReserved(Boolean reserved)
-  {
-    this.reserved = reserved;
-  }
-
   public int getReservationNumber() {
     return reservationNumber;
+  }
+
+  public void setReserved(Boolean reserved) {
+    this.reserved = reserved;
   }
 
   public void setReservationNumber(int reservationNumber) {
