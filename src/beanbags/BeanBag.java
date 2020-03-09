@@ -76,7 +76,8 @@ public class BeanBag {
     return reserved;
   }
 
-  public void setReserved(Boolean reserved) {
+  public void setReserved(Boolean reserved)
+  {
     this.reserved = reserved;
   }
 
