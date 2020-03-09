@@ -113,9 +113,11 @@ public class Store implements BeanBagStore {
   public void setBeanBagPrice(String id, int priceInPence) {
     // throws InvalidPriceException, BeanBagIDNotRecognisedException, IllegalIDException {
     for (int i = 0; i < stockList.size(); i++) {
-      if (((BeanBag) stockList.get(i)).getID() == id
-          && !((BeanBag) stockList.get(i)).getReserved()) {
-        ((BeanBag) stockList.get(i)).setPrice(priceInPence);
+      if (((BeanBag) stockList.get(i)).getID() == id) {
+        if (!((BeanBag) stockList.get(i)).getReserved())
+        {((BeanBag) stockList.get(i)).setPrice(priceInPence);}
+        else {
+        }
       }
     }
   }
@@ -326,7 +328,7 @@ public class Store implements BeanBagStore {
       throws BeanBagIDNotRecognisedException, IllegalIDException {
     for (int i = 0; i < stockList.size(); i++) {
       if (((BeanBag) stockList.get(i)).getID() == oldId) {
-        //TODO
+        // TODO
       }
     }
   }
@@ -334,7 +336,7 @@ public class Store implements BeanBagStore {
   private boolean validateIDFormat(String id) {
     if (String.format(id, "0xFFFFFF") == "0xFFFFF") {
       return true;
-      //TODO
+      // TODO
     }
     return true;
   }
