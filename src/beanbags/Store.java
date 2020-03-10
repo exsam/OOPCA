@@ -324,7 +324,7 @@ public class Store implements BeanBagStore {
 
   public int getNumberOfSoldBeanBags(String id)
       throws BeanBagIDNotRecognisedException, IllegalIDException {
-      if (!validateHexFormat(id)) {}
+      Check.validID(id);
       int counter = 0;
       for (int i = 0; i < soldList.size(); i++) {
         if (((BeanBag) soldList.get(i)).getID() == id) {
@@ -366,9 +366,7 @@ public class Store implements BeanBagStore {
         if (((BeanBag) stockList.get(i)).getID() == replacementID) {
           throw new IllegalIDException("This ID already exists.");
         }
-        if(!validateHexFormat(oldID)){
-          throw new IllegalIDException("The ID is not an 8-digit Hexadecimal Number.");
-        }
+        Check.validID(replacementID);
         if (((BeanBag) stockList.get(i)).getID() == oldID) {
           ((BeanBag) stockList.get(i)).setID(replacementID);
         }
@@ -377,10 +375,6 @@ public class Store implements BeanBagStore {
       if (counter < 1) {
         throw new BeanBagIDNotRecognisedException("No BeanBag with this ID.");
       }
-  }
-
-  private boolean validateHexFormat(String hex) {
-    return true;
   }
 
   private String intToHex(int number) {
