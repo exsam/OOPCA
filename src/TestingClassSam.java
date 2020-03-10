@@ -7,5 +7,5 @@ public class TestingClassSam {
       throws IllegalIDException, BeanBagMismatchException, InvalidMonthException,
           IllegalNumberOfBeanBagsAddedException {
     BeanBagStore testStore = new Store();
-    testStore.addBeanBags(20,"test","banter","10",(short)2012,(byte)15);
+    testStore.addBeanBags(20,"test","banter","10",(short)2012,(byte)12);
 }}
