@@ -1,3 +1,4 @@
-Ryan,ID1,Manufacturer1,Information1,50,2020,12,false,0
-Sam,ID2,Manufacturer2,Information2,50,2020,12,false,0
-Adam,ID3,Manufacturer3,Information3,50,2020,12,false,0
+Sam,RUN,testing,null,1,2020,12,true,4
+ID1,Manufacturer1,Ryan,Information1,1,2020,12,false,0
+ID2,Manufacturer2,Sam,Information2,1,2020,12,false,0
+ID3,Manufacturer3,Adam,Information3,1,2020,12,true,1
