@@ -133,6 +133,17 @@ public class Store implements BeanBagStore {
     }
   }
 
+  private void setReserved(String id, Boolean Reserved, int ReservationNumber) {
+    // throws InvalidPriceException, BeanBagIDNotRecognisedException, IllegalIDException {
+    for (int i = 0; i < stockList.size(); i++) {
+      if (((BeanBag) stockList.get(i)).getID().equals(id))
+      {
+        ((BeanBag) stockList.get(i)).setReserved(Reserved);
+        ((BeanBag) stockList.get(i)).setReservationNumber(ReservationNumber);
+      }
+    }
+  }
+
   public void sellBeanBags(int num, String id)
       throws BeanBagNotInStockException, InsufficientStockException,
           IllegalNumberOfBeanBagsSoldException, PriceNotSetException,
@@ -188,13 +199,6 @@ public class Store implements BeanBagStore {
       throws ReservationNumberNotRecognisedException {}
 
   public void sellBeanBags(int reservationNumber) throws ReservationNumberNotRecognisedException {
-    // Method for searching via "reservationNumber"
-
-    // Check bean bag in stock,
-    // Check reservation number matches,
-    // Check sufficient stock for quantity required,
-    // Remove from ObjectArrayList
-
     try {
       for (int i = 0; i < stockList.size(); i++) {
         if (((BeanBag) stockList.get(i)).getReservationNumber() == reservationNumber) {
@@ -242,6 +246,7 @@ public class Store implements BeanBagStore {
     // Loop through all things in "Stock"
     // Add each one to a text file or array?
     // Save as a text file with filename
+
     try {
       FileWriter writer = new FileWriter(filename);
       BufferedWriter bufferedWriter = new BufferedWriter(writer);
@@ -263,8 +268,6 @@ public class Store implements BeanBagStore {
    * @throws ClassNotFoundException
    */
   public void loadStoreContents(String filename) throws IOException, ClassNotFoundException {
-    //  https://www.reddit.com/r/javaexamples/comments/344kch/reading_and_parsing_data_from_a_file/
-    // create a Buffered Reader object instance
     try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
       // read the first line from the text file
       String fileRead = br.readLine();
@@ -280,9 +283,15 @@ public class Store implements BeanBagStore {
         int price = Integer.parseInt(data[4]);
         short year = Short.parseShort(data[5]);
         byte month = Byte.parseByte(data[6]);
+
+        // Temp Test Ryan
+        Boolean Reserved = Boolean.parseBoolean(data[7]);
+        int ReservationNumber = Integer.parseInt(data[8]);
+
         try {
           addBeanBags(1, name, id, manufacturer, year, month, information);
           setBeanBagPrice(id, price);
+          setReserved(id, Reserved, ReservationNumber);
         } catch (Exception e) {
           System.out.println(e);
         }

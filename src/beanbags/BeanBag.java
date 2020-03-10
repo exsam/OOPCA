@@ -7,17 +7,15 @@ package beanbags;
  * @version 0.1
  */
 public class BeanBag {
+
   private String name;
   private String ID;
   private String manufacturer;
   private String information;
-
   private int price;
-  private short year;
   private byte month;
-
+  private short year;
   private Boolean reserved;
-  // Hexadecimal ID For Reservation
   private int reservationNumber;
 
   public BeanBag(String name, String ID, String manufacturer, short year, byte month) {
@@ -103,6 +101,10 @@ public class BeanBag {
         + year
         + ","
         + month
+        + ","
+        + reserved
+        + ","
+        + reservationNumber
         + "\n";
   }
 }
