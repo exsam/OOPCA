@@ -198,13 +198,13 @@ public class Store implements BeanBagStore {
   public int reservedBeanBagsInStock() {
     int ReservedStock = 0;
     for (int i = 0; i < stockList.size(); i++) {
-      if (((BeanBag) stockList.get(i)).getReserved())
+      if (((BeanBag) stockList.get(i)).getReserved() == true)
       {
         System.out.println("RESERVED");
       }
-      System.out.println(((BeanBag) stockList.get(i)).getReserved());
+      System.out.println(((BeanBag) stockList.get(i)));
 
-      // ReservedStock = ReservedStock + 1;
+      ReservedStock = ReservedStock + 1;
     }
     return ReservedStock;
   }

@@ -18,7 +18,7 @@ public class TestingClassRyan {
       }
     }
     //System.out.println("Bean Bags in stock: ");
-    System.out.println(testing.beanBagsInStock());
+    //System.out.println(testing.beanBagsInStock());
     //System.out.println("Reserved Bean Bags in stock: ");
     System.out.println(testing.reservedBeanBagsInStock());
 
