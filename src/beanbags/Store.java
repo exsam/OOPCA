@@ -131,18 +131,18 @@ public class Store implements BeanBagStore {
           IllegalIDException {
     System.out.println("SetReserved running");
     for (int i = 0; i < stockList.size(); i++) {
-      System.out.println("SetReserved Loop Runninig");
-      System.out.print("Stocklist ID = ");
-      System.out.print(((BeanBag) stockList.get(i)).getID());
-      System.out.print("Passed ID = ");
-      System.out.print(id);
-      System.out.print("\n");
-      System.out.println(((BeanBag) stockList.get(i)));
-      //if (((BeanBag) stockList.get(i)).getID().equals(id)){
-        //System.out.println("SetReserved Condition Met");
-        //((BeanBag) stockList.get(i)).setReserved(reserved);
-        //((BeanBag) stockList.get(i)).setReservationNumber(reservationNumber);
-      //}
+      //System.out.println("SetReserved Loop Runninig");
+      //System.out.print("Stocklist ID = ");
+      //System.out.print(((BeanBag) stockList.get(i)).getID());
+      //System.out.print("Passed ID = ");
+      //System.out.print(id);
+      //System.out.print("\n");
+      //System.out.println(((BeanBag) stockList.get(i)));
+      if (((BeanBag) stockList.get(i)).getID().equals(id)){
+        System.out.println("SetReserved Condition Met");
+        ((BeanBag) stockList.get(i)).setReserved(reserved);
+        ((BeanBag) stockList.get(i)).setReservationNumber(reservationNumber);
+      }
     }
   }
 
@@ -211,11 +211,12 @@ public class Store implements BeanBagStore {
     for (int i = 0; i < stockList.size(); i++) {
       if (((BeanBag) stockList.get(i)).getReserved() == true)
       {
-        System.out.println("RESERVED");
+        ReservedStock = ReservedStock + 1;
+        //System.out.println("RESERVED");
       }
-      System.out.println(((BeanBag) stockList.get(i)));
+      //System.out.println(((BeanBag) stockList.get(i)));
 
-      ReservedStock = ReservedStock + 1;
+
     }
     return ReservedStock;
   }

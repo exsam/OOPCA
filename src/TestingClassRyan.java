@@ -8,51 +8,20 @@ public class TestingClassRyan {
     BeanBagStore testing = new Store();
     try {
       testing.loadStoreContents("stocklist.txt");
-      //testing.reserveBeanBags(2, "test2");
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    for (int i = 0; i < Store.stockList.size(); i++) {
-      if(((BeanBag) Store.stockList.get(i)).getReserved()){
-      }
-    }
-    //System.out.println("Bean Bags in stock: ");
-    //System.out.println(testing.beanBagsInStock());
-    //System.out.println("Reserved Bean Bags in stock: ");
-    System.out.println(testing.reservedBeanBagsInStock());
-    try {
-      testing.setBeanBagPrice("ID1",73);
-    } catch (InvalidPriceException e) {
-      e.printStackTrace();
-    } catch (BeanBagIDNotRecognisedException e) {
-      e.printStackTrace();
-    } catch (IllegalIDException e) {
-      e.printStackTrace();
-    }
-    try {
-      testing.reserveBeanBags(1,"ID1");
-    } catch (BeanBagNotInStockException e) {
-      e.printStackTrace();
-    } catch (InsufficientStockException e) {
-      e.printStackTrace();
-    } catch (IllegalNumberOfBeanBagsReservedException e) {
-      e.printStackTrace();
-    } catch (PriceNotSetException e) {
-      e.printStackTrace();
-    } catch (BeanBagIDNotRecognisedException e) {
-      e.printStackTrace();
-    } catch (IllegalIDException e) {
-      e.printStackTrace();
-    }
-    try {
-      testing.saveStoreContents("testing.txt");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
+      System.out.print("Total Bean Bags in Stock: ");
+      System.out.print(testing.beanBagsInStock());
+      System.out.print("\n Reserved Bags in Stock: ");
+      System.out.print(testing.reservedBeanBagsInStock());
+      System.out.print("\n Reserving Bean Bag with ID3");
+      testing.reserveBeanBags(1,"ID3");
+      system.out.print("RUNNNNNNN");
+      System.out.print("\n Reserved Bags in Stock: ");
+      System.out.print(testing.reservedBeanBagsInStock());
+  } catch (Exception e) {
+    e.printStackTrace();
+  }
 
     //System.out.println(testing.beanBagsInStock("test2"));
-
 
   }
 }
