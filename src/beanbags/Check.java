@@ -1,5 +1,11 @@
 package beanbags;
 
+/**
+ * Class for static Exception Handling methods
+ *
+ * @author 690027367 & 690025118
+ * @version 0.1
+ */
 public class Check {
 
   /**
@@ -20,6 +26,19 @@ public class Check {
       }
     } else {
       throw new IllegalIDException("ID must only be 8 characters long.");
+    }
+  }
+
+  public static void matchingIDs(BeanBag bag, ObjectArrayList stockList)
+      throws BeanBagMismatchException {
+    for (int i = 0; i < stockList.size(); i++) {
+      BeanBag tempBag = (BeanBag) stockList.get(i);
+      if (bag.getID() == tempBag.getID()) {
+          if (bag.getName() == tempBag.getName() & bag.getManufacturer() == tempBag.getManufacturer())
+          {
+
+          }
+      }
     }
   }
 }

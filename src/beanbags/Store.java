@@ -45,7 +45,7 @@ public class Store implements BeanBagStore {
 
       // Ensures Number of BeanBags is valid (if not >1 throw error)
       if (num >= 1) {
-        for (int i = 1; i <= num; i++) {
+        for (int i = 0; i < num; i++) {
           BeanBag tempBag = new BeanBag(name, id, manufacturer, year, month);
           stockList.add(tempBag);
         }
@@ -197,6 +197,7 @@ public class Store implements BeanBagStore {
     // TODO
   }
 
+  /** @return */
   public int beanBagsInStock() {
     return stockList.size();
   }
@@ -234,7 +235,7 @@ public class Store implements BeanBagStore {
     // Add each one to a text file or array?
     // Save as a text file with filename
 
-      FileWriter writer = new FileWriter(filename,true);
+      FileWriter writer = new FileWriter(filename,false);
       BufferedWriter bufferedWriter = new BufferedWriter(writer);
       // Loop through ObjectArrayList
       for (int i = 0; i < stockList.size(); i++) {
