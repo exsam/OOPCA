@@ -12,7 +12,11 @@ public class TestingClassRyan {
     } catch (Exception e) {
       e.printStackTrace();
     }
-
+    for (int i = 0; i < Store.stockList.size(); i++) {
+      if(((BeanBag) Store.stockList.get(i)).getReserved()){
+        System.out.println("TEST");
+      }
+    }
     //System.out.println("Bean Bags in stock: ");
     System.out.println(testing.beanBagsInStock());
     //System.out.println("Reserved Bean Bags in stock: ");

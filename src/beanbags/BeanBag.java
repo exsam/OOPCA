@@ -24,7 +24,7 @@ public class BeanBag {
     this.manufacturer = manufacturer;
     this.year = year;
     this.month = month;
-    this.reserved = False;
+    this.reserved = false;
   }
 
   public BeanBag(
@@ -35,7 +35,7 @@ public class BeanBag {
     this.information = information;
     this.year = year;
     this.month = month;
-    this.reserved = False;
+    this.reserved = false;
   }
 
   public String getName() {

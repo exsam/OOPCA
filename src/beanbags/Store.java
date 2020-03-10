@@ -266,7 +266,6 @@ public class Store implements BeanBagStore {
 
         // Temp Test Ryan
         boolean Reserved = Boolean.parseBoolean(data[7]);
-        System.out.println(Reserved);
         int ReservationNumber = Integer.parseInt(data[8]);
 
         try {
