@@ -185,6 +185,7 @@ public class Store implements BeanBagStore {
                     }
                 }
             }
+            // Testing purposes
             System.out.print("Next Reservation number is: ");
             System.out.print(GetNextResNum());
         }
