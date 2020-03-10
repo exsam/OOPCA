@@ -21,6 +21,11 @@ public class TestingClassRyan {
     //System.out.println(testing.beanBagsInStock());
     //System.out.println("Reserved Bean Bags in stock: ");
     System.out.println(testing.reservedBeanBagsInStock());
+    try {
+      testing.saveStoreContents("testing.txt");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
 
     //System.out.println(testing.beanBagsInStock("test2"));

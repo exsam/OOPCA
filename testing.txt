@@ -1,0 +1,3 @@
+ID1,Manufacturer1,Ryan,Information1,0,2020,7,false,0
+ID2,Manufacturer2,Ryan,Information2,0,2020,10,false,0
+ID3,Manufacturer3,Ryan,Information3,0,2020,12,false,0

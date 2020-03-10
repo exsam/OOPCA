@@ -265,13 +265,13 @@ public class Store implements BeanBagStore {
         byte month = Byte.parseByte(data[6]);
 
         // Temp Test Ryan
-        boolean Reserved = Boolean.parseBoolean(data[7]);
-        int ReservationNumber = Integer.parseInt(data[8]);
+        boolean reserved = Boolean.parseBoolean(data[7]);
+        int reservationNumber = Integer.parseInt(data[8]);
 
         try {
           addBeanBags(1, name, id, manufacturer, year, month, information);
           setBeanBagPrice(id, price);
-          setReserved(id, Reserved, ReservationNumber);
+          setReserved(id, reserved, reservationNumber);
         } catch (Exception e) {
           e.printStackTrace();
         }
