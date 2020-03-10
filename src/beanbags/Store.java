@@ -5,14 +5,12 @@ import java.io.*;
 /**
  * Implementor for the BeanBagStore Interface
  *
- * @author 690027367
- * @author 690025118
+ * @author 690027367 & 690025118
  * @version 0.1
  */
 public class Store implements BeanBagStore {
   public static ObjectArrayList stockList = new ObjectArrayList();
   private static ObjectArrayList soldList = new ObjectArrayList();
-  String[] IDs;
 
   // private static ObjectArrayList ReserveList = new ObjectArrayList();
   private int NextReservationNum = 1;
@@ -54,8 +52,7 @@ public class Store implements BeanBagStore {
         }
       } else {
         throw new IllegalNumberOfBeanBagsAddedException(
-            "Number of bags must be must be a whole integer and greater " + "then 0.");
-        // throw other exception if method is not met
+            "Number of bags must be must be a whole integer and greater then 0.");
       }
     } catch (Exception e) {
       System.out.println(e);
@@ -114,7 +111,7 @@ public class Store implements BeanBagStore {
     }
   }
 
-  public int GetNextResNum() {
+  private int GetNextResNum() {
     for (int i = 0; i < stockList.size(); i++) {
       if (((BeanBag) stockList.get(i)).getReservationNumber() > NextReservationNum) {
         NextReservationNum = ((BeanBag) stockList.get(i)).getReservationNumber() + 1;
@@ -123,18 +120,25 @@ public class Store implements BeanBagStore {
     return NextReservationNum;
   }
 
-  public void setBeanBagPrice(String id, int priceInPence) {
-    // throws InvalidPriceException, BeanBagIDNotRecognisedException, IllegalIDException {
-    for (int i = 0; i < stockList.size(); i++) {
-      if (((BeanBag) stockList.get(i)).getID() == id
-          && !((BeanBag) stockList.get(i)).getReserved()) {
-        ((BeanBag) stockList.get(i)).setPrice(priceInPence);
+  public void setBeanBagPrice(String id, int priceInPence)
+      throws InvalidPriceException, BeanBagIDNotRecognisedException, IllegalIDException {
+    try {
+      if (priceInPence < 1) {
+        throw new InvalidPriceException("Price must be 1 pence or higher");
       }
+      for (int i = 0; i < stockList.size(); i++) {
+        if (((BeanBag) stockList.get(i)).getID() == id
+            && !((BeanBag) stockList.get(i)).getReserved()) {
+          ((BeanBag) stockList.get(i)).setPrice(priceInPence);
+        }
+      }
+    } catch (Exception e) {
+      System.out.println(e);
     }
   }
 
-  private void setReserved(String id, Boolean Reserved, int ReservationNumber) {
-    // throws InvalidPriceException, BeanBagIDNotRecognisedException, IllegalIDException {
+  private void setReserved(String id, Boolean Reserved, int ReservationNumber)
+    throws ReservationNumberNotRecognisedException, BeanBagIDNotRecognisedException, IllegalIDException {
     for (int i = 0; i < stockList.size(); i++) {
       if (((BeanBag) stockList.get(i)).getID().equals(id))
       {
@@ -196,9 +200,7 @@ public class Store implements BeanBagStore {
   }
 
   public void unreserveBeanBags(int reservationNumber)
-      throws ReservationNumberNotRecognisedException {}
-
-  public void sellBeanBags(int reservationNumber) throws ReservationNumberNotRecognisedException {
+      throws ReservationNumberNotRecognisedException {
     try {
       for (int i = 0; i < stockList.size(); i++) {
         if (((BeanBag) stockList.get(i)).getReservationNumber() == reservationNumber) {
@@ -209,6 +211,10 @@ public class Store implements BeanBagStore {
     } catch (Exception e) {
       System.out.println(e);
     }
+  }
+
+  public void sellBeanBags(int reservationNumber) throws ReservationNumberNotRecognisedException {
+    //TODO
   }
 
   public int beanBagsInStock() {
@@ -305,6 +311,7 @@ public class Store implements BeanBagStore {
   }
 
   public int getNumberOfDifferentBeanBagsInStock() {
+    // TODO
     int counter = 0;
     String[] idArray = new String[stockList.size()];
     for (int i = 0; i < stockList.size(); i++) {
@@ -387,4 +394,6 @@ public class Store implements BeanBagStore {
   private String intToHex(int number) {
     return Integer.toHexString(number);
   }
+
+
 }
