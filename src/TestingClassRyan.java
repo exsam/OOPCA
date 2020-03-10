@@ -13,15 +13,18 @@ public class TestingClassRyan {
       System.out.print("\n Reserved Bags in Stock: ");
       System.out.print(testing.reservedBeanBagsInStock());
       System.out.print("\n Reserving Bean Bag with ID3");
-      testing.reserveBeanBags(1,"ID3");
-      system.out.print("RUNNNNNNN");
+      System.out.print("\n Reservation number = ");
+      System.out.print(testing.reserveBeanBags(1,"ID3"));
       System.out.print("\n Reserved Bags in Stock: ");
       System.out.print(testing.reservedBeanBagsInStock());
   } catch (Exception e) {
     e.printStackTrace();
   }
-
-    //System.out.println(testing.beanBagsInStock("test2"));
-
+  try{
+    testing.saveStoreContents("stocklist.txt");
+  }
+  catch (Exception e) {
+    e.printStackTrace();
+  }
   }
 }

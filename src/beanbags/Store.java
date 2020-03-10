@@ -84,8 +84,6 @@ public class Store implements BeanBagStore {
       //  check ID is valid
       //  check ID matches other existing bags correctly
 
-      System.out.println("AddBeanBags is running");
-
       // Ensures month entered is a valid month
       if (month <= 0 || month > 12) {
         throw new InvalidMonthException(
@@ -129,7 +127,6 @@ public class Store implements BeanBagStore {
   private void setReserved(String id, boolean reserved, int reservationNumber)
       throws ReservationNumberNotRecognisedException, BeanBagIDNotRecognisedException,
           IllegalIDException {
-    System.out.println("SetReserved running");
     for (int i = 0; i < stockList.size(); i++) {
       //System.out.println("SetReserved Loop Runninig");
       //System.out.print("Stocklist ID = ");
@@ -139,7 +136,6 @@ public class Store implements BeanBagStore {
       //System.out.print("\n");
       //System.out.println(((BeanBag) stockList.get(i)));
       if (((BeanBag) stockList.get(i)).getID().equals(id)){
-        System.out.println("SetReserved Condition Met");
         ((BeanBag) stockList.get(i)).setReserved(reserved);
         ((BeanBag) stockList.get(i)).setReservationNumber(reservationNumber);
       }
@@ -175,17 +171,16 @@ public class Store implements BeanBagStore {
       throws BeanBagNotInStockException, InsufficientStockException,
           IllegalNumberOfBeanBagsReservedException, PriceNotSetException,
           BeanBagIDNotRecognisedException, IllegalIDException {
+      int ReservationNum = GetNextResNum();
       for (int i = 0; i < num; i++) {
         for (int j = 0; j < stockList.size(); j++) {
           if (((BeanBag) stockList.get(j)).getID().equals(id)) {
             ((BeanBag) stockList.get(j)).setReserved(true);
-            //System.out.println("Next Reservation Number is: ");
-            //System.out.println(GetNextResNum());
-            ((BeanBag) stockList.get(j)).setReservationNumber(GetNextResNum());
+            ((BeanBag) stockList.get(j)).setReservationNumber(ReservationNum);
           }
         }
       }
-    return 0;
+    return ReservationNum;
   }
 
   public void unreserveBeanBags(int reservationNumber)
@@ -212,11 +207,7 @@ public class Store implements BeanBagStore {
       if (((BeanBag) stockList.get(i)).getReserved() == true)
       {
         ReservedStock = ReservedStock + 1;
-        //System.out.println("RESERVED");
       }
-      //System.out.println(((BeanBag) stockList.get(i)));
-
-
     }
     return ReservedStock;
   }
@@ -293,7 +284,6 @@ public class Store implements BeanBagStore {
         //}
         try
         {
-          System.out.println("SetReserved called");
           setReserved(id, reserved, reservationNumber);
         } catch (Exception e) {
           System.out.println(e);

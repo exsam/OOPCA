@@ -1,3 +1,6 @@
 Ryan,ID1,Manufacturer1,Information1,50,2020,7,false,0
 Ryan,ID2,Manufacturer2,Information2,50,2020,10,true,2
 Ryan,ID3,Manufacturer3,Information3,50,2020,12,false,0
+Ryan,ID1,Manufacturer1,Information1,0,2020,7,false,0
+Ryan,ID2,Manufacturer2,Information2,0,2020,10,true,2
+Ryan,ID3,Manufacturer3,Information3,0,2020,12,true,3
