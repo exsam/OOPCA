@@ -265,7 +265,8 @@ public class Store implements BeanBagStore {
         byte month = Byte.parseByte(data[6]);
 
         // Temp Test Ryan
-        Boolean Reserved = Boolean.parseBoolean(data[7]);
+        boolean Reserved = Boolean.parseBoolean(data[7]);
+        System.out.println(Reserved);
         int ReservationNumber = Integer.parseInt(data[8]);
 
         try {
@@ -344,8 +345,8 @@ public class Store implements BeanBagStore {
         if (((BeanBag) stockList.get(i)).getID() == replacementID) {
           throw new IllegalIDException("This ID already exists.");
         }
-        if(validateHexFormat(oldID)){
-
+        if(!validateHexFormat(oldID)){
+          throw new IllegalIDException("The ID is not an 8-digit Hexadecimal Number.");
         }
         if (((BeanBag) stockList.get(i)).getID() == oldID) {
           ((BeanBag) stockList.get(i)).setID(replacementID);

@@ -74,7 +74,7 @@ public class BeanBag {
     return month;
   }
 
-  public Boolean getReserved() {
+  public boolean getReserved() {
     return reserved;
   }
 
@@ -82,7 +82,7 @@ public class BeanBag {
     return reservationNumber;
   }
 
-  public void setReserved(Boolean reserved) {
+  public void setReserved(boolean reserved) {
     this.reserved = reserved;
   }
 
