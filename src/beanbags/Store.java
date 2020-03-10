@@ -124,7 +124,7 @@ public class Store implements BeanBagStore {
       }
   }
 
-  private void setReserved(String id, Boolean Reserved, int ReservationNumber)
+  private void setReserved(String id, boolean Reserved, int ReservationNumber)
       throws ReservationNumberNotRecognisedException, BeanBagIDNotRecognisedException,
           IllegalIDException {
     for (int i = 0; i < stockList.size(); i++) {
@@ -265,7 +265,7 @@ public class Store implements BeanBagStore {
         byte month = Byte.parseByte(data[6]);
 
         // Temp Test Ryan
-        Boolean Reserved = Boolean.parseBoolean(data[7]);
+        boolean Reserved = data[7];
         int ReservationNumber = Integer.parseInt(data[8]);
 
         try {

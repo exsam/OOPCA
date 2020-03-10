@@ -24,7 +24,7 @@ public class BeanBag {
     this.manufacturer = manufacturer;
     this.year = year;
     this.month = month;
-    this.reserved = false;
+    this.reserved = False;
   }
 
   public BeanBag(
@@ -35,7 +35,7 @@ public class BeanBag {
     this.information = information;
     this.year = year;
     this.month = month;
-    this.reserved = false;
+    this.reserved = False;
   }
 
   public String getName() {
@@ -74,7 +74,7 @@ public class BeanBag {
     return month;
   }
 
-  public Boolean getReserved() {
+  public boolean getReserved() {
     return reserved;
   }
 
@@ -82,7 +82,7 @@ public class BeanBag {
     return reservationNumber;
   }
 
-  public void setReserved(Boolean reserved) {
+  public void setReserved(boolean reserved) {
     this.reserved = reserved;
   }
 
