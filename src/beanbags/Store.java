@@ -168,8 +168,15 @@ public class Store implements BeanBagStore {
     }
 
     public int reserveBeanBags(int num, String id)
+<<<<<<< Updated upstream
 
         // Ryan White 10/3/2020
+=======
+            throws ReservationNumberNotRecognisedException {
+        // Only reserve IF in stock
+        // Generate "Reservation Number"?
+        // Only sold to customer with matching reservation number.
+>>>>>>> Stashed changes
 
             throws BeanBagNotInStockException, InsufficientStockException,
             IllegalNumberOfBeanBagsReservedException, PriceNotSetException,
@@ -185,7 +192,6 @@ public class Store implements BeanBagStore {
                     }
                 }
             }
-            // Testing purposes
             System.out.print("Next Reservation number is: ");
             System.out.print(GetNextResNum());
         }
@@ -198,6 +204,15 @@ public class Store implements BeanBagStore {
 
 
     public void unreserveBeanBags(int reservationNumber)
+=======
+          }
+
+
+
+      }
+
+  public void sellBeanBags(int reservationNumber)
+>>>>>>> Stashed changes
 
         // Ryan White 9/3/2020
 
@@ -382,20 +397,17 @@ public class Store implements BeanBagStore {
     public void resetSaleAndCostTracking() {
     }
 
-    public void replace(String oldId, String replacementId)
-            throws BeanBagIDNotRecognisedException, IllegalIDException {
-        for (int i = 0; i < stockList.size(); i++) {
-            if (((BeanBag) stockList.get(i)).getID() == oldId) {
-                //TODO
-            }
-        }
+  public void replace(String oldId, String replacementId)
+      throws BeanBagIDNotRecognisedException, IllegalIDException {
+    for (int i = 0; i < stockList.size(); i++) {
+      if (((BeanBag) stockList.get(i)).getID() == oldId) {
+        //TODO
+      }
     }
 
-    private boolean validateIDFormat(String id) {
-        if (String.format(id, "0xFFFFFF") == "0xFFFFF") {
-            return true;
-            //TODO
-        }
-        return true;
+  private boolean validateIDFormat(String id) {
+    if (String.format(id, "0xFFFFFF") == "0xFFFFF") {
+      return true;
+      //TODO
     }
 }
