@@ -207,23 +207,35 @@ public class Store implements BeanBagStore {
     }
   }
 
-  public int beanBagsInStock() {
-    return 0;
+  public int beanBagsInStock()
+  {
+      return stockList.size();
   }
 
-  // No parameters
-  // Return entire list of stock?
-
-  public int reservedBeanBagsInStock() {
-    return 0;
+  public int reservedBeanBagsInStock()
+  {
+      int ReservedStock = 0;
+      for (int i = 0; i < stockList.size(); i++)
+      {
+          if (((BeanBag) stockList.get(i)).getReserved() = true)
+          {
+              ReservedStock = ReservedStock + 1:
+          }
+      }
+      return ReservedStock;
   }
 
-  // No parameters
-  // Return list of stock where there is a reservation number
-
-  public int beanBagsInStock(String id) throws BeanBagIDNotRecognisedException, IllegalIDException {
-    // Return stock quantity of BeanBag with passed ID
-    return 0;
+  public int beanBagsInStock(String id) throws BeanBagIDNotRecognisedException, IllegalIDException
+  {
+      int BagStock = 0;
+      for (int i = 0; i < stockList.size(); i++)
+      {
+          if (((BeanBag) stockList.get(i)).getID().equals(id))
+          {
+              BagStock = BagStock + 1:
+          }
+      }
+      return BagStock;
   }
 
   /**
