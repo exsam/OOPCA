@@ -46,6 +46,10 @@ public class BeanBag {
     return ID;
   }
 
+  public void setID(String ID) {
+    this.ID = ID;
+  }
+
   public String getManufacturer() {
     return manufacturer;
   }
