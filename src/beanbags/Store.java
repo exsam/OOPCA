@@ -169,7 +169,7 @@ public class Store implements BeanBagStore {
 
     public int reserveBeanBags(int num, String id)
 
-        // Ryan White 9/3/2020
+        // Ryan White 10/3/2020
 
             throws BeanBagNotInStockException, InsufficientStockException,
             IllegalNumberOfBeanBagsReservedException, PriceNotSetException,
