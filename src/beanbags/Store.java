@@ -124,13 +124,14 @@ public class Store implements BeanBagStore {
       }
   }
 
-  private void setReserved(String id, boolean Reserved, int ReservationNumber)
+  private void setReserved(String id, boolean reserved, int reservationNumber)
       throws ReservationNumberNotRecognisedException, BeanBagIDNotRecognisedException,
           IllegalIDException {
     for (int i = 0; i < stockList.size(); i++) {
-      if (((BeanBag) stockList.get(i)).getID().equals(id)) {
-        ((BeanBag) stockList.get(i)).setReserved(Reserved);
-        ((BeanBag) stockList.get(i)).setReservationNumber(ReservationNumber);
+      System.out.println("test");
+      if (((BeanBag) stockList.get(i)).getID().equals(id)){
+        ((BeanBag) stockList.get(i)).setReserved(reserved);
+        ((BeanBag) stockList.get(i)).setReservationNumber(reservationNumber);
       }
     }
   }
@@ -273,9 +274,14 @@ public class Store implements BeanBagStore {
           setBeanBagPrice(id, price);
           setReserved(id, reserved, reservationNumber);
         } catch (Exception e) {
-          e.printStackTrace();
+          System.out.println(e);
         }
+        try {
+          addBeanBags(1, name, id, manufacturer, year, month, information);
+        } catch (Exception e)
+        {
 
+        }
         fileRead = br.readLine();
       }
   }

@@ -22,6 +22,30 @@ public class TestingClassRyan {
     //System.out.println("Reserved Bean Bags in stock: ");
     System.out.println(testing.reservedBeanBagsInStock());
     try {
+      testing.setBeanBagPrice("ID1",73);
+    } catch (InvalidPriceException e) {
+      e.printStackTrace();
+    } catch (BeanBagIDNotRecognisedException e) {
+      e.printStackTrace();
+    } catch (IllegalIDException e) {
+      e.printStackTrace();
+    }
+    try {
+      testing.reserveBeanBags(1,"ID1");
+    } catch (BeanBagNotInStockException e) {
+      e.printStackTrace();
+    } catch (InsufficientStockException e) {
+      e.printStackTrace();
+    } catch (IllegalNumberOfBeanBagsReservedException e) {
+      e.printStackTrace();
+    } catch (PriceNotSetException e) {
+      e.printStackTrace();
+    } catch (BeanBagIDNotRecognisedException e) {
+      e.printStackTrace();
+    } catch (IllegalIDException e) {
+      e.printStackTrace();
+    }
+    try {
       testing.saveStoreContents("testing.txt");
     } catch (IOException e) {
       e.printStackTrace();
