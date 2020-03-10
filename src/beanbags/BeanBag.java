@@ -15,7 +15,7 @@ public class BeanBag {
   private int price;
   private byte month;
   private short year;
-  private Boolean reserved;
+  private boolean reserved;
   private int reservationNumber;
 
   public BeanBag(String name, String ID, String manufacturer, short year, byte month) {
