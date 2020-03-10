@@ -138,6 +138,9 @@ public class Store implements BeanBagStore {
       if (((BeanBag) stockList.get(i)).getID().equals(id)){
         ((BeanBag) stockList.get(i)).setReserved(reserved);
         ((BeanBag) stockList.get(i)).setReservationNumber(reservationNumber);
+        System.out.print("The price for the said ID is: ");
+        System.out.print(((BeanBag) stockList.get(i)).getPrice());
+        System.out.print("\n");
       }
     }
   }
@@ -277,12 +280,12 @@ public class Store implements BeanBagStore {
         } catch (Exception e) {
           System.out.println(e);
         }
-        //try {
-          //System.out.println("SetBeanBagPrice");
-          //setBeanBagPrice(id, price);
-        //} catch (Exception e) {
-          //System.out.println(e);
-        //}
+        try {
+          System.out.println("SetBeanBagPrice");
+          setBeanBagPrice(id, price);
+        } catch (Exception e) {
+          System.out.println(e);
+        }
         try
         {
           setReserved(id, reserved, reservationNumber);
