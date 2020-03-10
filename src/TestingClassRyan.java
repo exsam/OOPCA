@@ -14,7 +14,6 @@ public class TestingClassRyan {
     }
     for (int i = 0; i < Store.stockList.size(); i++) {
       if(((BeanBag) Store.stockList.get(i)).getReserved()){
-        System.out.println("TEST");
       }
     }
     //System.out.println("Bean Bags in stock: ");

@@ -27,8 +27,7 @@ public class BeanBag {
     this.reserved = false;
   }
 
-  public BeanBag(
-      String name, String ID, String manufacturer, String information, short year, byte month) {
+  public BeanBag(String name, String ID, String manufacturer, String information, short year, byte month) {
     this.name = name;
     this.ID = ID;
     this.manufacturer = manufacturer;

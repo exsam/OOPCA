@@ -84,6 +84,8 @@ public class Store implements BeanBagStore {
       //  check ID is valid
       //  check ID matches other existing bags correctly
 
+      System.out.println("AddBeanBags is running");
+
       // Ensures month entered is a valid month
       if (month <= 0 || month > 12) {
         throw new InvalidMonthException(
@@ -127,12 +129,20 @@ public class Store implements BeanBagStore {
   private void setReserved(String id, boolean reserved, int reservationNumber)
       throws ReservationNumberNotRecognisedException, BeanBagIDNotRecognisedException,
           IllegalIDException {
+    System.out.println("SetReserved running");
     for (int i = 0; i < stockList.size(); i++) {
-      System.out.println("test");
-      if (((BeanBag) stockList.get(i)).getID().equals(id)){
-        ((BeanBag) stockList.get(i)).setReserved(reserved);
-        ((BeanBag) stockList.get(i)).setReservationNumber(reservationNumber);
-      }
+      System.out.println("SetReserved Loop Runninig");
+      System.out.print("Stocklist ID = ");
+      System.out.print(((BeanBag) stockList.get(i)).getID());
+      System.out.print("Passed ID = ");
+      System.out.print(id);
+      System.out.print("\n");
+      System.out.println(((BeanBag) stockList.get(i)));
+      //if (((BeanBag) stockList.get(i)).getID().equals(id)){
+        //System.out.println("SetReserved Condition Met");
+        //((BeanBag) stockList.get(i)).setReserved(reserved);
+        //((BeanBag) stockList.get(i)).setReservationNumber(reservationNumber);
+      //}
     }
   }
 
@@ -169,12 +179,12 @@ public class Store implements BeanBagStore {
         for (int j = 0; j < stockList.size(); j++) {
           if (((BeanBag) stockList.get(j)).getID().equals(id)) {
             ((BeanBag) stockList.get(j)).setReserved(true);
+            //System.out.println("Next Reservation Number is: ");
+            //System.out.println(GetNextResNum());
             ((BeanBag) stockList.get(j)).setReservationNumber(GetNextResNum());
           }
         }
       }
-      System.out.print("Next Reservation number is: ");
-      System.out.print(GetNextResNum());
     return 0;
   }
 
@@ -270,17 +280,22 @@ public class Store implements BeanBagStore {
         int reservationNumber = Integer.parseInt(data[8]);
 
         try {
-          addBeanBags(1, name, id, manufacturer, year, month, information);
-          setBeanBagPrice(id, price);
-          setReserved(id, reserved, reservationNumber);
+          addBeanBags(1, manufacturer, name, id, year, month, information);
         } catch (Exception e) {
           System.out.println(e);
         }
-        try {
-          addBeanBags(1, name, id, manufacturer, year, month, information);
-        } catch (Exception e)
+        //try {
+          //System.out.println("SetBeanBagPrice");
+          //setBeanBagPrice(id, price);
+        //} catch (Exception e) {
+          //System.out.println(e);
+        //}
+        try
         {
-
+          System.out.println("SetReserved called");
+          setReserved(id, reserved, reservationNumber);
+        } catch (Exception e) {
+          System.out.println(e);
         }
         fileRead = br.readLine();
       }
