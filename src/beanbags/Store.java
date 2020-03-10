@@ -207,35 +207,28 @@ public class Store implements BeanBagStore {
     }
   }
 
-  public int beanBagsInStock()
-  {
-      return stockList.size();
+  public int beanBagsInStock() {
+    return stockList.size();
   }
 
-  public int reservedBeanBagsInStock()
-  {
-      int ReservedStock = 0;
-      for (int i = 0; i < stockList.size(); i++)
-      {
-          if (((BeanBag) stockList.get(i)).getReserved() == true)
-          {
-              ReservedStock = ReservedStock + 1;
-          }
+  public int reservedBeanBagsInStock() {
+    int ReservedStock = 0;
+    for (int i = 0; i < stockList.size(); i++) {
+      if (((BeanBag) stockList.get(i)).getReserved() == true) {
+        ReservedStock = ReservedStock + 1;
       }
-      return ReservedStock;
+    }
+    return ReservedStock;
   }
 
-  public int beanBagsInStock(String id) throws BeanBagIDNotRecognisedException, IllegalIDException
-  {
-      int BagStock = 0;
-      for (int i = 0; i < stockList.size(); i++)
-      {
-          if (((BeanBag) stockList.get(i)).getID().equals(id))
-          {
-              BagStock = BagStock + 1;
-          }
+  public int beanBagsInStock(String id) throws BeanBagIDNotRecognisedException, IllegalIDException {
+    int BagStock = 0;
+    for (int i = 0; i < stockList.size(); i++) {
+      if (((BeanBag) stockList.get(i)).getID().equals(id)) {
+        BagStock = BagStock + 1;
       }
-      return BagStock;
+    }
+    return BagStock;
   }
 
   /**
@@ -289,6 +282,7 @@ public class Store implements BeanBagStore {
         byte month = Byte.parseByte(data[6]);
         try {
           addBeanBags(1, name, id, manufacturer, year, month, information);
+          setBeanBagPrice(id, price);
         } catch (Exception e) {
           System.out.println(e);
         }
@@ -323,7 +317,7 @@ public class Store implements BeanBagStore {
   public int getNumberOfSoldBeanBags(String id)
       throws BeanBagIDNotRecognisedException, IllegalIDException {
     try {
-      if (!validateIDFormat(id)) {}
+      if (!validateHexFormat(id)) {}
       int counter = 0;
       for (int i = 0; i < soldList.size(); i++) {
         if (((BeanBag) soldList.get(i)).getID() == id) {
@@ -365,21 +359,23 @@ public class Store implements BeanBagStore {
   public void replace(String oldId, String replacementId)
       throws BeanBagIDNotRecognisedException, IllegalIDException {
     for (int i = 0; i < stockList.size(); i++) {
-      if (((BeanBag) stockList.get(i)).getID() == oldId) {
-        // TODO
+      if (((BeanBag) stockList.get(i)).getID() == replacementId) {
+        throw new IllegalIDException("");
       }
     }
   }
 
-  private boolean validateIDFormat(String id) {
-    if (String.format(id, "0xFFFFFF") == "0xFFFFF") {
+  private boolean validateHexFormat(String hex) {
+    try {
+      Long.parseLong(hex, 8);
       return true;
-      // TODO
+    } catch (NumberFormatException ex) {
+      System.out.println("WRONG");
+      return false;
     }
-    return true;
   }
 
-  private String intToHEx(int number) {
-    return "0x" + Integer.toHexString(number);
+  private String intToHex(int number) {
+    return Integer.toHexString(number);
   }
 }
