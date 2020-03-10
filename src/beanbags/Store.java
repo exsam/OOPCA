@@ -217,9 +217,9 @@ public class Store implements BeanBagStore {
       int ReservedStock = 0;
       for (int i = 0; i < stockList.size(); i++)
       {
-          if (((BeanBag) stockList.get(i)).getReserved() = true)
+          if (((BeanBag) stockList.get(i)).getReserved() == true)
           {
-              ReservedStock = ReservedStock + 1:
+              ReservedStock = ReservedStock + 1;
           }
       }
       return ReservedStock;
@@ -232,7 +232,7 @@ public class Store implements BeanBagStore {
       {
           if (((BeanBag) stockList.get(i)).getID().equals(id))
           {
-              BagStock = BagStock + 1:
+              BagStock = BagStock + 1;
           }
       }
       return BagStock;
