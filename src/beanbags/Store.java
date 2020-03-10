@@ -13,6 +13,10 @@ public class Store implements BeanBagStore {
     public static ObjectArrayList stockList = new ObjectArrayList();
     private static ObjectArrayList soldList = new ObjectArrayList();
 
+    private int NextReservationNum = 1;
+
+    //private static ObjectArrayList ReserveList = new ObjectArrayList();
+
     String[] IDs;
 
     /**
@@ -113,6 +117,17 @@ public class Store implements BeanBagStore {
         }
     }
 
+    public int GetNextResNum()
+    {
+        for (int i = 0; i < stockList.size(); i++) {
+            if (((BeanBag) stockList.get(i)).getReservationNumber() > NextReservationNum)
+            {
+                NextReservationNum = ((BeanBag) stockList.get(i)).getReservationNumber() + 1;
+            }
+        }
+        return NextReservationNum;
+    }
+
     public void setBeanBagPrice(String id, int priceInPence) {
         // throws InvalidPriceException, BeanBagIDNotRecognisedException, IllegalIDException {
         for (int i = 0; i < stockList.size(); i++) {
@@ -154,38 +169,32 @@ public class Store implements BeanBagStore {
 
     public int reserveBeanBags(int num, String id)
 
-        // Only reserve IF in stock
-        // Generate "Reservation Number"?
-        // Only sold to customer with matching reservation number.
+        // Ryan White 9/3/2020
 
             throws BeanBagNotInStockException, InsufficientStockException,
             IllegalNumberOfBeanBagsReservedException, PriceNotSetException,
             BeanBagIDNotRecognisedException, IllegalIDException {
 
-        System.out.println("Test");
-
         try {
-          for (int i = 0; i < stockList.size(); i++)
-          {
-            if (((BeanBag) stockList.get(i)).getID().equals(id))
-            {
-                System.out.println(((BeanBag) stockList.get(i)));
-                System.out.println( id );
+            for (int i = 0; i < num; i++) {
+                for (int j = 0; j < stockList.size(); j++) {
+                    if (((BeanBag) stockList.get(j)).getID().equals(id))
+                    {
+                        ((BeanBag) stockList.get(j)).setReserved(true);
+                        ((BeanBag) stockList.get(j)).setReservationNumber(GetNextResNum());
+                    }
+                }
             }
-          }
-
-            // Check IF in stock,
-            // Generate UNIQUE Reservation Num
-            // Loop for each "Num" of reservation
-            // Check where "ID" matches
-            // Set reserved to true and assign reservation num
-            // * Until num counter = 0
-
-        } catch (Exception e) {
+            System.out.print("Next Reservation number is: ");
+            System.out.print(GetNextResNum());
+        }
+        catch (Exception e)
+        {
             System.out.println(e);
         }
         return 0;
     }
+
 
     public void unreserveBeanBags(int reservationNumber)
 
