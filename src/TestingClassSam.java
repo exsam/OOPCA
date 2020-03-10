@@ -42,5 +42,6 @@ public class TestingClassSam {
       System.out.println(Store.stockList.get(i).toString());
     }
     // System.out.println(testBag.toString());
+    System.out.println(Integer.toHexString(10));
   }
 }

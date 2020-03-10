@@ -366,4 +366,8 @@ public class Store implements BeanBagStore {
     }
     return true;
   }
+
+  private String intToHEx(int number) {
+    return "0x" + Integer.toHexString(number);
   }
+}
