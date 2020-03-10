@@ -12,11 +12,16 @@ public class TestingClassRyan {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    System.out.println("Bean Bags in stock: ");
-    System.out.println(testing.beanBagsInStock());
+
+    //System.out.println("Bean Bags in stock: ");
+    //System.out.println(testing.beanBagsInStock());
+    //System.out.println("Reserved Bean Bags in stock: ");
+    //System.out.println(testing.reservedBeanBagsInStock());
+
+
+
     //System.out.println(testing.beanBagsInStock("test2"));
-    System.out.println("Reserved Bean Bags in stock: ");
-    System.out.println(testing.reservedBeanBagsInStock());
+
 
   }
 }
