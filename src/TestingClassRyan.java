@@ -17,10 +17,10 @@ public class TestingClassRyan {
     System.out.println(testing.beanBagsInStock());
     //System.out.println("Reserved Bean Bags in stock: ");
     System.out.println(testing.reservedBeanBagsInStock());
-    if(!((BeanBag) ((Store) testing).stockList.get(1)).getReserved())
-    {
-      System.out.println(((BeanBag) ((Store) testing).stockList.get(2)).toString());
-    }
+    //if(((BeanBag) ((Store) testing).stockList.get(1)).getReserved())
+    //{
+      //System.out.println(((BeanBag) ((Store) testing).stockList.get(2)).toString());
+    //}
 
 
     //System.out.println(testing.beanBagsInStock("test2"));
