@@ -124,7 +124,7 @@ public class Store implements BeanBagStore {
       }
   }
 
-  private void setReserved(String id, Boolean Reserved, int ReservationNumber)
+  private void setReserved(String id, boolean Reserved, int ReservationNumber)
       throws ReservationNumberNotRecognisedException, BeanBagIDNotRecognisedException,
           IllegalIDException {
     for (int i = 0; i < stockList.size(); i++) {
