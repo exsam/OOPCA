@@ -153,6 +153,7 @@ public class Store implements BeanBagStore {
     while (n < num) {
       for (int i = 0; i < stockList.size(); i++) {
         BeanBag bag = (BeanBag) stockList.get(i);
+        System.out.println(bag.isSold());
         if ((bag.getID()).equals(id) & !bag.getReserved() & !bag.isSold()) {
           if (bag.getPrice() <= 0) {
             throw new PriceNotSetException("No price set for BeanBag");
@@ -274,9 +275,12 @@ public class Store implements BeanBagStore {
       short year = Short.parseShort(data[5]);
       byte month = Byte.parseByte(data[6]);
 
-      // Temp Test Ryan
+
       boolean reserved = Boolean.parseBoolean(data[7]);
       int reservationNumber = Integer.parseInt(data[8]);
+
+      boolean sold = Boolean.parseBoolean(data[9]);
+      System.out.println(sold);
 
       try {
         addBeanBags(1, manufacturer, name, id, year, month, information);
@@ -292,6 +296,15 @@ public class Store implements BeanBagStore {
         setReserved(id, reserved, reservationNumber);
       } catch (Exception e) {
         System.out.println(e);
+      }
+      try {
+        setSold(id,sold);
+      } catch (ReservationNumberNotRecognisedException e) {
+        e.printStackTrace();
+      } catch (BeanBagIDNotRecognisedException e) {
+        e.printStackTrace();
+      } catch (IllegalIDException e) {
+        e.printStackTrace();
       }
       fileRead = br.readLine();
     }
