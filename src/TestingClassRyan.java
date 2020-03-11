@@ -16,6 +16,11 @@ public class TestingClassRyan {
       System.out.print(testing.reserveBeanBags(1, "00000004"));
       System.out.print("\n Reserved Bags in Stock: ");
       System.out.print(testing.reservedBeanBagsInStock());
+      System.out.print("\n UN-Reserving Bean Bag with ID = 00000004 (Reservation No: 3)");
+      testing.unreserveBeanBags(3);
+      // NEED TO TEST THIS WITH DIFFERENT QUANTITES VS JUST 1!!!!
+      System.out.print("\n Reserved Bags in Stock: ");
+      System.out.print(testing.reservedBeanBagsInStock());
       System.out.print("\n The total Price of reserved beanbags = ");
       System.out.print(testing.getTotalPriceOfReservedBeanBags());
       System.out.print("\n The info for bean bag ID 00000002 = ");
