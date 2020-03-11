@@ -120,6 +120,7 @@ public class Store implements BeanBagStore {
   }
 
   public void sellBeanBags(int num, String id)
+      // TODO
       throws BeanBagNotInStockException, InsufficientStockException,
           IllegalNumberOfBeanBagsSoldException, PriceNotSetException,
           BeanBagIDNotRecognisedException, IllegalIDException {
@@ -181,7 +182,14 @@ public class Store implements BeanBagStore {
   }
 
   public int beanBagsInStock() {
-    return stockList.size();
+    int counter = 0;
+    for (int i = 0; i < stockList.size(); i++) {
+      if(!((BeanBag)stockList.get(i)).isSold()){
+        counter++;
+      }
+      return stockList.size();
+    }
+    return counter;
   }
 
   public int reservedBeanBagsInStock() {
@@ -261,28 +269,22 @@ public class Store implements BeanBagStore {
   }
 
   public int getNumberOfDifferentBeanBagsInStock() {
-    // TODO
     int counter = 0;
     int tracker = 0;
     String[] idArray = new String[stockList.size()];
     for (int i = 0; i < stockList.size(); i++) {
       String ID = ((BeanBag) stockList.get(i)).getID();
-
-      for (int j = 1; j < stockList.size(); j++) {
+      tracker = 0;
+      for (int j = 0; j < stockList.size(); j++) {
         if (ID.equals(idArray[j])) {
           tracker += 1;
-          System.out.println("ADDED ONE");
         }
       }
       if (tracker == 0) {
-        System.out.println("TEST, tracker = 0");
         for (int y = 0; y < stockList.size(); y++) {
-          if (idArray[y] == null) {
-            idArray[y] = ID;
-            counter++;
-            break;
-          }
-          System.out.println("FOR SEARCH " + ID);
+          idArray[counter] = ID;
+          counter ++;
+          break;
         }
       }
     }

@@ -1,10 +1,11 @@
-Sam,3FF00000,Manufacturer2,Information2,100,2020,10,true,1,false
 Adam,3FF00001,Manufacturer3,Information3,150,2020,12,true,3,false
-Jarryd,3FF0000F,Manufacturer4,Information4,200,2020,7,true,4,false
+Jarryd,3FF00002,Manufacturer4,Information4,200,2020,7,true,4,false
 James,3FF00003,Manufacturer5,Information5,250,2020,10,false,0,false
 Soroosh,3FF00004,Manufacturer6,Information6,300,2020,12,true,3,false
 Soroosh,3FF00005,Manufacturer6,Information6,300,2020,12,true,3,false
-Soroosh,3FF00005,Manufacturer6,Information6,300,2020,12,true,3,false
+Soroosh,3FF00008,Manufacturer6,Information6,300,2020,12,true,3,false
+Sam,3FF00000,Manufacturer2,Information2,100,2020,10,true,1,false
+Sam,3FF00000,Manufacturer2,Information2,100,2020,10,true,1,false
 Sam,3FF00000,Manufacturer2,Information2,100,2020,10,true,1,false
 Adam,3FF00001,Manufacturer3,Information3,150,2020,12,true,3,false
 Jarryd,3FF00002,Manufacturer4,Information4,200,2020,7,true,4,false
