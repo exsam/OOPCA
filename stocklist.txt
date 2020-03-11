@@ -1,7 +1,7 @@
-Ryan,ID1,Manufacturer1,Information1,50,2020,7,true,2
-Sam,ID2,Manufacturer2,Information2,100,2020,10,true,2
-Adam,ID3,Manufacturer3,Information3,150,2020,12,true,9
-Jarryd,ID4,Manufacturer4,Information4,200,2020,7,false,0
-James,ID5,Manufacturer5,Information5,250,2020,10,true,5
-Soroosh,ID6,Manufacturer6,Information6,300,2020,12,true,3
+Ryan,ID1,Manufacturer1,Information1,50,2020,7,false,0
+Sam,ID2,Manufacturer2,Information2,100,2020,10,true,1
+Adam,ID3,Manufacturer3,Information3,150,2020,12,true,3
+Jarryd,ID4,Manufacturer4,Information4,200,2020,7,true,4
+James,ID5,Manufacturer5,Information5,250,2020,10,false,0
+Soroosh,ID6,Manufacturer6,Information6,300,2020,12,false,0
 Soroosh,ID6,Manufacturer6,Information6,300,2020,12,true,3
