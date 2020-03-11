@@ -28,7 +28,6 @@ public class Store implements BeanBagStore {
     if (num >= 1) {
       for (int i = 0; i < num; i++) {
         BeanBag tempBag = new BeanBag(name, id, manufacturer, year, month);
-        Check.matchingIDs(tempBag,stockList);
         stockList.add(tempBag);
       }
     } else {
@@ -58,7 +57,6 @@ public class Store implements BeanBagStore {
     if (num >= 1) {
       for (int i = 1; i <= num; i++) {
         BeanBag tempBag = new BeanBag(name, id, manufacturer, information, year, month);
-        Check.matchingIDs(tempBag,stockList);
         stockList.add(tempBag);
       }
     } else {
