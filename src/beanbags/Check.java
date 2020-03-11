@@ -37,10 +37,10 @@ public class Check {
     for (int i = 0; i < stockList.size(); i++) {
       BeanBag tempBag = (BeanBag) stockList.get(i);
       if ((bag.getID()).equals(tempBag.getID())) {
-        if ((bag.getName() != tempBag.getName())
-            | (bag.getManufacturer() != tempBag.getManufacturer())
-            | (bag.getInformation() != tempBag.getInformation())) {
-          throw new BeanBagMismatchException("ID does not match associated data!");
+        if (bag.getName().equals(tempBag.getName())
+            & bag.getName().equals(tempBag.getManufacturer())
+            & bag.getInformation().equals(tempBag.getInformation())) {
+          throw new BeanBagMismatchException("ID does not match existing");
         }
       }
     }
