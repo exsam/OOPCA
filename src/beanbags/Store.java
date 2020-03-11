@@ -18,8 +18,6 @@ public class Store implements BeanBagStore {
       throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException, IllegalIDException,
           InvalidMonthException {
     Check.validID(id);
-    BeanBag exceptionBag = new BeanBag(name, id, manufacturer, year, month);
-    Check.matchingIDs(exceptionBag,stockList);
     // Ensures month entered is a valid month
     if (month <= 0 || month > 12) {
       throw new InvalidMonthException(
@@ -49,8 +47,6 @@ public class Store implements BeanBagStore {
       throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException, IllegalIDException,
           InvalidMonthException {
     Check.validID(id);
-    BeanBag exceptionBag = new BeanBag(name, id, manufacturer, information, year, month);
-    Check.matchingIDs(exceptionBag,stockList);
     // Ensures month entered is a valid month
     if (month <= 0 || month > 12) {
       throw new InvalidMonthException(
@@ -69,7 +65,7 @@ public class Store implements BeanBagStore {
     }
   }
 
-  private int getNextResNum() {
+  private int GetNextResNum() {
     for (int i = 0; i < stockList.size(); i++) {
       if (((BeanBag) stockList.get(i)).getReservationNumber() > nextReservationNum) {
         nextReservationNum = ((BeanBag) stockList.get(i)).getReservationNumber();
@@ -179,8 +175,8 @@ public class Store implements BeanBagStore {
           IllegalNumberOfBeanBagsReservedException, PriceNotSetException,
           BeanBagIDNotRecognisedException, IllegalIDException {
 
-    int ReservationNum = getNextResNum();
-
+    int ReservationNum = GetNextResNum();
+    //
     for (int i = 0; i < num; i++) {
       for (int j = 0; j < stockList.size(); j++) {
         if (!((BeanBag) stockList.get(j)).getReserved()) {
@@ -192,6 +188,7 @@ public class Store implements BeanBagStore {
         } else {
           // System.out.println("\n Already Reserved!!!");
         }
+        // System.out.println("\nReserve state: " + ((BeanBag) stockList.get(j)).getReserved());
       }
     }
     return ReservationNum;
@@ -388,7 +385,14 @@ public class Store implements BeanBagStore {
 
   public String getBeanBagDetails(String id)
       throws BeanBagIDNotRecognisedException, IllegalIDException {
-    return "";
+    String Info = "";
+    for (int i = 0; i < stockList.size(); i++) {
+      if (((BeanBag) stockList.get(i)).getID().equals(id)){
+        Info = ((BeanBag) stockList.get(i)).getInformation();
+        break;
+      }
+    }
+    return Info;
   }
 
   public void empty() {
