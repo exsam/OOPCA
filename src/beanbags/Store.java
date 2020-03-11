@@ -11,7 +11,7 @@ import java.io.*;
 public class Store implements BeanBagStore {
   public static ObjectArrayList stockList = new ObjectArrayList();
 
-  private static int nextReservationNum = 1;
+  private static int nextReservationNum = 0;
 
   public void addBeanBags(
       int num, String manufacturer, String name, String id, short year, byte month)
@@ -70,11 +70,13 @@ public class Store implements BeanBagStore {
   }
 
   private int GetNextResNum() {
+    System.out.println("GetNextResNum is running");
     for (int i = 0; i < stockList.size(); i++) {
       if (((BeanBag) stockList.get(i)).getReservationNumber() > nextReservationNum) {
-        nextReservationNum = ((BeanBag) stockList.get(i)).getReservationNumber() + 1;
+        nextReservationNum = ((BeanBag) stockList.get(i)).getReservationNumber();
       }
     }
+    nextReservationNum = nextReservationNum + 1;
     return nextReservationNum;
   }
 
@@ -187,11 +189,11 @@ public class Store implements BeanBagStore {
     int counter = 0;
     for (int i = 0; i < stockList.size(); i++) {
       if(!((BeanBag)stockList.get(i)).isSold()){
-        try{
-          Check.matchingIDs(((BeanBag)stockList.get(i)), stockList);
-        } catch (Exception e) {
-          System.out.println(e);
-      }
+        //try{
+          //Check.matchingIDs(((BeanBag)stockList.get(i)), stockList);
+        //} catch (Exception e) {
+          //System.out.println(e);
+      //}
         counter++;
       }
       return stockList.size();
@@ -261,7 +263,6 @@ public class Store implements BeanBagStore {
         System.out.println(e);
       }
       try {
-        System.out.println("SetBeanBagPrice");
         setBeanBagPrice(id, price);
       } catch (Exception e) {
         System.out.println(e);
