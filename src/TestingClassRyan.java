@@ -18,6 +18,8 @@ public class TestingClassRyan {
       System.out.print(testing.reservedBeanBagsInStock());
       System.out.print("\n The total Price of reserved beanbags = ");
       System.out.print(testing.getTotalPriceOfReservedBeanBags());
+      System.out.print("\n The info for bean bag ID 00000002 = ");
+      System.out.print(testing.getBeanBagDetails("00000002"));
 
       /*System.out.println("\nUNIQUE: " + testing.getNumberOfDifferentBeanBagsInStock());
       System.out.println(testing.beanBagsInStock());*/
