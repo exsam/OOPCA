@@ -4,3 +4,4 @@ Adam,00000002,Manufacturer3,Information3,150,2020,12,true,1,false
 Jarryd,00000003,Manufacturer4,Information4,200,2020,7,true,2,false
 James,00000004,Manufacturer5,Information5,250,2020,10,true,3,false
 Soroosh,00000005,Manufacturer6,Information6,300,2020,12,false,0,false
+Soroosh,00000005,Manufacturer6,Information6,300,2020,12,false,0,false

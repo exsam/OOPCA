@@ -352,8 +352,16 @@ public class Store implements BeanBagStore {
     return salesTotal;
   }
 
-  public int getTotalPriceOfReservedBeanBags() {
-    return 0;
+  public int getTotalPriceOfReservedBeanBags()
+  {
+    int TotalReservedPrice =  0;
+    for (int i = 0; i < stockList.size(); i++) {
+      int CurrentPrice = ((BeanBag) stockList.get(i)).getPrice();
+      if ( ((BeanBag) stockList.get(i)).getReserved()){
+        TotalReservedPrice = TotalReservedPrice + CurrentPrice;
+      }
+    }
+    return TotalReservedPrice;
   }
 
   public String getBeanBagDetails(String id)
