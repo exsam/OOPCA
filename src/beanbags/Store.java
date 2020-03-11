@@ -11,23 +11,8 @@ import java.io.*;
 public class Store implements BeanBagStore {
   public static ObjectArrayList stockList = new ObjectArrayList();
 
-  // private static ObjectArrayList ReserveList = new ObjectArrayList();
-  private int NextReservationNum = 1;
+  private static int nextReservationNum = 1;
 
-  /**
-   * Method adds BeanBags to the stocklist.
-   *
-   * @param num number of bean bags added
-   * @param manufacturer bean bag manufacturer
-   * @param name bean bag name
-   * @param id ID of bean bag
-   * @param year year of manufacture
-   * @param month month of manufacture
-   * @throws IllegalNumberOfBeanBagsAddedException
-   * @throws BeanBagMismatchException
-   * @throws IllegalIDException
-   * @throws InvalidMonthException
-   */
   public void addBeanBags(
       int num, String manufacturer, String name, String id, short year, byte month)
       throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException, IllegalIDException,
@@ -53,21 +38,6 @@ public class Store implements BeanBagStore {
     }
   }
 
-  /**
-   * Method adds BeanBags to the stocklist.
-   *
-   * @param num number of bean bags added
-   * @param manufacturer bean bag manufacturer
-   * @param name bean bag name
-   * @param id ID of bean bag
-   * @param year year of manufacture
-   * @param month month of manufacture
-   * @param information free text detailing bean bag information
-   * @throws IllegalNumberOfBeanBagsAddedException
-   * @throws BeanBagMismatchException
-   * @throws IllegalIDException
-   * @throws InvalidMonthException
-   */
   public void addBeanBags(
       int num,
       String manufacturer,
@@ -101,11 +71,11 @@ public class Store implements BeanBagStore {
 
   private int GetNextResNum() {
     for (int i = 0; i < stockList.size(); i++) {
-      if (((BeanBag) stockList.get(i)).getReservationNumber() > NextReservationNum) {
-        NextReservationNum = ((BeanBag) stockList.get(i)).getReservationNumber() + 1;
+      if (((BeanBag) stockList.get(i)).getReservationNumber() > nextReservationNum) {
+        nextReservationNum = ((BeanBag) stockList.get(i)).getReservationNumber() + 1;
       }
     }
-    return NextReservationNum;
+    return nextReservationNum;
   }
 
   public void setBeanBagPrice(String id, int priceInPence)
@@ -234,12 +204,6 @@ public class Store implements BeanBagStore {
     return BagStock;
   }
 
-  /**
-   * Method saves content of stockList ObjectArrayList to a txt file.
-   *
-   * @param filename location of the file to be saved
-   * @throws IOException
-   */
   public void saveStoreContents(String filename) throws IOException {
 
     // Loop through all things in "Stock"
@@ -255,13 +219,6 @@ public class Store implements BeanBagStore {
     bufferedWriter.close();
   }
 
-  /**
-   * Method for loading stock list from a text file
-   *
-   * @param filename location of the file to be loaded
-   * @throws IOException
-   * @throws ClassNotFoundException
-   */
   public void loadStoreContents(String filename) throws IOException, ClassNotFoundException {
     BufferedReader br = new BufferedReader(new FileReader(filename));
     // read the first line from the text file
@@ -325,9 +282,11 @@ public class Store implements BeanBagStore {
             counter++;
             break;
           }
+          System.out.println("FOR SEARCH " + ID);
         }
       }
     }
+    System.out.println(counter);
     return counter;
   }
 
@@ -390,7 +349,12 @@ public class Store implements BeanBagStore {
     return "";
   }
 
-  public void empty() {}
+  public void empty() {
+    for (int i = 0; i < stockList.size(); i++) {
+      stockList.remove(i);
+      nextReservationNum = 0;
+    }
+  }
 
   public void resetSaleAndCostTracking() {}
 
@@ -410,9 +374,5 @@ public class Store implements BeanBagStore {
     if (counter < 1) {
       throw new BeanBagIDNotRecognisedException("No BeanBag with this ID.");
     }
-  }
-
-  private String intToHex(int number) {
-    return Integer.toHexString(number);
   }
 }

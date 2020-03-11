@@ -17,7 +17,7 @@ public class TestingClassRyan {
       System.out.print(testing.reserveBeanBags(1,"ID4"));
       System.out.print("\n Reserved Bags in Stock: ");
       System.out.print(testing.reservedBeanBagsInStock());
-      System.out.println("UNIQUE: " + testing.getNumberOfDifferentBeanBagsInStock());
+      System.out.println("\nUNIQUE: " + testing.getNumberOfDifferentBeanBagsInStock());
   } catch (Exception e) {
     e.printStackTrace();
   }
