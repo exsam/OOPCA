@@ -160,7 +160,7 @@ public class Store implements BeanBagStore {
           BeanBagIDNotRecognisedException, IllegalIDException {
 
     int ReservationNum = GetNextResNum();
-
+    //
     for (int i = 0; i < num; i++) {
       for (int j = 0; j < stockList.size(); j++) {
         if (!((BeanBag) stockList.get(j)).getReserved()){
