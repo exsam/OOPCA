@@ -70,7 +70,6 @@ public class Store implements BeanBagStore {
   }
 
   private int GetNextResNum() {
-    System.out.println("GetNextResNum is running");
     for (int i = 0; i < stockList.size(); i++) {
       if (((BeanBag) stockList.get(i)).getReservationNumber() > nextReservationNum) {
         nextReservationNum = ((BeanBag) stockList.get(i)).getReservationNumber();
@@ -159,13 +158,22 @@ public class Store implements BeanBagStore {
       throws BeanBagNotInStockException, InsufficientStockException,
           IllegalNumberOfBeanBagsReservedException, PriceNotSetException,
           BeanBagIDNotRecognisedException, IllegalIDException {
+
     int ReservationNum = GetNextResNum();
+
     for (int i = 0; i < num; i++) {
       for (int j = 0; j < stockList.size(); j++) {
-        if (((BeanBag) stockList.get(j)).getID().equals(id)) {
-          ((BeanBag) stockList.get(j)).setReserved(true);
-          ((BeanBag) stockList.get(j)).setReservationNumber(ReservationNum);
+        if (!((BeanBag) stockList.get(j)).getReserved()){
+          System.out.println("\nNot Reserved!");
+          if ( ((BeanBag) stockList.get(j)).getID().equals(id) ) {
+            ((BeanBag) stockList.get(j)).setReserved(true);
+            ((BeanBag) stockList.get(j)).setReservationNumber(ReservationNum);
+          }
         }
+        else{
+          System.out.println("\n Already Reserved!!!");
+        }
+        //System.out.println("\nReserve state: " + ((BeanBag) stockList.get(j)).getReserved());
       }
     }
     return ReservationNum;
@@ -205,9 +213,13 @@ public class Store implements BeanBagStore {
     int ReservedStock = 0;
     for (int i = 0; i < stockList.size(); i++) {
       if (((BeanBag) stockList.get(i)).getReserved() == true) {
+        //System.out.print("\n The following beanbag is reserved: \n");
+        //System.out.print(((BeanBag) stockList.get(i)).getID());
+        //System.out.print("\n");
         ReservedStock = ReservedStock + 1;
       }
     }
+    //System.out.print("\n *The Reserved stock is: " + ReservedStock);
     return ReservedStock;
   }
 
