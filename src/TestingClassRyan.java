@@ -25,7 +25,7 @@ public class TestingClassRyan {
       System.out.print(testing.getTotalPriceOfReservedBeanBags());
       System.out.print("\n The info for bean bag ID 00000002 = ");
       System.out.print(testing.getBeanBagDetails("00000002"));
-
+      testing.sellBeanBags(3,"00000005");
       /*System.out.println("\nUNIQUE: " + testing.getNumberOfDifferentBeanBagsInStock());
       System.out.println(testing.beanBagsInStock());*/
     } catch (Exception e) {

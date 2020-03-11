@@ -131,7 +131,7 @@ public class Store implements BeanBagStore {
     int oldCounter = 0;
     for (int i = 0; i < stockList.size(); i++) {
       BeanBag bag = (BeanBag) stockList.get(i);
-      if (bag.getID() == id & !bag.getReserved() & !bag.isSold()) {
+      if (bag.getID().equals(id) & !bag.getReserved() & !bag.isSold()) {
         if (bag.isSold()) {
           oldCounter++;
         } else {
