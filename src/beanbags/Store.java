@@ -106,7 +106,6 @@ public class Store implements BeanBagStore {
         ((BeanBag) stockList.get(i)).setReserved(reserved);
         ((BeanBag) stockList.get(i)).setReservationNumber(reservationNumber);
         break;
-        //
       }
     }
   }
@@ -117,6 +116,7 @@ public class Store implements BeanBagStore {
     for (int i = 0; i < stockList.size(); i++) {
       if (((BeanBag) stockList.get(i)).getID().equals(id)) {
         ((BeanBag) stockList.get(i)).setSold(sold);
+        break;
       }
     }
   }
