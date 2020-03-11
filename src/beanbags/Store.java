@@ -119,7 +119,6 @@ public class Store implements BeanBagStore {
   }
 
   public void sellBeanBags(int num, String id)
-      // TODO
       throws BeanBagNotInStockException, InsufficientStockException,
           IllegalNumberOfBeanBagsSoldException, PriceNotSetException,
           BeanBagIDNotRecognisedException, IllegalIDException {
@@ -127,6 +126,27 @@ public class Store implements BeanBagStore {
     if (num <= 0) {
       throw new IllegalNumberOfBeanBagsSoldException(
           "Please enter a quantity to be sold greater or equal to 1");
+    }
+    int currentCounter = 0;
+    int oldCounter = 0;
+    for (int i = 0; i < stockList.size(); i++) {
+      BeanBag bag = (BeanBag) stockList.get(i);
+      if (bag.getID() == id & !bag.getReserved() & !bag.isSold()) {
+        if (bag.isSold()) {
+          oldCounter++;
+        } else {
+          currentCounter++;
+        }
+      }
+    }
+    if (currentCounter == 0 & oldCounter == 0) {
+      throw new BeanBagIDNotRecognisedException("No BeanBags with this ID exist on our system.");
+    }
+    if (currentCounter == 0 & oldCounter >= 1) {
+      throw new BeanBagNotInStockException(id + " is not in stock.");
+    }
+    if (currentCounter < num) {
+      throw new InsufficientStockException("We don't have enough BeanBags to fulfil this order.");
     }
     int n = 0;
     // Method for searching via "ID"
@@ -159,17 +179,16 @@ public class Store implements BeanBagStore {
     //
     for (int i = 0; i < num; i++) {
       for (int j = 0; j < stockList.size(); j++) {
-        if (!((BeanBag) stockList.get(j)).getReserved()){
-          //System.out.println("\nNot Reserved!");
-          if ( ((BeanBag) stockList.get(j)).getID().equals(id) ) {
+        if (!((BeanBag) stockList.get(j)).getReserved()) {
+          // System.out.println("\nNot Reserved!");
+          if (((BeanBag) stockList.get(j)).getID().equals(id)) {
             ((BeanBag) stockList.get(j)).setReserved(true);
             ((BeanBag) stockList.get(j)).setReservationNumber(ReservationNum);
           }
+        } else {
+          // System.out.println("\n Already Reserved!!!");
         }
-        else{
-          //System.out.println("\n Already Reserved!!!");
-        }
-        //System.out.println("\nReserve state: " + ((BeanBag) stockList.get(j)).getReserved());
+        // System.out.println("\nReserve state: " + ((BeanBag) stockList.get(j)).getReserved());
       }
     }
     return ReservationNum;
@@ -192,7 +211,7 @@ public class Store implements BeanBagStore {
   public int beanBagsInStock() {
     int counter = 0;
     for (int i = 0; i < stockList.size(); i++) {
-      if(!((BeanBag)stockList.get(i)).isSold()){
+      if (!((BeanBag) stockList.get(i)).isSold()) {
         counter++;
       }
     }
@@ -203,13 +222,13 @@ public class Store implements BeanBagStore {
     int ReservedStock = 0;
     for (int i = 0; i < stockList.size(); i++) {
       if (((BeanBag) stockList.get(i)).getReserved() == true) {
-        //System.out.print("\n The following beanbag is reserved: \n");
-        //System.out.print(((BeanBag) stockList.get(i)).getID());
-        //System.out.print("\n");
+        // System.out.print("\n The following beanbag is reserved: \n");
+        // System.out.print(((BeanBag) stockList.get(i)).getID());
+        // System.out.print("\n");
         ReservedStock = ReservedStock + 1;
       }
     }
-    //System.out.print("\n *The Reserved stock is: " + ReservedStock);
+    // System.out.print("\n *The Reserved stock is: " + ReservedStock);
     return ReservedStock;
   }
 
@@ -293,7 +312,7 @@ public class Store implements BeanBagStore {
       if (tracker == 0) {
         for (int y = 0; y < stockList.size(); y++) {
           idArray[counter] = ID;
-          counter ++;
+          counter++;
           break;
         }
       }
