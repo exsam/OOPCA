@@ -42,7 +42,7 @@ public class Check {
       System.out.print(" tempBag ID = ");
       System.out.print(tempBag.getID());
       System.out.print("\n");
-
+      //
       if ((bag.getID()).equals(tempBag.getID()))
       {
         //System.out.println("They have matching ID!");
