@@ -402,7 +402,14 @@ public class Store implements BeanBagStore {
     }
   }
 
-  public void resetSaleAndCostTracking() {}
+  public void resetSaleAndCostTracking() {
+    for (int i = 0; i < stockList.size(); i++) {
+      if(((BeanBag)stockList.get(i)).isSold())
+      {
+        stockList.remove(i);
+      }
+    }
+  }
 
   public void replace(String oldID, String replacementID)
       throws BeanBagIDNotRecognisedException, IllegalIDException {
