@@ -135,15 +135,14 @@ public class Store implements BeanBagStore {
       //System.out.print(id);
       //System.out.print("\n");
       //System.out.println(((BeanBag) stockList.get(i)));
-      if (((BeanBag) stockList.get(i)).getID().equals(id)){
+      if ( ((BeanBag) stockList.get(i)).getID().equals(id) && !((BeanBag) stockList.get(i)).getReserved())
+      {
         ((BeanBag) stockList.get(i)).setReserved(reserved);
         ((BeanBag) stockList.get(i)).setReservationNumber(reservationNumber);
-        System.out.print("The price for the said ID is: ");
-        System.out.print(((BeanBag) stockList.get(i)).getPrice());
-        System.out.print("\n");
       }
     }
   }
+
 
   public void sellBeanBags(int num, String id)
       throws BeanBagNotInStockException, InsufficientStockException,
