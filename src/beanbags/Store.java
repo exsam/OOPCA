@@ -106,6 +106,7 @@ public class Store implements BeanBagStore {
         ((BeanBag) stockList.get(i)).setReserved(reserved);
         ((BeanBag) stockList.get(i)).setReservationNumber(reservationNumber);
         break;
+        //
       }
     }
   }
