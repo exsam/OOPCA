@@ -187,6 +187,7 @@ public class Store implements BeanBagStore {
     int counter = 0;
     for (int i = 0; i < stockList.size(); i++) {
       if(!((BeanBag)stockList.get(i)).isSold()){
+        Check.matchingIDs(((BeanBag)stockList.get(i)), stockList);
         counter++;
       }
       return stockList.size();
