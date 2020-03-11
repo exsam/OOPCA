@@ -33,11 +33,15 @@ public class Check {
       throws BeanBagMismatchException {
     for (int i = 0; i < stockList.size(); i++) {
       BeanBag tempBag = (BeanBag) stockList.get(i);
+      if (bag.equals(tempBag)) {
+        System.out.println("YEAH2");
+      }
       if (bag.getID() == tempBag.getID()) {
-          if (bag.getName() == tempBag.getName() & bag.getManufacturer() == tempBag.getManufacturer())
-          {
-
-          }
+        /*if (bag.getName() == tempBag.getName()
+        & bag.getManufacturer() == tempBag.getManufacturer() & bag.getYear() == tempBag.getYear() & bag.) {}*/
+        if (bag.equals(tempBag)) {
+          System.out.println("YEAH2");
+        }
       }
     }
   }
