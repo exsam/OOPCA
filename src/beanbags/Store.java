@@ -193,7 +193,7 @@ public class Store implements BeanBagStore {
     }
     return ReservationNum;
   }
-
+  //
   public void unreserveBeanBags(int reservationNumber)
       throws ReservationNumberNotRecognisedException {
     for (int i = 0; i < stockList.size(); i++) {
