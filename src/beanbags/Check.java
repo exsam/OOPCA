@@ -15,11 +15,13 @@ public class Check {
    * @throws IllegalIDException
    */
   public static void validID(String id) throws IllegalIDException {
+    // this means ID has a range 00000000-7FFFFFFF
     if (id.length() == 8) {
       try {
         int deci = Long.valueOf(id, 16).intValue();
         if (deci < 0) {
-          throw new IllegalIDException("ID must be a positive number.");
+          throw new IllegalIDException(
+              "ID must be a positive number (within range 00000000-7FFFFFFF)");
         }
       } catch (NumberFormatException e) {
         throw new IllegalIDException("ID is not a Hexidecimal number.");
