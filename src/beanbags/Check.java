@@ -32,9 +32,8 @@ public class Check {
   }
 
   public static void matchingIDs(BeanBag bag, ObjectArrayList stockList)
-      throws BeanBagMismatchException
-  {
-    //System.out.println("MatchingID's Was called");
+      throws BeanBagMismatchException {
+    // System.out.println("MatchingID's Was called");
     for (int i = 0; i < stockList.size(); i++) {
       BeanBag tempBag = (BeanBag) stockList.get(i);
       System.out.print("bag ID = ");
@@ -42,61 +41,13 @@ public class Check {
       System.out.print(" tempBag ID = ");
       System.out.print(tempBag.getID());
       System.out.print("\n");
-      //
-      if ((bag.getID()).equals(tempBag.getID()))
-      {
-        //System.out.println("They have matching ID!");
-        if ( (bag.getName() == tempBag.getName())
-        && (bag.getManufacturer() == tempBag.getManufacturer())
-        && (bag.getInformation() == tempBag.getInformation()))
-        {
-          //System.out.println("ALL DATA MATCHES");
-        }
-        else
-        {
-          //System.out.println("ERROR - DATA DOESNT MATCH");
+      if ((bag.getID()).equals(tempBag.getID())) {
+        if ((bag.getName() != tempBag.getName())
+            | (bag.getManufacturer() != tempBag.getManufacturer())
+            | (bag.getInformation() != tempBag.getInformation())) {
           throw new BeanBagMismatchException("ID does not match associated data!");
         }
       }
-      else {
-        //System.out.print("bag ID = ");
-        //System.out.print(bag.getID());
-        //System.out.print(" doesnt match tempBag ID = ");
-        //System.out.print(tempBag.getID());
-        //System.out.print("\n");
-      }
-
-/*      if (tempBag.getID() == ((BeanBag) stockList.get(i)).getID())
-      {
-        System.out.println("Bag have matching ID's");
-      }
-      else{
-        System.out.println("Bags do not have matching ID's");
-      }*/
-
-
-      //System.out.print("Current bag = ");
-      //System.out.print(bag);
-      //System.out.print("\n Current tempbag = ");
-      //System.out.print(tempBag);
-
-/*      int counter = 0;
-      if (bag.equals(tempBag)) {
-        System.out.println("Beanbag Match");
-      } else {
-        System.out.println("Beanbag No Match");
-        counter++;
-      }
-    }
-    if (counter = stockList.size()) {
-      throw new BeanBagMismatchException("Beanbag data mismatch detected");
-    }*/
-
-    //if (bag.getID() == tempBag.getID()) {
-        //if (bag.getName() == tempBag.getName()
-        //& bag.getManufacturer() == tempBag.getManufacturer() & bag.getYear() == tempBag.getYear() & bag.) {}*/
-        //if (bag.equals(tempBag)) {
-          //System.out.println("YEAH2");
     }
   }
 }

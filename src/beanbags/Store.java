@@ -11,14 +11,12 @@ import java.io.*;
 public class Store implements BeanBagStore {
   public static ObjectArrayList stockList = new ObjectArrayList();
 
-  private static int nextReservationNum = 0;
+  private int nextReservationNum = 0;
 
   public void addBeanBags(
       int num, String manufacturer, String name, String id, short year, byte month)
       throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException, IllegalIDException,
           InvalidMonthException {
-    // TODO: need to check ID & Month Exceptions
-    //  check ID matches other existing bags correctly
     Check.validID(id);
     // Ensures month entered is a valid month
     if (month <= 0 || month > 12) {
@@ -30,6 +28,7 @@ public class Store implements BeanBagStore {
     if (num >= 1) {
       for (int i = 0; i < num; i++) {
         BeanBag tempBag = new BeanBag(name, id, manufacturer, year, month);
+        Check.matchingIDs(tempBag,stockList);
         stockList.add(tempBag);
       }
     } else {
@@ -48,8 +47,6 @@ public class Store implements BeanBagStore {
       String information)
       throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException, IllegalIDException,
           InvalidMonthException {
-    // TODO: need to check ID & Month Exceptions
-    //  check ID matches other existing bags correctly
     Check.validID(id);
     // Ensures month entered is a valid month
     if (month <= 0 || month > 12) {
@@ -61,6 +58,7 @@ public class Store implements BeanBagStore {
     if (num >= 1) {
       for (int i = 1; i <= num; i++) {
         BeanBag tempBag = new BeanBag(name, id, manufacturer, information, year, month);
+        Check.matchingIDs(tempBag,stockList);
         stockList.add(tempBag);
       }
     } else {
@@ -197,14 +195,8 @@ public class Store implements BeanBagStore {
     int counter = 0;
     for (int i = 0; i < stockList.size(); i++) {
       if(!((BeanBag)stockList.get(i)).isSold()){
-        //try{
-          //Check.matchingIDs(((BeanBag)stockList.get(i)), stockList);
-        //} catch (Exception e) {
-          //System.out.println(e);
-      //}
         counter++;
       }
-      return stockList.size();
     }
     return counter;
   }
