@@ -36,11 +36,6 @@ public class Check {
     // System.out.println("MatchingID's Was called");
     for (int i = 0; i < stockList.size(); i++) {
       BeanBag tempBag = (BeanBag) stockList.get(i);
-      System.out.print("bag ID = ");
-      System.out.print(bag.getID());
-      System.out.print(" tempBag ID = ");
-      System.out.print(tempBag.getID());
-      System.out.print("\n");
       if ((bag.getID()).equals(tempBag.getID())) {
         if ((bag.getName() != tempBag.getName())
             | (bag.getManufacturer() != tempBag.getManufacturer())
