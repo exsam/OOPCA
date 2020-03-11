@@ -98,8 +98,7 @@ public class Store implements BeanBagStore {
   }
 
   private void setReserved(String id, boolean reserved, int reservationNumber)
-      throws ReservationNumberNotRecognisedException, BeanBagIDNotRecognisedException,
-          IllegalIDException {
+      throws IllegalIDException, BeanBagIDNotRecognisedException {
     for (int i = 0; i < stockList.size(); i++) {
       if (((BeanBag) stockList.get(i)).getID().equals(id)
           && !((BeanBag) stockList.get(i)).getReserved()) {
@@ -130,6 +129,27 @@ public class Store implements BeanBagStore {
     if (num <= 0) {
       throw new IllegalNumberOfBeanBagsSoldException(
           "Please enter a quantity to be sold greater or equal to 1");
+    }
+    int currentCounter = 0;
+    int oldCounter = 0;
+    for (int i = 0; i < stockList.size(); i++) {
+      BeanBag bag = (BeanBag) stockList.get(i);
+      if (bag.getID() == id & !bag.getReserved() & !bag.isSold()) {
+        if (bag.isSold()) {
+          oldCounter++;
+        } else {
+          currentCounter++;
+        }
+      }
+    }
+    if (currentCounter == 0 & oldCounter == 0) {
+      throw new BeanBagIDNotRecognisedException("No BeanBags with this ID exist on our system.");
+    }
+    if (currentCounter == 0 & oldCounter >= 1) {
+      throw new BeanBagNotInStockException(id + " is not in stock.");
+    }
+    if (currentCounter < num) {
+      throw new InsufficientStockException("We don't have enough BeanBags to fulfil this order.");
     }
     int n = 0;
     // Method for searching via "ID"
@@ -186,8 +206,8 @@ public class Store implements BeanBagStore {
   public int beanBagsInStock() {
     int counter = 0;
     for (int i = 0; i < stockList.size(); i++) {
-      if(!((BeanBag)stockList.get(i)).isSold()){
-        Check.matchingIDs(((BeanBag)stockList.get(i)), stockList);
+      if (!((BeanBag) stockList.get(i)).isSold()) {
+        // Check.matchingIDs(((BeanBag)stockList.get(i)), stockList);
         counter++;
       }
       return stockList.size();
@@ -286,7 +306,7 @@ public class Store implements BeanBagStore {
       if (tracker == 0) {
         for (int y = 0; y < stockList.size(); y++) {
           idArray[counter] = ID;
-          counter ++;
+          counter++;
           break;
         }
       }
