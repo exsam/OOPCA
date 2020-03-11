@@ -17,6 +17,7 @@ public class BeanBag {
   private short year;
   private boolean reserved;
   private int reservationNumber;
+  private boolean isSold;
 
   public BeanBag(String name, String ID, String manufacturer, short year, byte month) {
     this.name = name;
@@ -25,9 +26,11 @@ public class BeanBag {
     this.year = year;
     this.month = month;
     this.reserved = false;
+    this.isSold = false;
   }
 
-  public BeanBag(String name, String ID, String manufacturer, String information, short year, byte month) {
+  public BeanBag(
+      String name, String ID, String manufacturer, String information, short year, byte month) {
     this.name = name;
     this.ID = ID;
     this.manufacturer = manufacturer;
@@ -35,6 +38,7 @@ public class BeanBag {
     this.year = year;
     this.month = month;
     this.reserved = false;
+    this.isSold = false;
   }
 
   public String getName() {
@@ -77,16 +81,24 @@ public class BeanBag {
     return reserved;
   }
 
-  public int getReservationNumber() {
-    return reservationNumber;
-  }
-
   public void setReserved(boolean reserved) {
     this.reserved = reserved;
   }
 
+  public int getReservationNumber() {
+    return reservationNumber;
+  }
+
   public void setReservationNumber(int reservationNumber) {
     this.reservationNumber = reservationNumber;
+  }
+
+  public boolean isSold() {
+    return isSold;
+  }
+
+  public void setSold(boolean sold) {
+    isSold = sold;
   }
 
   @Override
@@ -108,6 +120,8 @@ public class BeanBag {
         + reserved
         + ","
         + reservationNumber
+        + ","
+        + isSold
         + "\n";
   }
 }
