@@ -18,6 +18,8 @@ public class Store implements BeanBagStore {
       throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException, IllegalIDException,
           InvalidMonthException {
     Check.validID(id);
+    BeanBag exceptionBag = new BeanBag(name, id, manufacturer, year, month);
+    Check.matchingIDs(exceptionBag,stockList);
     // Ensures month entered is a valid month
     if (month <= 0 || month > 12) {
       throw new InvalidMonthException(
@@ -47,6 +49,8 @@ public class Store implements BeanBagStore {
       throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException, IllegalIDException,
           InvalidMonthException {
     Check.validID(id);
+    BeanBag exceptionBag = new BeanBag(name, id, manufacturer, information, year, month);
+    Check.matchingIDs(exceptionBag,stockList);
     // Ensures month entered is a valid month
     if (month <= 0 || month > 12) {
       throw new InvalidMonthException(
@@ -65,7 +69,7 @@ public class Store implements BeanBagStore {
     }
   }
 
-  private int GetNextResNum() {
+  private int getNextResNum() {
     for (int i = 0; i < stockList.size(); i++) {
       if (((BeanBag) stockList.get(i)).getReservationNumber() > nextReservationNum) {
         nextReservationNum = ((BeanBag) stockList.get(i)).getReservationNumber();
@@ -175,8 +179,8 @@ public class Store implements BeanBagStore {
           IllegalNumberOfBeanBagsReservedException, PriceNotSetException,
           BeanBagIDNotRecognisedException, IllegalIDException {
 
-    int ReservationNum = GetNextResNum();
-    //
+    int ReservationNum = getNextResNum();
+
     for (int i = 0; i < num; i++) {
       for (int j = 0; j < stockList.size(); j++) {
         if (!((BeanBag) stockList.get(j)).getReserved()) {
@@ -188,7 +192,6 @@ public class Store implements BeanBagStore {
         } else {
           // System.out.println("\n Already Reserved!!!");
         }
-        // System.out.println("\nReserve state: " + ((BeanBag) stockList.get(j)).getReserved());
       }
     }
     return ReservationNum;
