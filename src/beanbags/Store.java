@@ -182,7 +182,7 @@ public class Store implements BeanBagStore {
         if (!((BeanBag) stockList.get(j)).isSold() & ((BeanBag) stockList.get(j)).getID().equals(id)) {
           // If the ID in the stockList matches the passed parameter ID
             // Set the beanBag reserved state to "true" in the "stockList".
-            ((BeanBag) stockList.get(j)).isSold(true);
+            ((BeanBag) stockList.get(j)).isSold();
             // Set the beanBag reservation number in the "stockList" to the value of the integer
             // "ReservationNum".
         }
