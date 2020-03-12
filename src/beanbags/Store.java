@@ -147,6 +147,7 @@ public class Store implements BeanBagStore {
         // Break from the loop.
         break;
       }
+      System.out.println(((BeanBag) stockList.get(i)).getID());
     }
   }
 
@@ -184,7 +185,6 @@ public class Store implements BeanBagStore {
             // Set the beanBag reserved state to "true" in the "stockList".
             ((BeanBag) stockList.get(j)).setSold(true);
             // Set the beanBag reservation number in the "stockList" to the value of the integer
-            // "ReservationNum".
         }
       }
     }

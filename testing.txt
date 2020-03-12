@@ -1,63 +1,15 @@
-ID1,Manufacturer1,Ryan,Information1,0,2020,7,false,0
-ID2,Manufacturer2,Ryan,Information2,0,2020,10,false,0
-ID3,Manufacturer3,Ryan,Information3,0,2020,12,false,0
-ID1,Manufacturer1,Ryan,Information1,0,2020,7,false,0
-ID2,Manufacturer2,Ryan,Information2,0,2020,10,false,0
-ID3,Manufacturer3,Ryan,Information3,0,2020,12,false,0
-ID1,Manufacturer1,Ryan,Information1,0,2020,7,false,0
-ID2,Manufacturer2,Ryan,Information2,0,2020,10,false,0
-ID3,Manufacturer3,Ryan,Information3,0,2020,12,false,0
-ID1,Manufacturer1,Ryan,Information1,0,2020,7,false,0
-ID2,Manufacturer2,Ryan,Information2,0,2020,10,false,0
-ID3,Manufacturer3,Ryan,Information3,0,2020,12,false,0
-ID1,Manufacturer1,Ryan,Information1,0,2020,7,false,0
-ID2,Manufacturer2,Ryan,Information2,0,2020,10,false,0
-ID3,Manufacturer3,Ryan,Information3,0,2020,12,false,0
-ID1,Manufacturer1,Ryan,Information1,0,2020,7,false,0
-ID2,Manufacturer2,Ryan,Information2,0,2020,10,false,0
-ID3,Manufacturer3,Ryan,Information3,0,2020,12,false,0
-ID1,Manufacturer1,Ryan,Information1,0,2020,7,false,0
-ID2,Manufacturer2,Ryan,Information2,0,2020,10,false,0
-ID3,Manufacturer3,Ryan,Information3,0,2020,12,false,0
-ID1,Manufacturer1,Ryan,Information1,0,2020,7,true,0
-ID2,Manufacturer2,Ryan,Information2,0,2020,10,true,0
-ID3,Manufacturer3,Ryan,Information3,0,2020,12,true,0
-ID1,Manufacturer1,Ryan,Information1,0,2020,7,true,0
-ID2,Manufacturer2,Ryan,Information2,0,2020,10,true,0
-ID3,Manufacturer3,Ryan,Information3,0,2020,12,true,0
-ID1,Manufacturer1,Ryan,Information1,0,2020,7,true,0
-ID2,Manufacturer2,Ryan,Information2,0,2020,10,true,0
-ID3,Manufacturer3,Ryan,Information3,0,2020,12,true,0
-ID1,Manufacturer1,Ryan,Information1,0,2020,7,false,0
-ID2,Manufacturer2,Ryan,Information2,0,2020,10,false,0
-ID3,Manufacturer3,Ryan,Information3,0,2020,12,false,0
-ID1,Manufacturer1,Ryan,Information1,0,2020,7,false,0
-ID2,Manufacturer2,Ryan,Information2,0,2020,10,false,0
-ID3,Manufacturer3,Ryan,Information3,0,2020,12,false,0
-ID1,Ryan,Manufacturer1,Information1,0,2020,7,false,0
-ID2,Ryan,Manufacturer2,Information2,0,2020,10,false,0
-ID3,Ryan,Manufacturer3,Information3,0,2020,12,false,0
-Manufacturer1,Ryan,ID1,Information1,0,2020,7,false,0
-Manufacturer2,Ryan,ID2,Information2,0,2020,10,false,0
-Manufacturer3,Ryan,ID3,Information3,0,2020,12,false,0
-Ryan,Manufacturer1,ID1,Information1,0,2020,7,false,0
-Ryan,Manufacturer2,ID2,Information2,0,2020,10,false,0
-Ryan,Manufacturer3,ID3,Information3,0,2020,12,false,0
-ID1,Manufacturer1,Ryan,Information1,0,2020,7,false,0
-ID2,Manufacturer2,Ryan,Information2,0,2020,10,false,0
-ID3,Manufacturer3,Ryan,Information3,0,2020,12,false,0
-ID1,Manufacturer1,Ryan,Information1,0,2020,7,false,0
-ID2,Manufacturer2,Ryan,Information2,0,2020,10,false,0
-ID3,Manufacturer3,Ryan,Information3,0,2020,12,false,0
-ID1,Manufacturer1,Ryan,Information1,0,2020,7,false,0
-ID2,Manufacturer2,Ryan,Information2,0,2020,10,false,0
-ID3,Manufacturer3,Ryan,Information3,0,2020,12,false,0
-Ryan,ID1,Manufacturer1,Information1,0,2020,7,true,1
-Ryan,ID2,Manufacturer2,Information2,0,2020,10,false,0
-Ryan,ID3,Manufacturer3,Information3,0,2020,12,false,0
-Ryan,ID1,Manufacturer1,Information1,0,2020,7,true,1
-Ryan,ID2,Manufacturer2,Information2,0,2020,10,false,0
-Ryan,ID3,Manufacturer3,Information3,0,2020,12,false,0
-Ryan,ID1,Manufacturer1,Information1,0,2020,7,true,3
-Ryan,ID2,Manufacturer2,Information2,0,2020,10,true,2
-Ryan,ID3,Manufacturer3,Information3,0,2020,12,false,0
+Ryan,00000000,Manufacturer1,Information1,50,2020,7,false,0,false
+Sam,00000001,Manufacturer2,Information2,100,2020,10,false,0,false
+Adam,00000002,Manufacturer3,Information3,150,2020,12,true,1,false
+Jarryd,00000003,Manufacturer4,Information4,200,2020,7,true,2,false
+James,00000004,Manufacturer5,Information5,250,2020,10,false,0,false
+Soroosh,00000005,Manufacturer6,Information6,300,2020,12,false,0,false
+Soroosh,00000005,Manufacturer6,Information6,300,2020,12,false,0,false
+Ryan,000000FF,Manufacturer1,Testing the mismatch test.,100,2020,7,false,0,true
+Ryan,000000FF,Manufacturer1,Testing the mismatch test.,100,2020,7,false,0,true
+Ryan,000000FF,Manufacturer1,Testing the mismatch test.,100,2020,7,false,0,true
+Ryan,000000FF,Manufacturer1,Testing the mismatch test.,100,2020,7,false,0,true
+Ryan,000000FF,Manufacturer1,Testing the mismatch test.,100,2020,7,false,0,true
+Ryan,000000FF,Manufacturer1,Testing the mismatch test.,100,2020,7,false,0,true
+Ryan,000000FF,Manufacturer1,Testing the mismatch test.,100,2020,7,false,0,true
+Ryan,000000FF,Manufacturer1,Testing the mismatch test.,100,2020,7,false,0,true
