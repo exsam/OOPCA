@@ -1,6 +1,5 @@
 package beanbags;
 
-// Import module "java.io".
 import java.io.*;
 
 /**
@@ -220,7 +219,7 @@ public class Store implements BeanBagStore {
     for (int j = 0; j < stockList.size(); j++) {
       // If the current beanBag in the "stockList" reserved state boolean is NOT true.
       if (fulfilledReserved < num) {
-        if (!((BeanBag) stockList.get(j)).getReserved()) {
+        if (!((BeanBag) stockList.get(j)).getReserved() & !((BeanBag)stockList.get(j)).isSold()) {
           // If the ID in the stockList matches the passed parameter ID
           if (((BeanBag) stockList.get(j)).getID().equals(id)) {
             if (((BeanBag) stockList.get(j)).getPrice() < 1) {
@@ -261,20 +260,18 @@ public class Store implements BeanBagStore {
 
   public void sellBeanBags(int reservationNumber) throws ReservationNumberNotRecognisedException {
 
-    int fulfilledSold = 0;
     // Loop the following code "num" times.
     for (int j = 0; j < stockList.size(); j++) {
       // If the current beanBag in the "stockList" reserved state boolean is NOT true and bag is
       // not already sold.
-      if (((BeanBag) stockList.get(j)).getReservationNumber() == reservationNumber
-          && !((BeanBag) stockList.get(j)).isSold()) {
+      System.out.println(((BeanBag) stockList.get(j)).getReservationNumber());
+      if (((BeanBag) stockList.get(j)).getReservationNumber() == reservationNumber) {
         // Set the beanBag reserved state to "true" in the "stockList".
+        System.out.println("TEST");
         ((BeanBag) stockList.get(j)).setSold(true);
-        unreserveBeanBags(reservationNumber);
-      } else {
-        break;
       }
     }
+    unreserveBeanBags(reservationNumber);
   }
 
   public int beanBagsInStock() {
