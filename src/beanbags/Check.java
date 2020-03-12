@@ -27,7 +27,8 @@ public class Check {
         // If the "deci" integer is less than 0.
         if (deci < 0) {
           // Throw "IllegalIDException" as the ID is invalid (Wrong Range).
-          throw new IllegalIDException("ID must be a positive number (within range 00000000-7FFFFFFF)");
+          throw new IllegalIDException(
+              "ID must be a positive number (within range 00000000-7FFFFFFF)");
         }
       } catch (NumberFormatException e) {
         // Throw "IllegalIDException" as the ID is invalid (Wrong format).
@@ -40,8 +41,7 @@ public class Check {
   }
 
   // This function checks if the ID of a passed bag matches the rest of the data for that ID.
-  public static void matchingIDs(BeanBag bag)
-      throws BeanBagMismatchException {
+  public static void matchingIDs(BeanBag bag) throws BeanBagMismatchException {
 
     // Loop through every object in the "stockList" object array list.
     for (int i = 0; i < stockList.size(); i++) {
@@ -60,8 +60,9 @@ public class Check {
     }
   }
 
-  public static void fulfillRequest(int num, String id) throws BeanBagIDNotRecognisedException,
-          BeanBagNotInStockException,InsufficientStockException {
+  public static void fulfillRequest(int num, String id)
+      throws BeanBagIDNotRecognisedException, BeanBagNotInStockException,
+          InsufficientStockException {
     // Define integer "currentCounter" and set it's value to 0.
     int currentCounter = 0;
     // Define integer "oldCounter" and set it's value to 0.
@@ -76,7 +77,7 @@ public class Check {
         if (bag.isSold() | bag.getReserved()) {
           // Increment integer "oldCounter" by 1.
           oldCounter++;
-        // If te bag is not sold.
+          // If te bag is not sold.
         } else {
           // Increment integer "currentCounter" by 1.
           currentCounter++;
@@ -96,20 +97,23 @@ public class Check {
     }
     // If the "currentCounter" is smaller than "num".
     if (currentCounter < num) {
-      // Throw "InsufficientStockException", as there are not enough beanBags in stock for the order.
+      // Throw "InsufficientStockException", as there are not enough beanBags in stock for the
+      // order.
       throw new InsufficientStockException("We don't have enough BeanBags to fulfil this request.");
     }
   }
+
   public static void reservedAvailable(int resNum) throws ReservationNumberNotRecognisedException {
-    int counter =0;
+    int counter = 0;
     for (int i = 0; i < stockList.size(); i++) {
-      if(((BeanBag)stockList.get(i)).getReservationNumber() == resNum){
+      if (((BeanBag) stockList.get(i)).getReservationNumber() == resNum) {
         counter++;
         break;
       }
     }
-    if (counter < 1){
-      throw new ReservationNumberNotRecognisedException("No BeanBags with this Reservation Number in stock.");
+    if (counter < 1) {
+      throw new ReservationNumberNotRecognisedException(
+          "No BeanBags with this Reservation Number in stock.");
     }
   }
 }
