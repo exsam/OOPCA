@@ -186,6 +186,7 @@ public class Store implements BeanBagStore {
           // Set the beanBag reserved state to "true" in the "stockList".
           ((BeanBag) stockList.get(j)).setSold(true);
           // Set the beanBag reservation number in the "stockList" to the value of the integer
+          break;
         }
       }
     }
@@ -225,7 +226,7 @@ public class Store implements BeanBagStore {
     }
     Check.validID(id);
     Check.fulfillRequest(num, id);
-    
+
     // Define the string variable "ReservationNum" as the result from the function
     // "GetNextRestNum()".
     int ReservationNum = GetNextResNum();

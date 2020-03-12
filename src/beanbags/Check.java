@@ -71,9 +71,9 @@ public class Check {
       // Define a temporary bag called "bag" from the array location.
       BeanBag bag = (BeanBag) stockList.get(i);
       // If the Bag ID matches the passed parameter ID AND the bag is NOT reserved and NOT sold.
-      if ((bag.getID()).equals(id) && !bag.getReserved() && !bag.isSold()) {
+      if ((bag.getID()).equals(id) && !bag.isSold()) {
         // If the bag is sold.
-        if (bag.isSold()) {
+        if (bag.isSold() | bag.getReserved()) {
           // Increment integer "oldCounter" by 1.
           oldCounter++;
         // If te bag is not sold.
