@@ -1,5 +1,6 @@
 package beanbags;
 
+// Import module "java.io".
 import java.io.*;
 
 /**
