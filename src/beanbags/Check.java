@@ -49,7 +49,7 @@ public class Check {
       BeanBag tempBag = (BeanBag) stockList.get(i);
       // Check that if the ID of the "tempBag" matches the ID of the bag in the "stockList".
       if ((bag.getID()).equals(tempBag.getID())) {
-        // If the Name, Manufacter and Infomation accross both bags matches.
+        // If the Name, Manufacturer and Information across both bags matches.
         if (bag.getName().equals(tempBag.getName())
             & bag.getName().equals(tempBag.getManufacturer())
             & bag.getInformation().equals(tempBag.getInformation())) {
@@ -99,7 +99,19 @@ public class Check {
     // If the "currentCounter" is smaller than "num".
     if (currentCounter < num) {
       // Throw "InsufficientStockException", as there are not enough beanBags in stock for the order.
-      throw new InsufficientStockException("We don't have enough BeanBags to fulfil this order.");
+      throw new InsufficientStockException("We don't have enough BeanBags to fulfil this request.");
+    }
+  }
+  public static void reservedAvailable(int resNum) throws ReservationNumberNotRecognisedException {
+    int counter =0;
+    for (int i = 0; i < stockList.size(); i++) {
+      if(((BeanBag)stockList.get(i)).getReservationNumber() == resNum){
+        counter++;
+        break;
+      }
+    }
+    if (counter < 1){
+      throw new ReservationNumberNotRecognisedException("No BeanBags with this Reservation Number in stock.");
     }
   }
 }

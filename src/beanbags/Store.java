@@ -180,11 +180,12 @@ public class Store implements BeanBagStore {
       // Loop through every object in the "stockList" object array list.
       for (int j = 0; j < stockList.size(); j++) {
         // If the current beanBag in the "stockList" isSold boolean is NOT true.
-        if (!((BeanBag) stockList.get(j)).isSold() & ((BeanBag) stockList.get(j)).getID().equals(id)) {
+        if (!((BeanBag) stockList.get(j)).isSold()
+            & ((BeanBag) stockList.get(j)).getID().equals(id)) {
           // If the ID in the stockList matches the passed parameter ID
-            // Set the beanBag reserved state to "true" in the "stockList".
-            ((BeanBag) stockList.get(j)).setSold(true);
-            // Set the beanBag reservation number in the "stockList" to the value of the integer
+          // Set the beanBag reserved state to "true" in the "stockList".
+          ((BeanBag) stockList.get(j)).setSold(true);
+          // Set the beanBag reservation number in the "stockList" to the value of the integer
         }
       }
     }
@@ -218,7 +219,13 @@ public class Store implements BeanBagStore {
       throws BeanBagNotInStockException, InsufficientStockException,
           IllegalNumberOfBeanBagsReservedException, PriceNotSetException,
           BeanBagIDNotRecognisedException, IllegalIDException {
-
+    // Exception Handling
+    if (num < 1) {
+      throw new IllegalNumberOfBeanBagsReservedException("Please reserve 1 or more bags");
+    }
+    Check.validID(id);
+    Check.fulfillRequest(num, id);
+    
     // Define the string variable "ReservationNum" as the result from the function
     // "GetNextRestNum()".
     int ReservationNum = GetNextResNum();
@@ -247,6 +254,7 @@ public class Store implements BeanBagStore {
 
   public void unreserveBeanBags(int reservationNumber)
       throws ReservationNumberNotRecognisedException {
+    Check.reservedAvailable(reservationNumber);
     // Loop through every object in the "stockList" object array list.
     for (int i = 0; i < stockList.size(); i++) {
       // If the current beanBag's reservation number in the "stockList" matches the one passed as a
