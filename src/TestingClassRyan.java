@@ -15,6 +15,7 @@ public class TestingClassRyan {
       testing.setBeanBagPrice("00000000", 10);
       testing.setBeanBagPrice("00007000", 10);
       testing.setBeanBagPrice("00000004", 50);
+      testing.setBeanBagPrice("00000006", 50);
 
 
       try {
@@ -42,11 +43,11 @@ public class TestingClassRyan {
       System.out.println("(EXPECTED 3) Reserved Bags in Stock: " + testing.reservedBeanBagsInStock());
       System.out.println("(EXPECTED 150) The total Price of reserved beanbags = " + testing.getTotalPriceOfReservedBeanBags());
       System.out.println("--------------------------------------------");
-      System.out.println("Selling 1 of beanBag ID 00004000");
+      System.out.println("Selling 1 of beanBag ID 00000004");
       testing.sellBeanBags(1, "00000004");
       System.out.println("--------------------------------------------");
       try{
-        System.out.println("Selling ANOTHER 1 of beanBag ID 00004000");
+        System.out.println("Selling ANOTHER 1 of beanBag ID 00000004");
         System.out.println("(EXPECT InsufficientStockException)");
         testing.sellBeanBags(1, "00000004");
       } catch (Exception InsufficientStockException) {
@@ -67,14 +68,25 @@ public class TestingClassRyan {
       System.out.println("(EXPECTED 3) Reserved Bags in Stock: " + testing.reservedBeanBagsInStock());
       System.out.println("(EXPECTED 150) The total Price of reserved beanbags = " + testing.getTotalPriceOfReservedBeanBags());
       System.out.println("(EXPECTED 33) Total Bean Bags in Stock: " + testing.beanBagsInStock());
+      System.out.println("(EXPECTED 4) Total number of UNIQUE Bean Bags in stock " + testing.getNumberOfDifferentBeanBagsInStock());
       System.out.println("--------------------------------------------");
+      System.out.println("Selling 1 of beanBag ID 00000006");
+      testing.sellBeanBags(10, "00000006");
+      System.out.println("--------------------------------------------");
+      System.out.println("(EXPECTED 3) Reserved Bags in Stock: " + testing.reservedBeanBagsInStock());
+      System.out.println("(EXPECTED 150) The total Price of reserved beanbags = " + testing.getTotalPriceOfReservedBeanBags());
+      System.out.println("(EXPECTED 23) Total Bean Bags in Stock: " + testing.beanBagsInStock());
+      System.out.println("(EXPECTED 11) Total Number of Sold Bean Bags: " + testing.getNumberOfSoldBeanBags());
+      System.out.println("(EXPECTED 1) Total Number of Sold Bean Bags with ID 00000004: " + testing.getNumberOfSoldBeanBags("00000004"));
+      System.out.println("(EXPECTED 10) Total Number of Sold Bean Bags with ID 00000006: " + testing.getNumberOfSoldBeanBags("00000006"));
+      System.out.println("(EXPECTED 3) Total number of UNIQUE Bean Bags in stock " + testing.getNumberOfDifferentBeanBagsInStock());
 
 
-      testing.empty();
-      System.out.println("Total Bean Bags in Stock: " + testing.beanBagsInStock());
-      System.out.println("Reserved Bags in Stock: " + testing.reservedBeanBagsInStock());
-      System.out.println("The number of Unique Bean Bags in stock = " + testing.getNumberOfDifferentBeanBagsInStock());
-      System.out.println("The total Price of reserved beanbags = " + testing.getTotalPriceOfReservedBeanBags());*/
+      //testing.empty();
+      //System.out.println("Total Bean Bags in Stock: " + testing.beanBagsInStock());
+      //System.out.println("Reserved Bags in Stock: " + testing.reservedBeanBagsInStock());
+      //System.out.println("The number of Unique Bean Bags in stock = " + testing.getNumberOfDifferentBeanBagsInStock());
+      //System.out.println("The total Price of reserved beanbags = " + testing.getTotalPriceOfReservedBeanBags());*/
       //testing.addBeanBags(10,"man","nam","00000000",(short)2010,(byte)12);
 
     } catch (Exception e) {
