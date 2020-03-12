@@ -1,10 +1,6 @@
 package beanbags;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.*;
 
 /**
  * Implementor for the BeanBagStore Interface
@@ -26,7 +22,7 @@ public class Store implements BeanBagStore {
     // Run the "validID" function in the "Check" class to see if the format is correct.
     Check.validID(id);
     BeanBag testBag = new BeanBag(name, id, manufacturer, year, month);
-    Check.matchingIDs(testBag,stockList);
+    Check.matchingIDs(testBag, stockList);
     // If the "month" byte variable is greater than 12 or less than or equal to 0.
     if (month <= 0 || month > 12) {
       // Throw exception "InvalidMonthException", as the month is not correctly formatted.
@@ -63,8 +59,8 @@ public class Store implements BeanBagStore {
           InvalidMonthException {
     // Run the "validID" function in the "Check" class to see if the format is correct.
     Check.validID(id);
-    BeanBag testBag = new BeanBag(name,id,manufacturer,information,year,month);
-    Check.matchingIDs(testBag,stockList);
+    BeanBag testBag = new BeanBag(name, id, manufacturer, information, year, month);
+    Check.matchingIDs(testBag, stockList);
     // If the "month" byte variable is greater than 12 or less than or equal to 0.
     if (month <= 0 || month > 12) {
       // Throw exception "InvalidMonthException", as the month is not correctly formatted.
@@ -150,7 +146,7 @@ public class Store implements BeanBagStore {
           "Please enter a quantity to be sold greater or equal to 1");
     }
     Check.validID(id);
-    Check.fulfillRequest(num, id,stockList);
+    Check.fulfillRequest(num, id, stockList);
 
     int fulfilledSold = 0;
     // Loop the following code "num" times.
@@ -189,7 +185,7 @@ public class Store implements BeanBagStore {
     // Run the "validID" function in the "Check" class to see if the format is correct.
     Check.validID(id);
     // Run the "fulfillRequest" function in the "Check" class to see if there is enough stock.
-    Check.fulfillRequest(num, id,stockList);
+    Check.fulfillRequest(num, id, stockList);
     // Define the int variable "reservationNum" as the result from the function "GetNextRestNum()".
     int reservationNum = getNextResNum();
     // Define the int variable "fulFilledReserved" and set the value to 0.
@@ -223,7 +219,7 @@ public class Store implements BeanBagStore {
 
   public void unreserveBeanBags(int reservationNumber)
       throws ReservationNumberNotRecognisedException {
-    Check.reservedAvailable(reservationNumber,stockList);
+    Check.reservedAvailable(reservationNumber, stockList);
     // Loop through every object in the "stockList" object array list.
     for (int i = 0; i < stockList.size(); i++) {
       // If the current beanBag's reservation number in the "stockList" matches the one passed as a
@@ -285,7 +281,7 @@ public class Store implements BeanBagStore {
 
   public int beanBagsInStock(String id) throws BeanBagIDNotRecognisedException, IllegalIDException {
     Check.validID(id);
-    Check.idEverExists(id,stockList);
+    Check.idEverExists(id, stockList);
     // Define integer "bagStock" and set the value to 0.
     int bagStock = 0;
     // Loop through every object in the "stockList" object array list.
@@ -302,13 +298,13 @@ public class Store implements BeanBagStore {
   }
 
   public void saveStoreContents(String filename) throws IOException {
-    try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))){
+    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
       out.writeObject(stockList);
     }
   }
 
   public void loadStoreContents(String filename) throws IOException, ClassNotFoundException {
-    try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))){
+    try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
       stockList = (ObjectArrayList) in.readObject();
     }
   }
@@ -322,25 +318,27 @@ public class Store implements BeanBagStore {
     String[] idArray = new String[stockList.size()];
     // Loop through every object in the "stockList" object array list.
     for (int i = 0; i < stockList.size(); i++) {
-      // Set string "ID" to the id in the current "stockList" location
-      String ID = ((BeanBag) stockList.get(i)).getID();
-      // Set the "tracker" integer to 0.
-      tracker = 0;
-      // Again, Loop through every object in the "stockList" object array list.
-      for (int j = 0; j < stockList.size(); j++) {
-        // If the string "ID" matches the current position in the "idArray".
-        if (ID.equals(idArray[j])) {
-          // Increment the "tracker" integer by 1.
-          tracker += 1;
+      if (!((BeanBag) stockList.get(i)).isSold()) {
+        // Set string "ID" to the id in the current "stockList" location
+        String ID = ((BeanBag) stockList.get(i)).getID();
+        // Set the "tracker" integer to 0.
+        tracker = 0;
+        // Again, Loop through every object in the "stockList" object array list.
+        for (int j = 0; j < stockList.size(); j++) {
+          // If the string "ID" matches the current position in the "idArray".
+          if (ID.equals(idArray[j])) {
+            // Increment the "tracker" integer by 1.
+            tracker += 1;
+          }
         }
-      }
-      // If the "tracker" integer equals 0.
-      if (tracker == 0) {
-        // Loop through every object in the "stockList" object array list.
+        // If the "tracker" integer equals 0.
+        if (tracker == 0) {
+          // Loop through every object in the "stockList" object array list.
           // Set the element at position "counter" in "idArray" to the value of "ID".
           idArray[counter] = ID;
           // Increment the "counter" integer by 1.
           counter++;
+        }
       }
     }
     // Return the value of the "counter" integer.
