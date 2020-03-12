@@ -554,11 +554,16 @@ public class Store implements BeanBagStore {
 
   public void empty() {
     // Loop through every object in the "stockList" object array list.
-    for (int i = 0; i < stockList.size(); i++) {
-      // Remove the beanBag object at the current position in the "stockList".
-      stockList.remove(i);
-      // Set the global int "nextReservationNumber" to 0.
-      nextReservationNum = 0;
+    int StartSize = stockList.size();
+    // While array is not empty.
+    while (stockList.size() > 0) {
+      // For every item in the "stockList" array.
+      for (int i = 0; i < StartSize; i++) {
+        // Remove the beanBag object at the current position in the "stockList".
+        stockList.remove(i);
+        // Set the global int "nextReservationNumber" to 0.
+        nextReservationNum = 0;
+      }
     }
   }
 

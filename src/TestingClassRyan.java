@@ -22,6 +22,7 @@ public class TestingClassRyan {
       //testing.sellBeanBags(1,"00000005");
       /*System.out.println("\nUNIQUE: " + testing.getNumberOfDifferentBeanBagsInStock());
       System.out.println(testing.beanBagsInStock());*/
+      testing.empty();
     } catch (Exception e) {
       e.printStackTrace();
     }
