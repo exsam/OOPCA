@@ -43,19 +43,19 @@ public class Check {
    */
   public static void matchingIDs(BeanBag bag, ObjectArrayList stock) throws BeanBagMismatchException {
 
-    System.out.println("Evaluating ID: " + bag);
+    //System.out.println("Evaluating ID: " + bag);
 
     // Loop through every object in the "stock" object array list.
     for (int i = 0; i < stock.size(); i++) {
 
-      System.out.println("Checking against: " + (BeanBag) stock.get(i));
+      //System.out.println("Checking against: " + (BeanBag) stock.get(i));
 
       // Create temporary "tempBag" object from current "stock" location.
       BeanBag tempBag = (BeanBag) stock.get(i);
       // Check that if the ID of the "tempBag" matches the ID of the bag in the "stock".
       if ((bag.getID()).equals(tempBag.getID())) {
 
-        System.out.println("The ID's Match");
+        //System.out.println("The ID's Match");
 
         // If the Name, Manufacturer and Information across both bags matches.
         if (bag.getName().equals(tempBag.getName())
