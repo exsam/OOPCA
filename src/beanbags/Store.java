@@ -566,7 +566,9 @@ public class Store implements BeanBagStore {
 
   public String getBeanBagDetails(String id)
       throws BeanBagIDNotRecognisedException, IllegalIDException {
+    // Run the "validID" function in the "Check" class to see if the format is correct.
     Check.validID(id);
+    // Define integer "n" and set value to 0.
     int n = 0;
     // Define string "Info" with null value.
     String info = "";
@@ -574,8 +576,19 @@ public class Store implements BeanBagStore {
     for (int i = 0; i < stockList.size(); i++) {
       // If the ID in the stockList matches the passed parameter ID.
       if (((BeanBag) stockList.get(i)).getID().equals(id)) {
+        //TESTSTSTS
+        try{
+          Check.matchingIDs(((BeanBag) stockList.get(i)));
+
+        } catch (Exception e) {
+
+        }
+
+        //Check.matchingIDs(((BeanBag) stockList.get(i)));
+
         // Set the "Info" string to the value stored in the "stockList".
         info = ((BeanBag) stockList.get(i)).getInformation();
+        // Increment variable integer "n" by 1.
         n++;
         // Condition met, so break from the loop.
         break;
