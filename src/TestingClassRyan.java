@@ -6,7 +6,7 @@ public class TestingClassRyan {
     // System.out.println("Testing Start");
     BeanBagStore testing = new Store();
     try {
-      testing.loadStoreContents("stocklist.txt");
+      testing.loadStoreContents("stocklist.ser");
 
 
       //System.out.println("Testing ID 00000002");
@@ -38,7 +38,7 @@ public class TestingClassRyan {
       e.printStackTrace();
     }
     try {
-      testing.saveStoreContents("stocklist.txt");
+      testing.saveStoreContents("stocklist.ser");
     } catch (Exception e) {
       e.printStackTrace();
     }

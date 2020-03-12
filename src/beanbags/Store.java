@@ -14,8 +14,7 @@ import java.io.FileOutputStream;
  */
 public class Store implements BeanBagStore {
 
-  // Define and initialise public static "ObjecetArrayList" called "stockList".
-  public static ObjectArrayList stockList = new ObjectArrayList(); //TODO Make Private
+  private static ObjectArrayList stockList = new ObjectArrayList();
 
   // Define private integer variable "nextReservationNum" and set it's value to 0.
   private int nextReservationNum = 0;
@@ -26,6 +25,8 @@ public class Store implements BeanBagStore {
           InvalidMonthException {
     // Run the "validID" function in the "Check" class to see if the format is correct.
     Check.validID(id);
+    BeanBag testBag = new BeanBag(name, id, manufacturer, year, month);
+    Check.matchingIDs(testBag,stockList);
     // If the "month" byte variable is greater than 12 or less than or equal to 0.
     if (month <= 0 || month > 12) {
       // Throw exception "InvalidMonthException", as the month is not correctly formatted.
@@ -62,6 +63,8 @@ public class Store implements BeanBagStore {
           InvalidMonthException {
     // Run the "validID" function in the "Check" class to see if the format is correct.
     Check.validID(id);
+    BeanBag testBag = new BeanBag(name,id,manufacturer,information,year,month);
+    Check.matchingIDs(testBag,stockList);
     // If the "month" byte variable is greater than 12 or less than or equal to 0.
     if (month <= 0 || month > 12) {
       // Throw exception "InvalidMonthException", as the month is not correctly formatted.
@@ -138,64 +141,6 @@ public class Store implements BeanBagStore {
     }
   }
 
-  /**
-   * Method sets reserved of existing Stock on load to status in saved text file
-   *
-   * @param id
-   * @param reserved
-   * @param reservationNumber
-   * @throws BeanBagIDNotRecognisedException if the ID is legal, but does not match any bag in (or *
-   *     previously in) stock
-   * @throws IllegalIDException if the ID is not a positive eight character hexadecimal number
-   *
-   */
-  private void setReserved(String id, boolean reserved, int reservationNumber)
-      throws BeanBagIDNotRecognisedException, IllegalIDException {
-    Check.validID(id);
-    Check.idEverExists(id);
-    // Loop through every object in the "stockList" object array list.
-    for (int i = 0; i < stockList.size(); i++) {
-      // If the ID of the beanBag in the stockList matches the passed parameter ID
-      // AND the beanBag is NOT already reserved.
-      if (((BeanBag) stockList.get(i)).getID().equals(id)
-          && !((BeanBag) stockList.get(i)).getReserved()) {
-        // Set the "getReserved" boolean in the "stockList" to the "reserved" boolean parameter.
-        ((BeanBag) stockList.get(i)).setReserved(reserved);
-        // Set the "reservationNumber" integer in the "stockList" to the "reservationNumber"
-        // parameter.
-        ((BeanBag) stockList.get(i)).setReservationNumber(reservationNumber);
-        // Break from the loop.
-        break;
-      }
-    }
-  }
-
-  /**
-   * Method sets isSold of existing Stock on load to status in saved text file
-   *
-   * @param id
-   * @param sold
-   * @throws BeanBagIDNotRecognisedException if the ID is legal, but does not match any bag in (or
-   *     previously in) stock
-   * @throws IllegalIDException if the ID is not a positive eight character hexadecimal number
-   */
-  private void setSold(String id, boolean sold)
-      throws BeanBagIDNotRecognisedException, IllegalIDException {
-    Check.validID(id);
-    Check.idEverExists(id);
-    for (int i = 0; i < stockList.size(); i++) {
-      // If the ID of the beanBag in the stockList matches the passed parameter ID
-      // AND the beanBag is NOT already sold.
-      if (((BeanBag) stockList.get(i)).getID().equals(id)
-          && !((BeanBag) stockList.get(i)).isSold()) {
-        // Set the "isSold" boolean in the "stockList" to the "sold" boolean parameter.
-        ((BeanBag) stockList.get(i)).setSold(sold);
-        // Break from the loop.
-        break;
-      }
-    }
-  }
-
   public void sellBeanBags(int num, String id)
       throws BeanBagNotInStockException, InsufficientStockException,
           IllegalNumberOfBeanBagsSoldException, PriceNotSetException,
@@ -205,7 +150,7 @@ public class Store implements BeanBagStore {
           "Please enter a quantity to be sold greater or equal to 1");
     }
     Check.validID(id);
-    Check.fulfillRequest(num, id);
+    Check.fulfillRequest(num, id,stockList);
 
     int fulfilledSold = 0;
     // Loop the following code "num" times.
@@ -244,7 +189,7 @@ public class Store implements BeanBagStore {
     // Run the "validID" function in the "Check" class to see if the format is correct.
     Check.validID(id);
     // Run the "fulfillRequest" function in the "Check" class to see if there is enough stock.
-    Check.fulfillRequest(num, id);
+    Check.fulfillRequest(num, id,stockList);
     // Define the int variable "reservationNum" as the result from the function "GetNextRestNum()".
     int reservationNum = getNextResNum();
     // Define the int variable "fulFilledReserved" and set the value to 0.
@@ -278,7 +223,7 @@ public class Store implements BeanBagStore {
 
   public void unreserveBeanBags(int reservationNumber)
       throws ReservationNumberNotRecognisedException {
-    Check.reservedAvailable(reservationNumber);
+    Check.reservedAvailable(reservationNumber,stockList);
     // Loop through every object in the "stockList" object array list.
     for (int i = 0; i < stockList.size(); i++) {
       // If the current beanBag's reservation number in the "stockList" matches the one passed as a
@@ -340,7 +285,7 @@ public class Store implements BeanBagStore {
 
   public int beanBagsInStock(String id) throws BeanBagIDNotRecognisedException, IllegalIDException {
     Check.validID(id);
-    Check.idEverExists(id);
+    Check.idEverExists(id,stockList);
     // Define integer "bagStock" and set the value to 0.
     int bagStock = 0;
     // Loop through every object in the "stockList" object array list.
@@ -372,7 +317,7 @@ public class Store implements BeanBagStore {
     // Define integer "counter" and set the value to 0.
     int counter = 0;
     // Define integer "tracker" and set the value to 0.
-    int tracker = 0;
+    int tracker;
     // Define new string array "idArray" with same length as "stockList".
     String[] idArray = new String[stockList.size()];
     // Loop through every object in the "stockList" object array list.
@@ -392,14 +337,10 @@ public class Store implements BeanBagStore {
       // If the "tracker" integer equals 0.
       if (tracker == 0) {
         // Loop through every object in the "stockList" object array list.
-        for (int y = 0; y < stockList.size(); y++) {
           // Set the element at position "counter" in "idArray" to the value of "ID".
           idArray[counter] = ID;
           // Increment the "counter" integer by 1.
           counter++;
-          // Break from the loop.
-          break;
-        }
       }
     }
     // Return the value of the "counter" integer.
@@ -518,16 +459,6 @@ public class Store implements BeanBagStore {
     for (int i = 0; i < stockList.size(); i++) {
       // If the ID in the stockList matches the passed parameter ID.
       if (((BeanBag) stockList.get(i)).getID().equals(id)) {
-        //TESTSTSTS
-        try{
-          Check.matchingIDs(((BeanBag) stockList.get(i)));
-
-        } catch (Exception e) {
-
-        }
-
-        //Check.matchingIDs(((BeanBag) stockList.get(i)));
-
         // Set the "Info" string to the value stored in the "stockList".
         info = ((BeanBag) stockList.get(i)).getInformation();
         // Increment variable integer "n" by 1.

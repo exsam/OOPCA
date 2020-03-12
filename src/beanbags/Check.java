@@ -1,6 +1,5 @@
 package beanbags;
 
-import static beanbags.Store.stockList;
 
 /**
  * Class for static Exception Handling methods
@@ -42,18 +41,18 @@ public class Check {
    * @param bag
    * @throws BeanBagMismatchException
    */
-  public static void matchingIDs(BeanBag bag) throws BeanBagMismatchException {
+  public static void matchingIDs(BeanBag bag, ObjectArrayList stock) throws BeanBagMismatchException {
 
     System.out.println("Evaluating ID: " + bag);
 
-    // Loop through every object in the "stockList" object array list.
-    for (int i = 0; i < stockList.size(); i++) {
+    // Loop through every object in the "stock" object array list.
+    for (int i = 0; i < stock.size(); i++) {
 
-      System.out.println("Checking against: " + (BeanBag) stockList.get(i));
+      System.out.println("Checking against: " + (BeanBag) stock.get(i));
 
-      // Create temporary "tempBag" object from current "stockList" location.
-      BeanBag tempBag = (BeanBag) stockList.get(i);
-      // Check that if the ID of the "tempBag" matches the ID of the bag in the "stockList".
+      // Create temporary "tempBag" object from current "stock" location.
+      BeanBag tempBag = (BeanBag) stock.get(i);
+      // Check that if the ID of the "tempBag" matches the ID of the bag in the "stock".
       if ((bag.getID()).equals(tempBag.getID())) {
 
         System.out.println("The ID's Match");
@@ -82,17 +81,17 @@ public class Check {
    * @throws BeanBagNotInStockException
    * @throws InsufficientStockException
    */
-  public static void fulfillRequest(int num, String id)
+  public static void fulfillRequest(int num, String id, ObjectArrayList stock)
       throws BeanBagIDNotRecognisedException, BeanBagNotInStockException,
           InsufficientStockException {
     // Define integer "currentCounter" and set it's value to 0.
     int currentCounter = 0;
     // Define integer "oldCounter" and set it's value to 0.
     int oldCounter = 0;
-    // Loop through every object in the "stockList" object array list.
-    for (int i = 0; i < stockList.size(); i++) {
+    // Loop through every object in the "stock" object array list.
+    for (int i = 0; i < stock.size(); i++) {
       // Define a temporary bag called "bag" from the array location.
-      BeanBag bag = (BeanBag) stockList.get(i);
+      BeanBag bag = (BeanBag) stock.get(i);
       // If the Bag ID matches the passed parameter ID AND the bag is NOT reserved and NOT sold.
       if ((bag.getID()).equals(id) && !bag.isSold()) {
         // If the bag is sold.
@@ -131,13 +130,13 @@ public class Check {
    * @param resNum
    * @throws ReservationNumberNotRecognisedException
    */
-  public static void reservedAvailable(int resNum) throws ReservationNumberNotRecognisedException {
+  public static void reservedAvailable(int resNum, ObjectArrayList stock) throws ReservationNumberNotRecognisedException {
     // Define integer "currentCounter" and set it's value to 0.
     int counter = 0;
-    // Loop through every object in the "stockList" object array list.
-    for (int i = 0; i < stockList.size(); i++) {
-      // If the beanBag's reservation number in the "stockList" matches the passed "resNum".
-      if (((BeanBag) stockList.get(i)).getReservationNumber() == resNum) {
+    // Loop through every object in the "stock" object array list.
+    for (int i = 0; i < stock.size(); i++) {
+      // If the beanBag's reservation number in the "stock" matches the passed "resNum".
+      if (((BeanBag) stock.get(i)).getReservationNumber() == resNum) {
         // Increment the variable "counter" by 1.
         counter++;
         // Break from the loop.
@@ -159,10 +158,10 @@ public class Check {
    * @throws BeanBagIDNotRecognisedException if the ID is legal, but does not match any bag in (or *
    *     * previously in) stock
    */
-  public static void idEverExists(String id) throws BeanBagIDNotRecognisedException {
+  public static void idEverExists(String id, ObjectArrayList stock) throws BeanBagIDNotRecognisedException {
     int n = 0;
-    for (int i = 0; i < stockList.size(); i++) {
-      if (((BeanBag) stockList.get(i)).getID().equals(id)) {
+    for (int i = 0; i < stock.size(); i++) {
+      if (((BeanBag) stock.get(i)).getID().equals(id)) {
         n++;
       }
     }
