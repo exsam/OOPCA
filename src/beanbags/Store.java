@@ -153,11 +153,12 @@ public class Store implements BeanBagStore {
   private void setSold(String id, boolean sold)
       throws ReservationNumberNotRecognisedException, BeanBagIDNotRecognisedException,
           IllegalIDException {
-    // Loop through every object in the "stockList" object array list.
     for (int i = 0; i < stockList.size(); i++) {
-      // If the ID in the stockList matches the passed parameter ID.
-      if (((BeanBag) stockList.get(i)).getID().equals(id)) {
-        // Set the "setSold" boolean in the "stockList" to the "sold" boolean parameter.
+      // If the ID of the beanBag in the stockList matches the passed parameter ID
+      // AND the beanBag is NOT already sold.
+      if (((BeanBag) stockList.get(i)).getID().equals(id)
+          && !((BeanBag) stockList.get(i)).isSold()) {
+        // Set the "isSold" boolean in the "stockList" to the "sold" boolean parameter.
         ((BeanBag) stockList.get(i)).setSold(sold);
         // Break from the loop.
         break;
@@ -176,21 +177,20 @@ public class Store implements BeanBagStore {
     Check.validID(id);
     Check.fulfillRequest(num, id);
 
-    // Define the string variable "Reservati
     int fulfilledSold = 0;
     // Loop the following code "num" times.
     for (int j = 0; j < stockList.size(); j++) {
       // If the current beanBag in the "stockList" reserved state boolean is NOT true.
       if (fulfilledSold < num) {
-        if (!((BeanBag) stockList.get(j)).getReserved()) {
+        if (!((BeanBag) stockList.get(j)).getReserved() && !((BeanBag) stockList.get(j)).isSold()) {
           // If the ID in the stockList matches the passed parameter ID
-          if (((BeanBag) stockList.get(j)).getID().equals(id) & !((BeanBag) stockList.get(j)).isSold()) {
+          if (((BeanBag) stockList.get(j)).getID().equals(id)) {
             if (((BeanBag) stockList.get(j)).getPrice() < 1) {
               throw new PriceNotSetException("Please Set A Price For BeanBag " + id);
             }
             // Set the beanBag reserved state to "true" in the "stockList".
             ((BeanBag) stockList.get(j)).setSold(true);
-            fulfilledSold= fulfilledSold + 1;
+            fulfilledSold = fulfilledSold + 1;
           }
         }
       } else {
@@ -198,7 +198,7 @@ public class Store implements BeanBagStore {
       }
     }
   }
-  // TODO
+
   public int reserveBeanBags(int num, String id)
       throws BeanBagNotInStockException, InsufficientStockException,
           IllegalNumberOfBeanBagsReservedException, PriceNotSetException,
@@ -225,7 +225,7 @@ public class Store implements BeanBagStore {
             if (((BeanBag) stockList.get(j)).getPrice() < 1) {
               throw new PriceNotSetException("Please Set A Price For BeanBag " + id);
             }
-            //System.out.println("Matching ID and NOT Reserved");
+            // System.out.println("Matching ID and NOT Reserved");
             // Set the beanBag reserved state to "true" in the "stockList".
             ((BeanBag) stockList.get(j)).setReserved(true);
             // Set the beanBag reservation number in the "stockList" to the value of the integer
@@ -370,11 +370,7 @@ public class Store implements BeanBagStore {
         // Call the "setSold" function and pass the needed parameters from the data array.
         setSold(id, sold);
         // Catch and print the relevant exceptions if they occur.
-      } catch (ReservationNumberNotRecognisedException e) {
-        e.printStackTrace();
-      } catch (BeanBagIDNotRecognisedException e) {
-        e.printStackTrace();
-      } catch (IllegalIDException e) {
+      } catch (Exception e) {
         e.printStackTrace();
       }
       // Read final line of text file.
@@ -540,7 +536,7 @@ public class Store implements BeanBagStore {
 
   public void empty() {
     // Loop through every object in the "stockList" object array list.
-    for (int i = 0; i < stockList.size(); i++) {
+    for (int i = 1; i < stockList.size(); i++) {
       // Remove the beanBag object at the current position in the "stockList".
       stockList.remove(i);
       // Set the global int "nextReservationNumber" to 0.

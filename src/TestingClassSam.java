@@ -27,10 +27,16 @@ public class TestingClassSam {
           (byte) 7,
           "Testing the mismatch test.");*/
       //testStore.setBeanBagPrice("000000FF",100);
-      testStore.sellBeanBags(1, "000000FF");
+      //testStore.sellBeanBags(1, "00000001");
+      System.out.println(
+      testStore.getTotalPriceOfSoldBeanBags());
       //testStore.reserveBeanBags(2,"000000FF");
       //testStore.unreserveBeanBags(8);
       testStore.saveStoreContents("stocklist.txt");
+      testStore.resetSaleAndCostTracking();
+      //testStore.empty();
+      testStore.replace("00000005","00000012");
+      testStore.saveStoreContents("testing.txt");
     } catch (Exception e) {
       System.out.println(e);
     }

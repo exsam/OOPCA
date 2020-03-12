@@ -81,8 +81,6 @@ public class Check {
           // Increment integer "currentCounter" by 1.
           currentCounter++;
         }
-        //System.out.print("oldCounter: " + oldCounter);
-        //System.out.print("currentCounter: " + currentCounter);
       }
     }
 
