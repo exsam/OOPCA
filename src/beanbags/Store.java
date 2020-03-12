@@ -530,25 +530,29 @@ public class Store implements BeanBagStore {
 
   public String getBeanBagDetails(String id)
       throws BeanBagIDNotRecognisedException, IllegalIDException {
+    Check.validID(id);
+    int n = 0;
     // Define string "Info" with null value.
-    String Info = "";
+    String info = "";
     // Loop through every object in the "stockList" object array list.
     for (int i = 0; i < stockList.size(); i++) {
       // If the ID in the stockList matches the passed parameter ID.
       if (((BeanBag) stockList.get(i)).getID().equals(id)) {
         // Set the "Info" string to the value stored in the "stockList".
-        Info = ((BeanBag) stockList.get(i)).getInformation();
+        info = ((BeanBag) stockList.get(i)).getInformation();
+        n++;
         // Condition met, so break from the loop.
         break;
       }
     }
+    if(n<1){throw new BeanBagIDNotRecognisedException("No BeanBags with this ID have been sold.");}
     // Return the string "Info".
-    return Info;
+    return info;
   }
 
   public void empty() {
     // Loop through every object in the "stockList" object array list.
-    for (int i = 1; i < stockList.size(); i++) {
+    for (int i = 0; i < stockList.size(); i++) {
       // Remove the beanBag object at the current position in the "stockList".
       stockList.remove(i);
       // Set the global int "nextReservationNumber" to 0.

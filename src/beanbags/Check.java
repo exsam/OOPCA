@@ -16,8 +16,6 @@ public class Check {
    * @param id
    * @throws IllegalIDException
    */
-
-  // This function checks that the passed ID has a range 00000000-7FFFFFFF.
   public static void validID(String id) throws IllegalIDException {
     // If the passed ID parameter has the correct length of "8".
     if (id.length() == 8) {
@@ -40,7 +38,12 @@ public class Check {
     }
   }
 
-  // This function checks if the ID of a passed bag matches the rest of the data for that ID.
+  /**
+   * Method checks if the ID of a passed bag matches the rest of the data for that ID.
+   *
+   * @param bag
+   * @throws BeanBagMismatchException
+   */
   public static void matchingIDs(BeanBag bag) throws BeanBagMismatchException {
 
     // Loop through every object in the "stockList" object array list.
@@ -60,6 +63,15 @@ public class Check {
     }
   }
 
+  /**
+   * Ensures large enough quantity of available stock to fulfill request
+   *
+   * @param num
+   * @param id
+   * @throws BeanBagIDNotRecognisedException
+   * @throws BeanBagNotInStockException
+   * @throws InsufficientStockException
+   */
   public static void fulfillRequest(int num, String id)
       throws BeanBagIDNotRecognisedException, BeanBagNotInStockException,
           InsufficientStockException {
@@ -103,6 +115,11 @@ public class Check {
     }
   }
 
+  /**
+   * Method checks that there is a bag reserved with given ID
+   * @param resNum
+   * @throws ReservationNumberNotRecognisedException
+   */
   public static void reservedAvailable(int resNum) throws ReservationNumberNotRecognisedException {
     int counter = 0;
     for (int i = 0; i < stockList.size(); i++) {
