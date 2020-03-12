@@ -229,23 +229,30 @@ public class Store implements BeanBagStore {
     // Define the string variable "ReservationNum" as the result from the function
     // "GetNextRestNum()".
     int ReservationNum = GetNextResNum();
+    int FulfilledReserved = 0;
     // Loop the following code "num" times.
-    for (int i = 0; i < num; i++) {
-      // Loop through every object in the "stockList" object array list.
-      for (int j = 0; j < stockList.size(); j++) {
-        // If the current beanBag in the "stockList" reserved state boolean is NOT true.
+    for (int j = 0; j < stockList.size(); j++) {
+      // If the current beanBag in the "stockList" reserved state boolean is NOT true.
+      if (FulfilledReserved < num)
+      {
         if (!((BeanBag) stockList.get(j)).getReserved()) {
           // If the ID in the stockList matches the passed parameter ID
           if (((BeanBag) stockList.get(j)).getID().equals(id)) {
+            System.out.println("Matching ID and NOT Reserved");
             // Set the beanBag reserved state to "true" in the "stockList".
             ((BeanBag) stockList.get(j)).setReserved(true);
             // Set the beanBag reservation number in the "stockList" to the value of the integer
             // "ReservationNum".
             ((BeanBag) stockList.get(j)).setReservationNumber(ReservationNum);
+            FulfilledReserved = FulfilledReserved + 1;
           }
         } else {
           // TODO PLACEHOLDER
         }
+      }
+      else
+      {
+        break;
       }
     }
     // Return the value of the "ReservationNum" string variable.
