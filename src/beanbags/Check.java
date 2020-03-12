@@ -1,5 +1,7 @@
 package beanbags;
 
+import static beanbags.Store.stockList;
+
 /**
  * Class for static Exception Handling methods
  *
@@ -31,7 +33,7 @@ public class Check {
     }
   }
 
-  public static void matchingIDs(BeanBag bag, ObjectArrayList stockList)
+  public static void matchingIDs(BeanBag bag)
       throws BeanBagMismatchException {
     // System.out.println("MatchingID's Was called");
     for (int i = 0; i < stockList.size(); i++) {
@@ -43,6 +45,34 @@ public class Check {
           throw new BeanBagMismatchException("ID does not match existing");
         }
       }
+    }
+  }
+
+  public static void fulfillRequest(int num, String id) throws BeanBagIDNotRecognisedException,
+          BeanBagNotInStockException,InsufficientStockException {
+    int currentCounter = 0;
+    int oldCounter = 0;
+    for (int i = 0; i < stockList.size(); i++) {
+      BeanBag bag = (BeanBag) stockList.get(i);
+      if ((bag.getID()).equals(id) && !bag.getReserved() && !bag.isSold()) {
+        if (bag.isSold()) {
+          oldCounter++;
+        } else {
+          currentCounter++;
+        }
+        System.out.print("oldCounter: " + oldCounter);
+        System.out.print("currentCounter: " + currentCounter);
+      }
+    }
+
+    if (currentCounter == 0 & oldCounter == 0) {
+      throw new BeanBagIDNotRecognisedException("No BeanBags with this ID exist on our system.");
+    }
+    if (currentCounter == 0 & oldCounter >= 1) {
+      throw new BeanBagNotInStockException(id + " is not in stock.");
+    }
+    if (currentCounter < num) {
+      throw new InsufficientStockException("We don't have enough BeanBags to fulfil this order.");
     }
   }
 }
