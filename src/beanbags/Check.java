@@ -104,14 +104,21 @@ public class Check {
   }
 
   public static void reservedAvailable(int resNum) throws ReservationNumberNotRecognisedException {
+    // Define integer "currentCounter" and set it's value to 0.
     int counter = 0;
+    // Loop through every object in the "stockList" object array list.
     for (int i = 0; i < stockList.size(); i++) {
+      // If the beanBag's reservation number in the "stockList" matches the passed "resNum".
       if (((BeanBag) stockList.get(i)).getReservationNumber() == resNum) {
+        // Increment the variable "counter" by 1.
         counter++;
+        // Break from the loop.
         break;
       }
     }
+    // If the "counter" integer variable is less than 1.
     if (counter < 1) {
+      // Throw "ReservationNumberNotRecognisedException", as no matches were found whilst looping.
       throw new ReservationNumberNotRecognisedException(
           "No BeanBags with this Reservation Number in stock.");
     }

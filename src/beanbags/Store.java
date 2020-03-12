@@ -204,17 +204,19 @@ public class Store implements BeanBagStore {
       throws BeanBagNotInStockException, InsufficientStockException,
           IllegalNumberOfBeanBagsReservedException, PriceNotSetException,
           BeanBagIDNotRecognisedException, IllegalIDException {
-    // Exception Handling
+    // If "num" to reserve is less than 1, (Exception Handling).
     if (num < 1) {
+      // Throw "IllegalNumberOfBeanBagsReservedException", reserved quantity should always be greater than 1.
       throw new IllegalNumberOfBeanBagsReservedException(
           "Please enter a quantity to be reserved greater or equal to " + "1");
     }
+    // Run the "validID" function in the "Check" class to see if the format is correct.
     Check.validID(id);
+    // Run the "fulfillRequest" function in the "Check" class to see if there is enough stock.
     Check.fulfillRequest(num, id);
-
-    // Define the int variable "ReservationNum" as the result from the function
-    // "GetNextRestNum()".
+    // Define the int variable "reservationNum" as the result from the function "GetNextRestNum()".
     int reservationNum = getNextResNum();
+    // Define the int variable "fulFilledReserved" and set the value to 0.
     int fulfilledReserved = 0;
     // Loop the following code "num" times.
     for (int j = 0; j < stockList.size(); j++) {
