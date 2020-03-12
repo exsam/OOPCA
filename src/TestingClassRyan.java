@@ -7,24 +7,18 @@ public class TestingClassRyan {
     BeanBagStore testing = new Store();
     try {
       testing.loadStoreContents("stocklist.txt");
-      System.out.print("Total Bean Bags in Stock: ");
-      System.out.print(testing.beanBagsInStock());
-      System.out.print("\n Reserved Bags in Stock: ");
-      System.out.print(testing.reservedBeanBagsInStock());
-      System.out.print("\n Reserving Bean Bag with ID = 00000004");
-      System.out.print("\n Reservation number = ");
-      System.out.print(testing.reserveBeanBags(3, "00000004"));
-      System.out.print("\n Reserved Bags in Stock: ");
-      System.out.print(testing.reservedBeanBagsInStock());
-      //System.out.print("\n UN-Reserving Bean Bag with ID = 00000004 (Reservation No: 3)");
+      System.out.println("Total Bean Bags in Stock: " + testing.beanBagsInStock());
+      System.out.println("Reserved Bags in Stock: " + testing.reservedBeanBagsInStock());
+      System.out.println("*Reserving 3 of Bean Bag with ID = 00000004");
+      System.out.println("Reservation number = " + testing.reserveBeanBags(3, "00000004"));
+      System.out.println("--------------------------------------------");
+      System.out.println("Reserved Bags in Stock: " + testing.reservedBeanBagsInStock());
+      //System.out.println("UN-Reserving Bean Bag with Reservation No: 3)");
       //testing.unreserveBeanBags(3);
-      // NEED TO TEST THIS WITH DIFFERENT QUANTITES VS JUST 1!!!!
-      System.out.print("\n Reserved Bags in Stock: ");
-      System.out.print(testing.reservedBeanBagsInStock());
-      System.out.print("\n The total Price of reserved beanbags = ");
-      System.out.print(testing.getTotalPriceOfReservedBeanBags());
-      System.out.print("\n The info for bean bag ID 00000002 = ");
-      System.out.print(testing.getBeanBagDetails("00000002"));
+      //System.out.print("\n Reserved Bags in Stock: ");
+      //System.out.print(testing.reservedBeanBagsInStock());
+      System.out.println("The total Price of reserved beanbags = " + testing.getTotalPriceOfReservedBeanBags());
+      System.out.println("The info for bean bag ID 00000002 = " + testing.getBeanBagDetails("00000002"));
       //testing.sellBeanBags(1,"00000005");
       /*System.out.println("\nUNIQUE: " + testing.getNumberOfDifferentBeanBagsInStock());
       System.out.println(testing.beanBagsInStock());*/

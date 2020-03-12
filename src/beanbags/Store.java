@@ -188,7 +188,6 @@ public class Store implements BeanBagStore {
             if (((BeanBag) stockList.get(j)).getPrice() < 1) {
               throw new PriceNotSetException("Please Set A Price For BeanBag " + id);
             }
-            System.out.println("Matching ID and NOT Reserved");
             // Set the beanBag reserved state to "true" in the "stockList".
             ((BeanBag) stockList.get(j)).setSold(true);
             fulfilledSold= fulfilledSold + 1;
@@ -226,7 +225,7 @@ public class Store implements BeanBagStore {
             if (((BeanBag) stockList.get(j)).getPrice() < 1) {
               throw new PriceNotSetException("Please Set A Price For BeanBag " + id);
             }
-            System.out.println("Matching ID and NOT Reserved");
+            //System.out.println("Matching ID and NOT Reserved");
             // Set the beanBag reserved state to "true" in the "stockList".
             ((BeanBag) stockList.get(j)).setReserved(true);
             // Set the beanBag reservation number in the "stockList" to the value of the integer
