@@ -20,10 +20,8 @@ public class Check {
     // If the passed ID parameter has the correct length of "8".
     if (id.length() == 8) {
       try {
-        // Converts a signed hexadecimal number to an integer named "deci".
-        int deci = Long.valueOf(id, 16).intValue();
-        // If the "deci" integer is less than 0.
-        if (deci < 0) {
+        // If the integer is less than 0.
+        if ((int) Long.parseLong(id, 16) < 0) {
           // Throw "IllegalIDException" as the ID is invalid (Wrong Range).
           throw new IllegalIDException(
               "ID must be a positive number (within range 00000000-7FFFFFFF)");

@@ -1,6 +1,10 @@
 package beanbags;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 /**
  * Implementor for the BeanBagStore Interface
@@ -11,7 +15,7 @@ import java.io.*;
 public class Store implements BeanBagStore {
 
   // Define and initialise public static "ObjecetArrayList" called "stockList".
-  public static ObjectArrayList stockList = new ObjectArrayList();
+  public static ObjectArrayList stockList = new ObjectArrayList(); //TODO Make Private
 
   // Define private integer variable "nextReservationNum" and set it's value to 0.
   private int nextReservationNum = 0;
@@ -336,6 +340,7 @@ public class Store implements BeanBagStore {
 
   public int beanBagsInStock(String id) throws BeanBagIDNotRecognisedException, IllegalIDException {
     Check.validID(id);
+    Check.idEverExists(id);
     // Define integer "bagStock" and set the value to 0.
     int bagStock = 0;
     // Loop through every object in the "stockList" object array list.
@@ -352,77 +357,14 @@ public class Store implements BeanBagStore {
   }
 
   public void saveStoreContents(String filename) throws IOException {
-    // Define a "writer" stream
-    FileWriter writer = new FileWriter(filename, false);
-    BufferedWriter bufferedWriter = new BufferedWriter(writer);
-    // Loop through every object in the "stockList" object array list.
-    for (int i = 0; i < stockList.size(); i++) {
-      // Using the "writer" stream, add the data in the current ObjectArrayList
-      // position in the "stockList" using the "toString()" method.
-      bufferedWriter.write(stockList.get(i).toString());
+    try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))){
+      out.writeObject(stockList);
     }
-    // Close the "writer" stream.
-    bufferedWriter.close();
   }
 
   public void loadStoreContents(String filename) throws IOException, ClassNotFoundException {
-    // Define a "reader" to open the file "filename".
-    BufferedReader br = new BufferedReader(new FileReader(filename));
-    String fileRead = br.readLine();
-    // Loop through each line in the file till a null (blank) line is found.
-    while (fileRead != null) {
-
-      // Define string array "data" where each element is separated by a comma in the text file.
-      String[] data = fileRead.split(",");
-
-      // Define and set all the variables from data stored in the "data" array,
-      // all values have been stored (and cast when needed) to the correct datatype.
-      String name = data[0];
-      String id = data[1];
-      String manufacturer = data[2];
-      String information = data[3];
-      int price = Integer.parseInt(data[4]);
-      short year = Short.parseShort(data[5]);
-      byte month = Byte.parseByte(data[6]);
-      boolean reserved = Boolean.parseBoolean(data[7]);
-      int reservationNumber = Integer.parseInt(data[8]);
-      boolean sold = Boolean.parseBoolean(data[9]);
-
-      // Try catch multi-block for exception handling.
-      try {
-        // Call the "addBeanBags" function and pass the needed parameters from the data array.
-        addBeanBags(1, manufacturer, name, id, year, month, information);
-        // Catch and print the relevant exceptions if they occur.
-      } catch (Exception e) {
-        System.out.println(e);
-      }
-        // Call the "setBeanBagPrice" function and pass the needed parameters from the data array.
-      try {
-        setBeanBagPrice(id, price);
-      } catch (InvalidPriceException e) {
-        e.printStackTrace();
-      } catch (BeanBagIDNotRecognisedException e) {
-        e.printStackTrace();
-      } catch (IllegalIDException e) {
-        e.printStackTrace();
-      }
-      // Catch and print the relevant exceptions if they occur.
-      try {
-        // Call the "setReserved" function and pass the needed parameters from the data array.
-        setReserved(id, reserved, reservationNumber);
-        // Catch and print the relevant exceptions if they occur.
-      } catch (Exception e) {
-        System.out.println(e);
-      }
-      try {
-        // Call the "setSold" function and pass the needed parameters from the data array.
-        setSold(id, sold);
-        // Catch and print the relevant exceptions if they occur.
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-      // Read final line of text file.
-      fileRead = br.readLine();
+    try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))){
+      stockList = (ObjectArrayList) in.readObject();
     }
   }
 

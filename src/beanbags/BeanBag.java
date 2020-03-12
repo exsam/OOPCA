@@ -1,12 +1,14 @@
 package beanbags;
 
+import java.io.Serializable;
+
 /**
  * BeanBags is a class for implementing BeanBag objects
  *
  * @author 690027367 & 690025118
  * @version 0.1
  */
-public class BeanBag {
+public class BeanBag implements Serializable {
 
   // Set properties and relevant datatype's for BeanBag Object
   private String name;
