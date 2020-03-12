@@ -8,7 +8,7 @@ public class TestingClassRyan {
     try {
       testing.empty();
 
-      testing.addBeanBags(10,"man","nam","00000000",(short)2010,(byte)12);
+      testing.addBeanBags(10,"man","nam","00000000",(short)2010,(byte)12, "information1");
       testing.addBeanBags(10,"manu","nam","00000006",(short)2010,(byte)12);
       testing.addBeanBags(10,"man","nam","00007000",(short)2010,(byte)12);
       testing.addBeanBags(4,"man","nam","00000004",(short)2010,(byte)12);
@@ -80,14 +80,7 @@ public class TestingClassRyan {
       System.out.println("(EXPECTED 1) Total Number of Sold Bean Bags with ID 00000004: " + testing.getNumberOfSoldBeanBags("00000004"));
       System.out.println("(EXPECTED 10) Total Number of Sold Bean Bags with ID 00000006: " + testing.getNumberOfSoldBeanBags("00000006"));
       System.out.println("(EXPECTED 3) Total number of UNIQUE Bean Bags in stock " + testing.getNumberOfDifferentBeanBagsInStock());
-
-
-      //testing.empty();
-      //System.out.println("Total Bean Bags in Stock: " + testing.beanBagsInStock());
-      //System.out.println("Reserved Bags in Stock: " + testing.reservedBeanBagsInStock());
-      //System.out.println("The number of Unique Bean Bags in stock = " + testing.getNumberOfDifferentBeanBagsInStock());
-      //System.out.println("The total Price of reserved beanbags = " + testing.getTotalPriceOfReservedBeanBags());*/
-      //testing.addBeanBags(10,"man","nam","00000000",(short)2010,(byte)12);
+      System.out.println(testing.getBeanBagDetails("00000000"));
 
     } catch (Exception e) {
       e.printStackTrace();
