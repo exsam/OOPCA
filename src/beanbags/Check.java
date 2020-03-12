@@ -117,6 +117,7 @@ public class Check {
 
   /**
    * Method checks that there is a bag reserved with given ID
+   *
    * @param resNum
    * @throws ReservationNumberNotRecognisedException
    */
@@ -138,6 +139,25 @@ public class Check {
       // Throw "ReservationNumberNotRecognisedException", as no matches were found whilst looping.
       throw new ReservationNumberNotRecognisedException(
           "No BeanBags with this Reservation Number in stock.");
+    }
+  }
+
+  /**
+   * Check if Bag with id has ever been in Stock
+   *
+   * @param id
+   * @throws BeanBagIDNotRecognisedException if the ID is legal, but does not match any bag in (or *
+   *     * previously in) stock
+   */
+  public static void idEverExists(String id) throws BeanBagIDNotRecognisedException {
+    int n = 0;
+    for (int i = 0; i < stockList.size(); i++) {
+      if (((BeanBag) stockList.get(i)).getID().equals(id)) {
+        n++;
+      }
+    }
+    if (n < 1) {
+      throw new BeanBagIDNotRecognisedException();
     }
   }
 }
