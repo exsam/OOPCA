@@ -23,6 +23,7 @@ public class TestingClassRyan {
       /*System.out.println("\nUNIQUE: " + testing.getNumberOfDifferentBeanBagsInStock());
       System.out.println(testing.beanBagsInStock());*/
       testing.empty();
+      testing.addBeanBags(10,"man","nam","00000000",(short)2010,(byte)12);
     } catch (Exception e) {
       e.printStackTrace();
     }
