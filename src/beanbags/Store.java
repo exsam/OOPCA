@@ -9,30 +9,38 @@ import java.io.*;
  * @version 0.1
  */
 public class Store implements BeanBagStore {
+
+  // Define and initialise public static "ObjecetArrayList" called "stockList".
   public static ObjectArrayList stockList = new ObjectArrayList();
 
+  // Define private integer variable "nextReservationNum" and set it's value to 0.
   private int nextReservationNum = 0;
 
   public void addBeanBags(
       int num, String manufacturer, String name, String id, short year, byte month)
       throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException, IllegalIDException,
           InvalidMonthException {
+    // Run the "validID" function in the "Check" class to see if the format is correct.
     Check.validID(id);
-    // Ensures month entered is a valid month
+    // If the "month" byte variable is greater than 12 or less than or equal to 0.
     if (month <= 0 || month > 12) {
-      throw new InvalidMonthException(
-          month + " is an invalid month. Please enter a valid month 1-12");
+      // Throw exception "InvalidMonthException", as the month is not correctly formatted.
+      throw new InvalidMonthException(month + " is an invalid month. Please enter a valid month 1-12");
     }
-
-    // Ensures Number of BeanBags is valid (if not >1 throw error)
+    // Ensures number of BeanBags passed to function ("num") is valid (Greater than or equal to 1).
     if (num >= 1) {
+      // Repeat the following code "num" times.
       for (int i = 0; i < num; i++) {
+        // Define a new "BeanBag" object with the following parameters.
         BeanBag tempBag = new BeanBag(name, id, manufacturer, year, month);
+        // Add the new beanBag "tempBag" object to the "stockList".
         stockList.add(tempBag);
       }
+    // If number of BeanBags passed to function ("num") is NOT greater than or equal to 1.
     } else {
-      throw new IllegalNumberOfBeanBagsAddedException(
-          "Number of bags must be must be a whole integer and greater then 0.");
+      // Throw exception "IllegalNumberOfBeanBagsAddedException", as number passed to the function is wrong.
+      throw new IllegalNumberOfBeanBagsAddedException("Number of bags must be" +
+              " must be a whole integer and greater then 0.");
     }
   }
 
@@ -46,50 +54,72 @@ public class Store implements BeanBagStore {
       String information)
       throws IllegalNumberOfBeanBagsAddedException, BeanBagMismatchException, IllegalIDException,
           InvalidMonthException {
+    // Run the "validID" function in the "Check" class to see if the format is correct.
     Check.validID(id);
-    // Ensures month entered is a valid month
+    // If the "month" byte variable is greater than 12 or less than or equal to 0.
     if (month <= 0 || month > 12) {
-      throw new InvalidMonthException(
-          month + " is an invalid month. Please enter a valid month 1-12");
+      // Throw exception "InvalidMonthException", as the month is not correctly formatted.
+      throw new InvalidMonthException(month + " is an invalid month. Please enter a valid month 1-12");
     }
-
-    // Ensures number of BeanBags is valid (if not >1 throw error)
+    // Ensures number of BeanBags passed to function ("num") is valid (Greater than or equal to 1).
     if (num >= 1) {
+      // Repeat the following code "num" times.
       for (int i = 1; i <= num; i++) {
+        // Define a new "BeanBag" object with the following parameters.
         BeanBag tempBag = new BeanBag(name, id, manufacturer, information, year, month);
+        // Add the new beanBag "tempBag" object to the "stockList".
         stockList.add(tempBag);
       }
+    // If number of BeanBags passed to function ("num") is NOT greater than or equal to 1.
     } else {
-      throw new IllegalNumberOfBeanBagsAddedException(
-          "Number of bags must be a whole integer and greater then 0.");
+      // Throw exception "IllegalNumberOfBeanBagsAddedException", as number passed to the function is wrong.
+      throw new IllegalNumberOfBeanBagsAddedException("Number of bags must be a whole integer and greater then 0.");
     }
   }
 
   private int GetNextResNum() {
+    // Loop through every object in the "stockList" object array list.
     for (int i = 0; i < stockList.size(); i++) {
+      // If the "reservationNumber" of the beanBag in the "stockList"
+      // is greater than the "nextReservationNum" global integer.
       if (((BeanBag) stockList.get(i)).getReservationNumber() > nextReservationNum) {
+        // Set the global integer "nextReservationNum" to the value of the current
+        // Reservation number of the beanBag in the "stockList".
         nextReservationNum = ((BeanBag) stockList.get(i)).getReservationNumber();
       }
     }
+    // Increment the "nextReservationNum" integer by 1.
     nextReservationNum = nextReservationNum + 1;
+    // Return the value of the "nextReservationNum" integer variable.
     return nextReservationNum;
   }
 
   public void setBeanBagPrice(String id, int priceInPence)
       throws InvalidPriceException, BeanBagIDNotRecognisedException, IllegalIDException {
+    // Run the "validID" function in the "Check" class to see if the format is correct.
     Check.validID(id);
+    // If the "priceinPence" integer is less than 1.
     if (priceInPence < 1) {
+      // Throw exception "InvalidPriceException", as the price is not correctly formatted.
       throw new InvalidPriceException("Price must be 1 pence or higher");
     }
+    // Define integer "counter" and set the value to 0.
     int counter = 0;
+    // Loop through every object in the "stockList" object array list.
     for (int i = 0; i < stockList.size(); i++) {
+      // If the ID of the beanBag in the stockList matches the passed parameter ID
+      // AND the beanBag is NOT already reserved.
       if ((((BeanBag) stockList.get(i)).getID()).equals(id)
           && !((BeanBag) stockList.get(i)).getReserved()) {
+        // Set the "price" integer in the "stockList" to the "priceInPence" integer parameter.
         ((BeanBag) stockList.get(i)).setPrice(priceInPence);
+        // Increment the "counter" integer by 1.
         counter++;
       }
     }
+    // If the "counter" integer is less than or equal to 0.
     if (counter <= 0) {
+      // Throw exception "BeanBagIDNotRecognisedException", as the beanbag ID doesn't exist.
       throw new BeanBagIDNotRecognisedException("No BeanBags with ID: " + id + " were found.");
     }
   }
@@ -97,11 +127,17 @@ public class Store implements BeanBagStore {
   private void setReserved(String id, boolean reserved, int reservationNumber)
       throws ReservationNumberNotRecognisedException, BeanBagIDNotRecognisedException,
           IllegalIDException {
+    // Loop through every object in the "stockList" object array list.
     for (int i = 0; i < stockList.size(); i++) {
+      // If the ID of the beanBag in the stockList matches the passed parameter ID
+      // AND the beanBag is NOT already reserved.
       if (((BeanBag) stockList.get(i)).getID().equals(id)
           && !((BeanBag) stockList.get(i)).getReserved()) {
+        // Set the "getReserved" boolean in the "stockList" to the "reserved" boolean parameter.
         ((BeanBag) stockList.get(i)).setReserved(reserved);
+        // Set the "reservationNumber" integer in the "stockList" to the "reservationNumber" parameter.
         ((BeanBag) stockList.get(i)).setReservationNumber(reservationNumber);
+        // Break from the loop.
         break;
       }
     }
@@ -110,9 +146,13 @@ public class Store implements BeanBagStore {
   private void setSold(String id, boolean sold)
       throws ReservationNumberNotRecognisedException, BeanBagIDNotRecognisedException,
           IllegalIDException {
+    // Loop through every object in the "stockList" object array list.
     for (int i = 0; i < stockList.size(); i++) {
+      // If the ID in the stockList matches the passed parameter ID.
       if (((BeanBag) stockList.get(i)).getID().equals(id)) {
+        // Set the "setSold" boolean in the "stockList" to the "sold" boolean parameter.
         ((BeanBag) stockList.get(i)).setSold(sold);
+        // Break from the loop.
         break;
       }
     }
@@ -270,7 +310,7 @@ public class Store implements BeanBagStore {
     int BagStock = 0;
     // Loop through every object in the "stockList" object array list.
     for (int i = 0; i < stockList.size(); i++) {
-      // If the ID in the stockList matches the passed parameter ID
+      // If the ID in the stockList matches the passed parameter ID.
       if (((BeanBag) stockList.get(i)).getID().equals(id)) {
         // Increment the "BagStock" integer by 1.
         BagStock = BagStock + 1;
@@ -281,11 +321,6 @@ public class Store implements BeanBagStore {
   }
 
   public void saveStoreContents(String filename) throws IOException {
-
-    // Loop through all things in "Stock"
-    // Add each one to a text file or array?
-    // Save as a text file with filename
-
     // Define a "writer" stream
     FileWriter writer = new FileWriter(filename, false);
     BufferedWriter bufferedWriter = new BufferedWriter(writer);
