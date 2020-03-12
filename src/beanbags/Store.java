@@ -83,7 +83,7 @@ public class Store implements BeanBagStore {
     }
   }
 
-  private int GetNextResNum() {
+  private int getNextResNum() {
     // Loop through every object in the "stockList" object array list.
     for (int i = 0; i < stockList.size(); i++) {
       // If the "reservationNumber" of the beanBag in the "stockList"
@@ -147,7 +147,6 @@ public class Store implements BeanBagStore {
         // Break from the loop.
         break;
       }
-      System.out.println(((BeanBag) stockList.get(i)).getID());
     }
   }
 
@@ -170,50 +169,35 @@ public class Store implements BeanBagStore {
       throws BeanBagNotInStockException, InsufficientStockException,
           IllegalNumberOfBeanBagsSoldException, PriceNotSetException,
           BeanBagIDNotRecognisedException, IllegalIDException {
-    Check.validID(id);
-    if (num <= 0) {
+    if (num < 1) {
       throw new IllegalNumberOfBeanBagsSoldException(
           "Please enter a quantity to be sold greater or equal to 1");
     }
+    Check.validID(id);
     Check.fulfillRequest(num, id);
-    for (int i = 0; i < num; i++) {
-      // Loop through every object in the "stockList" object array list.
-      for (int j = 0; j < stockList.size(); j++) {
-        // If the current beanBag in the "stockList" isSold boolean is NOT true.
-        if (!((BeanBag) stockList.get(j)).isSold()
-            & ((BeanBag) stockList.get(j)).getID().equals(id)) {
+
+    // Define the string variable "Reservati
+    int fulfilledSold = 0;
+    // Loop the following code "num" times.
+    for (int j = 0; j < stockList.size(); j++) {
+      // If the current beanBag in the "stockList" reserved state boolean is NOT true.
+      if (fulfilledSold < num) {
+        if (!((BeanBag) stockList.get(j)).getReserved()) {
           // If the ID in the stockList matches the passed parameter ID
-          // Set the beanBag reserved state to "true" in the "stockList".
-          ((BeanBag) stockList.get(j)).setSold(true);
-          // Set the beanBag reservation number in the "stockList" to the value of the integer
-          break;
+          if (((BeanBag) stockList.get(j)).getID().equals(id) & !((BeanBag) stockList.get(j)).isSold()) {
+            if (((BeanBag) stockList.get(j)).getPrice() < 1) {
+              throw new PriceNotSetException("Please Set A Price For BeanBag " + id);
+            }
+            System.out.println("Matching ID and NOT Reserved");
+            // Set the beanBag reserved state to "true" in the "stockList".
+            ((BeanBag) stockList.get(j)).setSold(true);
+            fulfilledSold= fulfilledSold + 1;
+          }
         }
+      } else {
+        break;
       }
     }
-    // int n = 0;
-
-    // Method for searching via "ID"
-
-    // while (n < num) {
-    // for (int i = 0; i < stockList.size(); i++) {
-    // BeanBag bag = (BeanBag) stockList.get(i);
-    // System.out.println(bag.isSold());
-    // if ((bag.getID()).equals(id) & !bag.getReserved() & !bag.isSold()) {
-    // if (bag.getPrice() <= 0) {
-    // throw new PriceNotSetException("No price set for BeanBag");
-    // }
-    // bag.setSold(true);
-    // System.out.println(((BeanBag) stockList.get(i)).toString());
-    // n = n + 1;
-    // break;
-    // }
-    // }
-    // }
-
-    // Check bean bag in stock,
-    // Check bean bag not reserved,
-    // Check sufficient stock for quantity required,
-    // Remove from ObjectArrayList
   }
   // TODO
   public int reserveBeanBags(int num, String id)
@@ -222,42 +206,41 @@ public class Store implements BeanBagStore {
           BeanBagIDNotRecognisedException, IllegalIDException {
     // Exception Handling
     if (num < 1) {
-      throw new IllegalNumberOfBeanBagsReservedException("Please reserve 1 or more bags");
+      throw new IllegalNumberOfBeanBagsReservedException(
+          "Please enter a quantity to be reserved greater or equal to " + "1");
     }
     Check.validID(id);
     Check.fulfillRequest(num, id);
 
-    // Define the string variable "ReservationNum" as the result from the function
+    // Define the int variable "ReservationNum" as the result from the function
     // "GetNextRestNum()".
-    int ReservationNum = GetNextResNum();
-    int FulfilledReserved = 0;
+    int reservationNum = getNextResNum();
+    int fulfilledReserved = 0;
     // Loop the following code "num" times.
     for (int j = 0; j < stockList.size(); j++) {
       // If the current beanBag in the "stockList" reserved state boolean is NOT true.
-      if (FulfilledReserved < num)
-      {
+      if (fulfilledReserved < num) {
         if (!((BeanBag) stockList.get(j)).getReserved()) {
           // If the ID in the stockList matches the passed parameter ID
           if (((BeanBag) stockList.get(j)).getID().equals(id)) {
+            if (((BeanBag) stockList.get(j)).getPrice() < 1) {
+              throw new PriceNotSetException("Please Set A Price For BeanBag " + id);
+            }
             System.out.println("Matching ID and NOT Reserved");
             // Set the beanBag reserved state to "true" in the "stockList".
             ((BeanBag) stockList.get(j)).setReserved(true);
             // Set the beanBag reservation number in the "stockList" to the value of the integer
             // "ReservationNum".
-            ((BeanBag) stockList.get(j)).setReservationNumber(ReservationNum);
-            FulfilledReserved = FulfilledReserved + 1;
+            ((BeanBag) stockList.get(j)).setReservationNumber(reservationNum);
+            fulfilledReserved = fulfilledReserved + 1;
           }
-        } else {
-          // TODO PLACEHOLDER
         }
-      }
-      else
-      {
+      } else {
         break;
       }
     }
     // Return the value of the "ReservationNum" string variable.
-    return ReservationNum;
+    return reservationNum;
   }
 
   public void unreserveBeanBags(int reservationNumber)

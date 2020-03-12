@@ -29,7 +29,7 @@ public class TestingClassSam {
       //testStore.setBeanBagPrice("000000FF",100);
       testStore.sellBeanBags(1, "000000FF");
       //testStore.reserveBeanBags(2,"000000FF");
-      testStore.unreserveBeanBags(4);
+      //testStore.unreserveBeanBags(8);
       testStore.saveStoreContents("stocklist.txt");
     } catch (Exception e) {
       System.out.println(e);
